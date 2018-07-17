@@ -1,0 +1,182 @@
+/* My colors
+blue #337ab7
+ */
+
+@import url(https://fonts.googleapis.com/css?family=Oxygen);
+body {
+    font-family: 'Oxygen', sans-serif !important;
+    line-height: 1.5;
+    font-size: 16px;
+    color: #0E0F34;
+    color: #848484;
+    /* background-color: #f0f0f0; */
+    background-color: #fff;
+}
+
+.container-fluid {
+    color: #848484;
+    /* background-color: #f0f0f0; */
+    background-color: #fff;
+}
+
+.container {
+    color: #848484;
+    /* background-color: #f0f0f0; */
+    background-color: #fff;
+}
+
+hr {
+    padding: -10px 0 -10px 0;
+}
+
+.small-text {
+    font-size: 11px;
+}
+
+.light-text {
+    color: #848484;
+}
+
+.medium-text {
+    font-size: 14px;
+}
+
+.button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 5px 15px 5px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: bold;
+    margin: 4px 2px;
+    width: 150px;
+}
+
+.border {
+    padding: 10px;
+}
+
+/* enable absolute positioning */
+
+.inner-addon {
+    position: relative;
+}
+
+/* style icon */
+
+.inner-addon .fa {
+    position: absolute;
+    padding: 10px;
+    pointer-events: none;
+}
+
+/* align icon */
+
+.left-addon .fa {
+    left: 0px;
+}
+
+.right-addon .fa {
+    right: 0px;
+}
+
+/* add padding  */
+
+.left-addon input {
+    padding-left: 30px;
+}
+
+.right-addon input {
+    padding-right: 30px;
+}
+
+input.search-box {
+    width: 180px;
+    background: #333;
+    background-position: -48px 0;
+    padding-left: 30px;
+    margin-top: 45px;
+    float: right;
+}
+
+h3 {
+    padding: 10px;
+}
+
+.img {
+    padding: 5px;
+    width: 100%;
+}
+
+.text-black {
+    color: black;
+}
+
+.form-check {
+    color: white;
+    padding-left: 15px;
+}
+
+/* RATINGS */
+
+.star-rating {
+    line-height: 32px;
+    font-size: 1.25em;
+}
+
+.star-rating .fa-star {
+    color: orange;
+}
+
+.rounded-circle {
+    height: 50px;
+    width: 50px;
+}
+
+.block {
+    text-decoration: none;
+}
+
+.card .card-body {
+    position: relative;
+    padding: 10px;
+    background-color: #fff;
+}
+
+.card .card-header {
+    position: relative;
+    padding: 10px;
+}
+
+.card .card-footer {
+    position: relative;
+    padding: 5px;
+}
+
+.card {
+    background-color: #fff;
+    box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12), 0 2px 4px -1px rgba(0, 0, 0, .2);
+    margin-bottom: 5px;
+    min-height: 100px;
+    position: relative;
+    background-color: rgb(68, 68, 68);
+    /* Needed for IEs */
+}
+
+footer {
+    position: relative;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: #848484;
+    /* background-color: #f0f0f0; */
+    background-color: #fff;
+    text-align: center;
+}
+
+.fullwidth {
+    width: 100%;
+}

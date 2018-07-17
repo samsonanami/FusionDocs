@@ -1,0 +1,158 @@
+body {
+    font-family: 'Cairo', sans-serif;
+}
+
+p {
+    color: #525252;
+    font-size: 12px;
+}
+
+.skillbar {
+    position: relative;
+    display: block;
+    margin-bottom: 33px;
+    width: 100%;
+    background: #eee;
+    height: 30px;
+    border-radius: 35px;
+    -moz-border-radius: 35px;
+    -webkit-border-radius: 35px;
+    -webkit-transition: 0.4s linear;
+    -moz-transition: 0.4s linear;
+    -ms-transition: 0.4s linear;
+    -o-transition: 0.4s linear;
+    transition: 0.4s linear;
+    -webkit-transition-property: width, background-color;
+    -moz-transition-property: width, background-color;
+    -ms-transition-property: width, background-color;
+    -o-transition-property: width, background-color;
+    transition-property: width, background-color;
+}
+
+.skillbar-title {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 110px;
+    font-size: 15px;
+    color: #ffffff;
+    background: #6adcfa;
+    -webkit-border-radius: 35px;
+    -moz-border-radius: 35px;
+    -moz-border-radius: 35px;
+    border-radius: 35px;
+}
+
+.skillbar-title span {
+    display: block;
+    /* background: #0E0F34; */
+    background: rgba(0, 0, 0, 0.15);
+    padding: 0 20px;
+    height: 30px;
+    line-height: 30px;
+    -webkit-border-radius: 35px;
+    -moz-border-radius: 35px;
+    -moz-border-radius: 35px;
+    border-radius: 35px;
+}
+
+.skillbar-bar {
+    height: 30px;
+    width: 0px;
+    background: #6adcfa;
+    border-radius: 35px;
+    -moz-border-radius: 35px;
+    -webkit-border-radius: 35px;
+}
+
+.skill-bar-percent {
+    position: absolute;
+    right: 10px;
+    top: 0;
+    font-size: 12px;
+    height: 30px;
+    line-height: 30px;
+    color: #ffffff;
+    /* color: #0E0F34; */
+    color: rgba(0, 0, 0, 0.4);
+}
+
+
+
+/*Marque styles*/
+.counties {
+ height: 40px;  
+ overflow: hidden;
+ position: relative;
+ font-size: 10px;
+ text-align: center;
+}
+.counties h4 {
+ font-size: 3em;
+ color: #337ab7;
+ position: absolute;
+ width: 100%;
+ height: 100%;
+ margin: 0;
+ line-height: 45px;
+ text-align: center;
+ /* Starting position */
+ -moz-transform:translateX(100%);
+ -webkit-transform:translateX(100%);  
+ transform:translateX(100%);
+ /* Apply animation to this element */  
+ -moz-animation: counties 15s linear infinite;
+ -webkit-animation: counties 15s linear infinite;
+ animation: counties 15s linear infinite;
+}
+/* Move it (define the animation) */
+@-moz-keyframes counties {
+ 0%   { -moz-transform: translateX(100%); }
+ 100% { -moz-transform: translateX(-100%); }
+}
+@-webkit-keyframes counties {
+ 0%   { -webkit-transform: translateX(100%); }
+ 100% { -webkit-transform: translateX(-100%); }
+}
+@keyframes counties {
+ 0%   { 
+ -moz-transform: translateX(100%); /* Firefox bug fix */
+ -webkit-transform: translateX(100%); /* Firefox bug fix */
+ transform: translateX(100%);     
+ }
+ 100% { 
+ -moz-transform: translateX(-100%); /* Firefox bug fix */
+ -webkit-transform: translateX(-100%); /* Firefox bug fix */
+ transform: translateX(-100%); 
+ }
+}
+
+
+/*typewriter*/
+.typewriter h4 {
+  color: #fff;
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  border-right: .15em solid orange; /* The typwriter cursor */
+  white-space: nowrap; /* Keeps the content on a single line */
+  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+  letter-spacing: .05em; /* Adjust as needed */
+  animation: 
+    typing 3.5s steps(30, end),
+    blink-caret .5s step-end infinite;
+}
+
+/* The typing effect */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: orange }
+}
+
+.count{
+  color: #ffffff;
+}
