@@ -93,4 +93,13 @@ return array (
       '@kartik/tree' => $vendorDir . '/kartik-v/yii2-tree-manager/src',
     ),
   ),
+  'kartik-v/yii2-widget-fileinput' => 
+  array (
+    'name' => 'kartik-v/yii2-widget-fileinput',
+    'version' => '9999999-dev',
+    'alias' => 
+    array (
+      '@kartik/file' => $vendorDir . '/kartik-v/yii2-widget-fileinput',
+    ),
+  ),
 );

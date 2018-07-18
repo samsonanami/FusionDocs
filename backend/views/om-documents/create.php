@@ -12,7 +12,7 @@ use yii\helpers\Html;
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-			<h1><?= Html::encode($this->title) ?></h1>
+      <h1><?= Html::encode($this->title) ?></h1>
         <small>Create a new document</small>
       </h1>
       <ol class="breadcrumb">
@@ -39,12 +39,13 @@ use yii\helpers\Html;
           </div>
         </div>
         <div class="box-body">
-				<div class="om-documents-create">
-							<?= $this->render('_form', [
-									'model' => $model,
-							]) ?>
-					
-				</div>
+        <div class="om-documents-create">
+
+              <?= $this->render('_form', [
+                  'model' => $model,
+              ]) ?>
+          
+        </div>
         </div>
         <!-- /.box-body -->
         <div class="box-footer">

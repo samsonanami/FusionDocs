@@ -30,6 +30,9 @@ use yii\grid\GridView;
 // VIEW - views/product/index.php
 use kartik\tree\TreeView;
 use app\models\Product;
+use kartik\file\FileInput;
+
+
  
 echo TreeView::widget([
   'query' => \app\models\Product::find()->addOrderBy('root, lft'),
@@ -52,6 +55,29 @@ echo TreeView::widget([
 ]);
 
 ?>
+<div class="om-documents-index">
+            
+            <?= GridView::widget([
+                'dataProvider' => $dataProvider,
+                // 'filterModel' => $searchModel,
+                'columns' => [
+                    ['class' => 'yii\grid\SerialColumn'],
+                    'short_title',
+                    // 'doc_id',
+                    'title',
+                    // 'categoty',
+                    // 'type',
+                    //'keyword',
+                    //'note',
+                    //'created_by',
+                    //'doc_link:ntext',
+                    'date_created',
+                    
+
+                    ['class' => 'yii\grid\ActionColumn'],
+                ],
+            ]); ?>
+        </div>
 </div>
         <!-- /.box-body -->
         <div class="box-footer">

@@ -13,18 +13,18 @@ use app\models\OmDocuments;
 class OmDocumentsSearch extends OmDocuments
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['doc_id'], 'integer'],
+            [['doc_id', 'dir_id'], 'integer'],
             [['short_title', 'title', 'categoty', 'type', 'keyword', 'note', 'created_by', 'doc_link', 'date_created'], 'safe'],
         ];
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function scenarios()
     {
@@ -60,6 +60,7 @@ class OmDocumentsSearch extends OmDocuments
         // grid filtering conditions
         $query->andFilterWhere([
             'doc_id' => $this->doc_id,
+            'dir_id' => $this->dir_id,
             'date_created' => $this->date_created,
         ]);
 

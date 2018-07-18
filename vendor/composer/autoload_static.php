@@ -35,7 +35,9 @@ class ComposerStaticInit9c4ae0f1e3be1063039c0f96f3fd7424
         'k' => 
         array (
             'kartik\\tree\\' => 12,
+            'kartik\\plugins\\fileinput\\' => 25,
             'kartik\\form\\' => 12,
+            'kartik\\file\\' => 12,
             'kartik\\dialog\\' => 14,
             'kartik\\base\\' => 12,
         ),
@@ -126,9 +128,17 @@ class ComposerStaticInit9c4ae0f1e3be1063039c0f96f3fd7424
         array (
             0 => __DIR__ . '/..' . '/kartik-v/yii2-tree-manager/src',
         ),
+        'kartik\\plugins\\fileinput\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kartik-v/bootstrap-fileinput',
+        ),
         'kartik\\form\\' => 
         array (
             0 => __DIR__ . '/..' . '/kartik-v/yii2-widget-activeform',
+        ),
+        'kartik\\file\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kartik-v/yii2-widget-fileinput',
         ),
         'kartik\\dialog\\' => 
         array (

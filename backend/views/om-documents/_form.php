@@ -9,11 +9,19 @@ use yii\widgets\ActiveForm;
 ?>
 
 <div class="om-documents-form">
+            <!-- Get the doc id -->
+              <?php
+                $request = Yii::$app->request;
+                $id = $request->get('id', 1);
+              ?>
+
                 <?php $form = ActiveForm::begin(); ?>
 
-                <?= $form->field($model, 'attachment')->fileInput(); ?>
+                <?= $form->field($model, 'dir_id')->textInput(['maxlength' => true, 'class'=>'form-control float-left', 'value'=>$id]) ?>
 
-                <?= $form->field($model, 'short_title')->textInput(['maxlength' => true, 'class'=>'float-left']) ?>
+                <?= $form->field($model, 'attachment')->fileInput(['maxlength' => true, 'class'=>'form-control']); ?>
+
+                <?= $form->field($model, 'short_title')->textInput(['maxlength' => true, 'class'=>'form-control float-left']) ?>
 
                 <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 

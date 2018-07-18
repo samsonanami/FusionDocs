@@ -354,8 +354,9 @@ AppAsset::register($this);
         </span>
       </a>
       <ul class="treeview-menu">
-
-        <li><?= Html::a(' - Document Lists', ['om-documents/index'],['class' => 'fa fa-circle-o']) ?></li>
+        <li><?= Html::a(' - Directory Management', ['om-documents/search'],['class' => 'fa  fa-search']) ?></li>
+        <li><?= Html::a(' - Directory Management', ['om-documents/home'],['class' => 'fa  fa-folder']) ?></li>
+        <li><?= Html::a(' - File Management', ['om-documents/index'],['class' => 'fa  fa-sticky-note']) ?></li>
         <li><?= Html::a(' - Document Category', ['om-document-category/index'],['class' => 'fa fa-circle-o']) ?></li>
         <li><?= Html::a(' - Document Registration', ['om-documents/create'],['class' => 'fa fa-circle-o']) ?></li>
        
