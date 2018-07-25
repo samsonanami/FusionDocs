@@ -67,7 +67,7 @@ class OmDocumentsController extends Controller
      */
     public function actionCreate()
     {
-         $this->layout='index';
+         $this->layout='main';
          $model = new OmDocuments();
 
        if ($model->load(Yii::$app->request->post()))
@@ -111,7 +111,7 @@ class OmDocumentsController extends Controller
 
     public function actionHome()
     {
-        $this->layout='index';
+        $this->layout='main';
         $parent_one = TrDirectories::find()->where(['dir_level'=>1])->all();
         
         $searchModel = new OmDocumentsSearch();
@@ -145,7 +145,7 @@ class OmDocumentsController extends Controller
 
     public function actionDownload($id)
     {
-        $this->layout='index';
+        $this->layout='main';
         $data = OmDocuments::findOne($id);
         header('Content-Type:'.pathinfo($data->doc_link, PATHINFO_EXTENSION));
         header('Content-Disposition: attachment; filename='.$data->doc_link);

@@ -11,7 +11,7 @@ use yii\widgets\DetailView;
 // $this->params['breadcrumbs'][] = $this->title;
 ?>
 <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+  <div class="content-wrapper" id="myDiv" class="animate-bottom">
     <!-- Main content -->
     <section class="content">
 

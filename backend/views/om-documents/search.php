@@ -10,7 +10,7 @@ use yii\widgets\Pjax;
 
 ?>
 <!-- Content Wrapper. Contains page content -->
- <div class="content-wrapper">
+ <div class="content-wrapper" id="myDiv" class="animate-bottom">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
@@ -51,16 +51,16 @@ use yii\widgets\Pjax;
                         ['class' => 'yii\grid\SerialColumn'],
 
                         'doc_id',
-                        'dir_id',
+                        // 'dir_id',
                         'short_title',
                         'title',
                         'categoty',
-                        //'type',
-                        //'keyword',
-                        //'note',
-                        //'created_by',
+                        'type',
+                        'keyword',
+                        'note',
+                        'created_by',
                         //'doc_link:ntext',
-                        //'date_created',
+                        'date_created',
 
                         ['class' => 'yii\grid\ActionColumn'],
                     ],

@@ -35,7 +35,7 @@ class TrDirectoriesController extends Controller
      */
     public function actionIndex()
     {
-        $this->layout='index';
+        $this->layout='main';
         $searchModel = new TrDirectoriesSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 

@@ -14,13 +14,13 @@ $this->title = 'Create Tr Directories';
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Blank page
-        <small>it all starts here</small>
+        Directory Management
+        <small><?= Html::encode($this->title) ?></small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Examples</a></li>
-        <li class="active">Blank page</li>
+        <li><a href="#">Directories</a></li>
+        <li class="active">Create New</li>
       </ol>
     </section>
 
@@ -30,7 +30,7 @@ $this->title = 'Create Tr Directories';
       <!-- Default box -->
       <div class="box">
         <div class="box-header with-border">
-          <h3 class="box-title">Title</h3>
+          <h3 class="box-title"><?= Html::encode($this->title) ?></h3>
 
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
@@ -42,7 +42,6 @@ $this->title = 'Create Tr Directories';
         </div>
         <div class="box-body">
         <div class="tr-directories-create">
-        <h1><?= Html::encode($this->title) ?></h1>
 
         <?= $this->render('_form', [
             'model' => $model,
@@ -52,7 +51,6 @@ $this->title = 'Create Tr Directories';
         </div>
         <!-- /.box-body -->
         <div class="box-footer">
-          Footer
         </div>
         <!-- /.box-footer-->
       </div>

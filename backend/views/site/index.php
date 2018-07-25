@@ -5,7 +5,7 @@
 $this->title = 'FusionDocs :: Home';
 ?>
 <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+  <div class="content-wrapper" id="myDiv" class="animate-bottom" >
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
@@ -73,6 +73,9 @@ $this->title = 'FusionDocs :: Home';
               <span class="info-box-text">New Documents</span>
               <span class="info-box-number">2,000</span>
             </div>
+            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-warning">
+                Launch Warning Modal
+              </button>
             <!-- /.info-box-content -->
           </div>
           <!-- /.info-box -->

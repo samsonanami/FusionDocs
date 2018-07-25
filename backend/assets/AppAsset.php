@@ -24,9 +24,12 @@ class AppAsset extends AssetBundle
         'https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic',
         'plugins/iCheck/square/blue.css',
 
+        'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.9/css/fileinput.min.css',
+
     ];
     public $js = [
         // 'bower_components/jquery/dist/jquery.min.js',
+        'js/main.js',
         'bower_components/bootstrap/dist/js/bootstrap.min.js',
         'bower_components/fastclick/lib/fastclick.js',
         'js/adminlte.min.js',
@@ -37,7 +40,8 @@ class AppAsset extends AssetBundle
         'bower_components/chart.js/Chart.js',
         'dist/js/pages/dashboard2.js',
         'dist/js/demo.js',
-        // For folder tree
+        // For folder tree,
+
         'js/file-explore.js',
 
     ];

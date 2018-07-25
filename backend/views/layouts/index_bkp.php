@@ -30,10 +30,16 @@ AppAsset::register($this);
                 });
     </script>
 
-
-
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
+<!-- Page Preloder -->
+<div id="preloder">
+		<div class="loader"></div>
+	</div>
+	
+
+
+
 <?php $this->beginBody() ?>
 <div class="rap">
   

@@ -38,7 +38,7 @@ class OmDocumentsController extends Controller
      */
     public function actionIndex()
     {
-        $this->layout='index';
+        $this->layout='main';
         $parent_one = TrDirectories::find()->where(['dir_level'=>1])->all();
         
         $searchModel = new OmDocumentsSearch();
@@ -53,7 +53,7 @@ class OmDocumentsController extends Controller
 
     public function actionHome()
     {
-        $this->layout='index';
+        $this->layout='main';
         $parent_one = TrDirectories::find()->where(['dir_level'=>1])->all();
         
         $searchModel = new OmDocumentsSearch();
@@ -73,7 +73,7 @@ class OmDocumentsController extends Controller
      */
     public function actionView($id)
     {
-         $this->layout='index';
+         $this->layout='main';
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -81,7 +81,7 @@ class OmDocumentsController extends Controller
 
     public function actionViewFolder($id)
     {
-         $this->layout='index';
+         $this->layout='main';
         return $this->render('index', [
             'model' => $this->findModel($id),
         ]);
@@ -94,7 +94,7 @@ class OmDocumentsController extends Controller
      */
     public function actionCreate()
     {
-         $this->layout='index';
+         $this->layout='main';
         $model = new OmDocuments();
 
         if ($model->load(Yii::$app->request->post()))
@@ -126,7 +126,7 @@ class OmDocumentsController extends Controller
      */
     public function actionUpdate($id)
     {
-         $this->layout='index';
+         $this->layout='main';
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -147,7 +147,7 @@ class OmDocumentsController extends Controller
      */
     public function actionDownload($id)
     {
-        $this->layout='index';
+        $this->layout='main';
         $data = OmDocuments::findOne($id);
         header('Content-Type:'.pathinfo($data->doc_link, PATHINFO_EXTENSION));
         header('Content-Disposition: attachment; filename='.$data->doc_link);
@@ -155,7 +155,7 @@ class OmDocumentsController extends Controller
     }
     public function actionDelete($id)
     {
-        $this->layout='index';
+        $this->layout='main';
 
         $this->findModel($id)->delete();
         $data = OmDocuments::findOne($id);
@@ -176,7 +176,7 @@ class OmDocumentsController extends Controller
      */
     protected function findModel($id)
     {
-         $this->layout='index';
+         $this->layout='main';
         if (($model = OmDocuments::findOne($id)) !== null) {
             return $model;
         }

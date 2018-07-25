@@ -60,8 +60,18 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $this->layout='index';
+        $this->layout='main';
         return $this->render('index');
+    }
+
+    public function actionSignup()
+    {
+        if(Yii::$app->user->can('create-document-category')){
+            $this->layout='main';
+            return $this->render('signup');
+        }else{
+            throw new FobiddenHttpException;
+        }
     }
 
     /**
@@ -99,4 +109,6 @@ class SiteController extends Controller
 
         return $this->goHome();
     }
+
+
 }
