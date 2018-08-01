@@ -7,6 +7,9 @@ use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\LoginForm;
 
+use app\models\OmDocuments;
+use app\models\OmDocumentsSearch;
+
 /**
  * Site controller
  */
@@ -61,7 +64,13 @@ class SiteController extends Controller
     public function actionIndex()
     {
         $this->layout='main';
-        return $this->render('index');
+        $searchModel = new OmDocumentsSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
     }
 
     public function actionSignup()

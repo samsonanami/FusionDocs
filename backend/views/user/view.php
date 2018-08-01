@@ -200,11 +200,6 @@ $this->title = "View User :".$model->id;
             <!-- /.col -->
         </div>
         <!-- /.row -->
-
-        
-
-     
-
     </section>
     <!-- /.content -->
   </div>

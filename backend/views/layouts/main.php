@@ -40,7 +40,7 @@ AppAsset::register($this);
                 });
     </script>
 
-    
+
     <style>
     .example-modal .modal {
       position: relative;
@@ -57,38 +57,38 @@ AppAsset::register($this);
     }
   </style>
 
-          <link href="css/main.css" rel="stylesheet">
-          <!-- KRAJEE EXPLORER THEME (ADVANCED) -->
-          <!-- bootstrap 4.x is supported. You can also use the bootstrap css 3.3.x versions -->
-          <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.9/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
-          <!-- if using RTL (Right-To-Left) orientation, load the RTL CSS file after fileinput.css by uncommenting below -->
-          <!-- link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.9/css/fileinput-rtl.min.css" media="all" rel="stylesheet" type="text/css" /-->
-          <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-          <!-- piexif.min.js is needed for auto orienting image files OR when restoring exif data in resized images and when you 
-              wish to resize images before upload. This must be loaded before fileinput.min.js -->
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.9/js/plugins/piexif.min.js" type="text/javascript"></script>
-          <!-- sortable.min.js is only needed if you wish to sort / rearrange files in initial preview. 
-              This must be loaded before fileinput.min.js --> 
-              <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.9/js/plugins/sortable.min.js" type="text/javascript"></script>
-          <!-- purify.min.js is only needed if you wish to purify HTML content in your preview for 
-              HTML files. This must be loaded before fileinput.min.js -->
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.9/js/plugins/purify.min.js" type="text/javascript"></script>
-          <!-- popper.min.js below is needed if you use bootstrap 4.x. You can also use the bootstrap js 
-            3.3.x versions without popper.min.js. -->
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
-          <!-- bootstrap.min.js below is needed if you wish to zoom and preview file content in a detail modal
-              dialog. bootstrap 4.x is supported. You can also use the bootstrap js 3.3.x versions. -->
-          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" type="text/javascript"></script>
-          <!-- the main fileinput plugin file -->
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.9/js/fileinput.min.js"></script>
-          <!-- optionally if you need a theme like font awesome theme you can include it as mentioned below -->
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.9/themes/fa/theme.js"></script>
-          <!-- optionally if you need translation for your language then include  locale file as mentioned below -->
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.9/js/locales/(lang).js"></script>
+  <link href="css/main.css" rel="stylesheet">
+  <!-- KRAJEE EXPLORER THEME (ADVANCED) -->
+  <!-- bootstrap 4.x is supported. You can also use the bootstrap css 3.3.x versions -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.9/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
+  <!-- if using RTL (Right-To-Left) orientation, load the RTL CSS file after fileinput.css by uncommenting below -->
+  <!-- link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.9/css/fileinput-rtl.min.css" media="all" rel="stylesheet" type="text/css" /-->
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <!-- piexif.min.js is needed for auto orienting image files OR when restoring exif data in resized images and when you
+      wish to resize images before upload. This must be loaded before fileinput.min.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.9/js/plugins/piexif.min.js" type="text/javascript"></script>
+  <!-- sortable.min.js is only needed if you wish to sort / rearrange files in initial preview.
+      This must be loaded before fileinput.min.js -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.9/js/plugins/sortable.min.js" type="text/javascript"></script>
+  <!-- purify.min.js is only needed if you wish to purify HTML content in your preview for
+      HTML files. This must be loaded before fileinput.min.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.9/js/plugins/purify.min.js" type="text/javascript"></script>
+  <!-- popper.min.js below is needed if you use bootstrap 4.x. You can also use the bootstrap js
+    3.3.x versions without popper.min.js. -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+  <!-- bootstrap.min.js below is needed if you wish to zoom and preview file content in a detail modal
+      dialog. bootstrap 4.x is supported. You can also use the bootstrap js 3.3.x versions. -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" type="text/javascript"></script>
+  <!-- the main fileinput plugin file -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.9/js/fileinput.min.js"></script>
+  <!-- optionally if you need a theme like font awesome theme you can include it as mentioned below -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.9/themes/fa/theme.js"></script>
+  <!-- optionally if you need translation for your language then include  locale file as mentioned below -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.9/js/locales/(lang).js"></script>
 
-          <!-- load the CSS files in the right order -->
-          <link href="css/fileinput.min.css" rel="stylesheet">
-          <link href="themes/explorer/theme.css" rel="stylesheet">
+  <!-- load the CSS files in the right order -->
+  <link href="css/fileinput.min.css" rel="stylesheet">
+  <link href="themes/explorer/theme.css" rel="stylesheet">
 
 </head>
 <body class="hold-transition skin-blue sidebar-mini" onload="myFunction()" style="margin:0;">
@@ -97,7 +97,7 @@ AppAsset::register($this);
 <?php $this->beginBody() ?>
 
 <div class="rap">
-  
+
 <header class="main-header">
     <!-- Logo -->
 
@@ -334,7 +334,7 @@ AppAsset::register($this);
               </li>
               <!-- Menu Body -->
               <li class="user-body">
-                 
+
                 <!-- /.row -->
               </li>
               <!-- Menu Footer-->
@@ -347,7 +347,7 @@ AppAsset::register($this);
                   <span class="btn btn-default btn-flat"><?= Html::a('Sign Out', ['site/logout'],['data' => ['method' => 'post']]) ?></span>
                 </div>
               </li>
-            </ul> 
+            </ul>
           </li>
           <!-- Control Sidebar Toggle Button -->
           <li>
@@ -393,10 +393,10 @@ AppAsset::register($this);
           <i class="fa fa-angle-left pull-right"></i>
         </span>
       </a>
-      <ul class="treeview-menu">
+      <!-- <ul class="treeview-menu">
         <li><a href="index.html"><i class="fa fa-circle-o"></i>Administration</a></li>
         <li class="active"><a href="index2.html"><i class="fa fa-circle-o"></i>My Statistics</a></li>
-      </ul>
+      </ul> -->
     </li>
     <li class="treeview">
       <a href="#">
@@ -411,7 +411,7 @@ AppAsset::register($this);
         <li><?= Html::a(' - Document Management', ['om-documents/home'],['class' => 'fa  fa-folder']) ?></li>
         <li><?= Html::a(' - Document Category', ['om-document-category/index'],['class' => 'fa  fa-sticky-note']) ?></li>
         <li><?= Html::a(' - Quick Upload on Root', ['om-documents/create'],['class' => 'fa  fa-sticky-note']) ?></li>
-       
+
       </ul>
     </li>
     <li class="treeview">
@@ -427,7 +427,7 @@ AppAsset::register($this);
         <li><?= Html::a(' - All Users', ['user/index'],['class' => 'fa fa-users']) ?></li>
         <li><?= Html::a(' - New User', ['user/create'],['class' => 'fa  fa-user-plus']) ?></li>
         <li><?= Html::a(' - User Rights ', ['user/create'],['class' => 'fa fa-user']) ?></li>
-       
+
       </ul>
     </li>
     <li class="treeview">
@@ -442,7 +442,7 @@ AppAsset::register($this);
 
         <li><?= Html::a(' - View Directories', ['tr-directories/index'],['class' => 'fa fa-circle-o']) ?></li>
         <li><?= Html::a(' - Create Directory', ['tr-directories/create'],['class' => 'fa fa-circle-o']) ?></li>
-       
+
       </ul>
     </li>
     <li class="treeview">
@@ -457,7 +457,7 @@ AppAsset::register($this);
       <li><?= Html::a(' - Assign User Group', ['auth-assignment/index'],['class' => 'fa  fa-users']) ?></li>
         <li><?= Html::a(' - Create User Rights', ['auth-item/index'],['class' => 'fa fa-user-secret']) ?></li>
         <li><?= Html::a(' - Assign User Rights', ['auth-item-child/index'],['class' => 'fa  fa-user-times']) ?></li>
-       
+
       </ul>
     </li>
     <li class="header">LABELS</li>
@@ -467,7 +467,7 @@ AppAsset::register($this);
 
     <li class="header">ACTIONS</li>
     <li><?= Html::a('<i class="fa fa-sign-out"></i>  Sign Out ', ['site/logout'],['data' => ['method' => 'post']]) ?></li>
-    
+
   </ul>
 </section>
 <!-- /.sidebar -->
@@ -490,7 +490,7 @@ AppAsset::register($this);
   <!-- Control Sidebar -->
 
    <!-- Control Sidebar -->
-   <aside class="control-sidebar control-sidebar-dark">
+   <aside class="control-sidebar control-sidebar-dark"  style="widt:100%; position:absolute;">
     <!-- Create the tabs -->
     <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
       <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>

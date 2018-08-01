@@ -63,10 +63,10 @@ $this->title = 'Documents';
         <?php foreach($parent_one as  $parent_one){ ?>
             <li><a href="#"><?= $parent_one->dir_name; ?></a>
             <ul>
-                <?php $parent_two = TrDirectories::find()->andWhere(['dir_level'=>2])->andWhere(['dir_parent_id'=>$parent_one->dir_id])->all(); 
-                foreach($parent_two as $parent_two){
-                ?>
-                <li><a href="#"><?= $parent_two->dir_name; ?></a> 
+                    <?php $parent_two = TrDirectories::find()->andWhere(['dir_level'=>2])->andWhere(['dir_parent_id'=>$parent_one->dir_id])->all(); 
+                    foreach($parent_two as $parent_two){
+                    ?>
+                    <li><a href="#"><?= $parent_two->dir_name; ?></a> 
                   <ul>
                   <?php $parent_three = TrDirectories::find()->andWhere(['dir_level'=>2])->andWhere(['dir_parent_id'=>$parent_two->dir_id])->all(); 
                     foreach($parent_three as $parent_three){

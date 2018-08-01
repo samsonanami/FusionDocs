@@ -34,10 +34,6 @@ use kartik\tree\TreeViewInput;
         </div>
         <div class="box-body">
 <?php
-
-
-
- 
 echo TreeView::widget([
   'query' => \app\models\Product::find()->addOrderBy('root, lft'),
   'headingOptions' => ['label' => 'Store'],
