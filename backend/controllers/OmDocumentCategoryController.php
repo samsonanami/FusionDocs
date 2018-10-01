@@ -8,6 +8,7 @@ use app\models\OmDocumentCategorySearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\ForbiddenHttpException;
 
 /**
  * OmDocumentCategoryController implements the CRUD actions for OmDocumentCategory model.
@@ -35,7 +36,7 @@ class OmDocumentCategoryController extends Controller
      */
     public function actionIndex()
     {
-        $this->layout='index';
+        $this->layout='main';
         $searchModel = new OmDocumentCategorySearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -65,15 +66,20 @@ class OmDocumentCategoryController extends Controller
      */
     public function actionCreate()
     {
-        $model = new OmDocumentCategory();
+        if(Yii::$app->user->can('create-document-category'))
+        {
+            $model = new OmDocumentCategory();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->cat_id]);
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->cat_id]);
+            }
+    
+            return $this->render('create', [
+                'model' => $model,
+            ]);
+        }else{
+            throw new ForbiddenHttpException;
         }
-
-        return $this->render('create', [
-            'model' => $model,
-        ]);
     }
 
     /**

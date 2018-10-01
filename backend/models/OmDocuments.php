@@ -37,7 +37,7 @@ class OmDocuments extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['short_title', 'title', 'categoty', 'type', 'keyword', 'note', 'doc_link', 'attachment'], 'required'],
+            [['dir_id','short_title', 'dir_id','title','doc_link', 'attachment'], 'required'],
             [['doc_link'], 'string'],
             [['date_created'], 'safe'],
             [['short_title', 'categoty', 'type'], 'string', 'max' => 50],

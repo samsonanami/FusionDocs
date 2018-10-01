@@ -30,13 +30,19 @@ AppAsset::register($this);
                 });
     </script>
 
-
-
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
+<!-- Page Preloder -->
+<div id="preloder">
+		<div class="loader"></div>
+	</div>
+
+
+
+
 <?php $this->beginBody() ?>
 <div class="rap">
-  
+
 <header class="main-header">
     <!-- Logo -->
 
@@ -282,7 +288,7 @@ AppAsset::register($this);
                   <div class="col-xs-4 text-center">
                     <a href="#">Friends</a>
                   </div>
-                </div>  
+                </div>
                 <!-- /.row -->
               </li>
               <!-- Menu Footer-->
@@ -355,11 +361,12 @@ AppAsset::register($this);
       </a>
       <ul class="treeview-menu">
 
-        <li><?= Html::a(' - Document Lists', ['om-documents/index'],['class' => 'fa fa-circle-o']) ?></li>
-        <li><?= Html::a(' - Document Lists 2', ['product/index'],['class' => 'fa fa-circle-o']) ?></li>
+        <li><?= Html::a(' - Quick Document Search', ['om-documents/search'],['class' => 'fa  fa-search']) ?></li>
+        <li><?= Html::a(' - Directory Management', ['om-documents/home'],['class' => 'fa  fa-folder']) ?></li>
+        <li><?= Html::a(' - File Management', ['om-documents/index'],['class' => 'fa  fa-sticky-note']) ?></li>
         <li><?= Html::a(' - Document Category', ['om-document-category/index'],['class' => 'fa fa-circle-o']) ?></li>
         <li><?= Html::a(' - Document Registration', ['om-documents/create'],['class' => 'fa fa-circle-o']) ?></li>
-       
+
       </ul>
     </li>
     <li class="treeview">
@@ -375,7 +382,7 @@ AppAsset::register($this);
         <li><?= Html::a(' - User Lists', ['om-users/index'],['class' => 'fa fa-circle-o']) ?></li>
         <li><?= Html::a(' - User Registration', ['om-users/create'],['class' => 'fa fa-circle-o']) ?></li>
         <li><?= Html::a(' - User Logs', ['om-user-logs/index'],['class' => 'fa fa-circle-o']) ?></li>
-       
+
       </ul>
     </li>
     <li class="treeview">
@@ -390,11 +397,11 @@ AppAsset::register($this);
 
         <li><?= Html::a(' - Directories', ['tr-directories/index'],['class' => 'fa fa-circle-o']) ?></li>
         <li><?= Html::a(' - Document Registration', ['om-document-category/create'],['class' => 'fa fa-circle-o']) ?></li>
-       
+
       </ul>
     </li>
-        
-    
+
+
     <!-- <li>
       <a href="pages/widgets.html">
         <i class="fa fa-th"></i> <span>Widgets</span>
@@ -409,7 +416,7 @@ AppAsset::register($this);
         <span>User Management</span>
         <span class="pull-right-container">
           <i class="fa fa-angle-left pull-right"></i>
-        </span> 
+        </span>
       </a>
       <ul class="treeview-menu">
         <li><a href="../../frontend/web/index.php?r=site%2Fsignup"><i class="fa fa-circle-o"></i> Creade User</a></li>
@@ -530,8 +537,8 @@ AppAsset::register($this);
       </ul>
     </li>
     <li><a href="https://adminlte.io/docs"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
-    --> 
-   
+    -->
+
     <li class="header">LABELS</li>
     <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
     <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
@@ -539,18 +546,18 @@ AppAsset::register($this);
 
     <li class="header">ACTIONS</li>
     <li><?= Html::a('<i class="fa fa-sign-out"></i>  Sign Out ', ['site/logout'],['data' => ['method' => 'post']]) ?></li>
-    
+
   </ul>
 </section>
 <!-- /.sidebar -->
 </aside>
-    
+
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
         <?= Alert::widget() ?>
         <?= $content ?>
-    
+
 
 <footer class="footer">
     <div class="container">

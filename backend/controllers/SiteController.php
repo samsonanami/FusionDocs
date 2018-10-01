@@ -7,6 +7,9 @@ use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\LoginForm;
 
+use app\models\OmDocuments;
+use app\models\OmDocumentsSearch;
+
 /**
  * Site controller
  */
@@ -60,8 +63,24 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $this->layout='index';
-        return $this->render('index');
+        $this->layout='main';
+        $searchModel = new OmDocumentsSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    public function actionSignup()
+    {
+        if(Yii::$app->user->can('create-document-category')){
+            $this->layout='main';
+            return $this->render('signup');
+        }else{
+            throw new FobiddenHttpException;
+        }
     }
 
     /**
@@ -99,4 +118,6 @@ class SiteController extends Controller
 
         return $this->goHome();
     }
+
+
 }

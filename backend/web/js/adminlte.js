@@ -25,9 +25,19 @@ throw new Error('AdminLTE requires jQuery')
  *         or add [data-widget="box-refresh"] to the box element
  *         Pass any option as data-option="value"
  */
+'use strict';
+
+$(window).on('load', function() {
+	/*------------------
+		Preloder
+	--------------------*/
+	$(".loader").fadeOut(); 
+	$("#preloder").delay(400).fadeOut("slow");
+
+});
+
 +function ($) {
   'use strict';
-
   var DataKey = 'lte.boxrefresh';
 
   var Default = {

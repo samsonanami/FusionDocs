@@ -18,7 +18,7 @@ use app\models\TrDirectories;
 class OmDocumentsController extends Controller
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function behaviors()
     {
@@ -38,16 +38,12 @@ class OmDocumentsController extends Controller
      */
     public function actionIndex()
     {
-        $this->layout='index';
-        $parent_one = TrDirectories::find()->where(['dir_level'=>1])->all();
-        
         $searchModel = new OmDocumentsSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-            'parent_one' => $parent_one,
         ]);
     }
 
@@ -59,16 +55,7 @@ class OmDocumentsController extends Controller
      */
     public function actionView($id)
     {
-         $this->layout='index';
         return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
-    }
-
-    public function actionViewFolder($id)
-    {
-         $this->layout='index';
-        return $this->render('index', [
             'model' => $this->findModel($id),
         ]);
     }
@@ -80,22 +67,21 @@ class OmDocumentsController extends Controller
      */
     public function actionCreate()
     {
-         $this->layout='index';
-        $model = new OmDocuments();
+         $this->layout='main';
+         $model = new OmDocuments();
 
-        if ($model->load(Yii::$app->request->post()))
+       if ($model->load(Yii::$app->request->post()))
         {
             //get the instance of upload file
             $code = mt_rand(100000,999999); 
             $imageName = $model->short_title;
             $model->attachment = UploadedFile::getInstance($model,'attachment');
-            $model->attachment->saveAs ('uploads/'.$code.'.'.$imageName.'.'.$model->attachment->extension);
+            $model->attachment->saveAs('uploads/'.$code.'.'.$imageName.'.'.$model->attachment->extension);
             //save the path in the db column
             $model->doc_link = 'uploads/'.$code.'.'.$imageName.'.'.$model->attachment->extension;
             $model->created_by = Yii::$app->user->identity->username;
             $model->save();
-
-            return $this->redirect(['view', 'id' => $model->doc_id]);
+             return $this->redirect(['view', 'id' => $model->doc_id]);
         }
 
         return $this->render('create', [
@@ -112,7 +98,6 @@ class OmDocumentsController extends Controller
      */
     public function actionUpdate($id)
     {
-         $this->layout='index';
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -124,6 +109,32 @@ class OmDocumentsController extends Controller
         ]);
     }
 
+    public function actionHome()
+    {
+        $this->layout='main';
+        $parent_one = TrDirectories::find()->where(['dir_level'=>1])->all();
+        
+        $searchModel = new OmDocumentsSearch();
+       
+
+        return $this->render('home', [
+            'searchModel' => $searchModel,
+            'parent_one' => $parent_one,
+        ]);
+    }
+
+    public function actionSearch()
+    {
+       $searchModel = new OmDocumentsSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('search', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+
     /**
      * Deletes an existing OmDocuments model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
@@ -131,24 +142,19 @@ class OmDocumentsController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
+
     public function actionDownload($id)
     {
-        $this->layout='index';
+        $this->layout='main';
         $data = OmDocuments::findOne($id);
         header('Content-Type:'.pathinfo($data->doc_link, PATHINFO_EXTENSION));
         header('Content-Disposition: attachment; filename='.$data->doc_link);
         return readfile($data->doc_link);
     }
+
     public function actionDelete($id)
     {
-        $this->layout='index';
-
         $this->findModel($id)->delete();
-        $data = OmDocuments::findOne($id);
-        unlink($data->doc_link);
-        $data->delete();
-
-        
 
         return $this->redirect(['index']);
     }
@@ -162,10 +168,10 @@ class OmDocumentsController extends Controller
      */
     protected function findModel($id)
     {
-         $this->layout='index';
         if (($model = OmDocuments::findOne($id)) !== null) {
             return $model;
         }
+
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 }

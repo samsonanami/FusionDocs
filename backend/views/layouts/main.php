@@ -23,7 +23,17 @@ AppAsset::register($this);
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
     <link rel="shortcut icon" href="favicon.ico">
+    <script>
+    var myVar;
+    function myFunction() {
+        myVar = setTimeout(showPage, 1000);
+    }
 
+    function showPage() {
+      document.getElementById("loader").style.display = "none";
+      document.getElementById("myDiv").style.display = "block";
+    }
+    </script>
     <script>
     $(document).ready(function() {
                 $(".file-tree").filetree();
@@ -31,12 +41,63 @@ AppAsset::register($this);
     </script>
 
 
+    <style>
+    .example-modal .modal {
+      position: relative;
+      top: auto;
+      bottom: auto;
+      right: auto;
+      left: auto;
+      display: block;
+      z-index: 1;
+    }
+
+    .example-modal .modal {
+      background: transparent !important;
+    }
+  </style>
+
+  <link href="css/main.css" rel="stylesheet">
+  <!-- KRAJEE EXPLORER THEME (ADVANCED) -->
+  <!-- bootstrap 4.x is supported. You can also use the bootstrap css 3.3.x versions -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.9/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
+  <!-- if using RTL (Right-To-Left) orientation, load the RTL CSS file after fileinput.css by uncommenting below -->
+  <!-- link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.9/css/fileinput-rtl.min.css" media="all" rel="stylesheet" type="text/css" /-->
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <!-- piexif.min.js is needed for auto orienting image files OR when restoring exif data in resized images and when you
+      wish to resize images before upload. This must be loaded before fileinput.min.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.9/js/plugins/piexif.min.js" type="text/javascript"></script>
+  <!-- sortable.min.js is only needed if you wish to sort / rearrange files in initial preview.
+      This must be loaded before fileinput.min.js -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.9/js/plugins/sortable.min.js" type="text/javascript"></script>
+  <!-- purify.min.js is only needed if you wish to purify HTML content in your preview for
+      HTML files. This must be loaded before fileinput.min.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.9/js/plugins/purify.min.js" type="text/javascript"></script>
+  <!-- popper.min.js below is needed if you use bootstrap 4.x. You can also use the bootstrap js
+    3.3.x versions without popper.min.js. -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+  <!-- bootstrap.min.js below is needed if you wish to zoom and preview file content in a detail modal
+      dialog. bootstrap 4.x is supported. You can also use the bootstrap js 3.3.x versions. -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" type="text/javascript"></script>
+  <!-- the main fileinput plugin file -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.9/js/fileinput.min.js"></script>
+  <!-- optionally if you need a theme like font awesome theme you can include it as mentioned below -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.9/themes/fa/theme.js"></script>
+  <!-- optionally if you need translation for your language then include  locale file as mentioned below -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.9/js/locales/(lang).js"></script>
+
+  <!-- load the CSS files in the right order -->
+  <link href="css/fileinput.min.css" rel="stylesheet">
+  <link href="themes/explorer/theme.css" rel="stylesheet">
 
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-blue sidebar-mini" onload="myFunction()" style="margin:0;">
+<!-- Page Preloder -->
+<div id="loader"></div>
 <?php $this->beginBody() ?>
+
 <div class="rap">
-  
+
 <header class="main-header">
     <!-- Logo -->
 
@@ -257,38 +318,30 @@ AppAsset::register($this);
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+              <img src="<?= Yii::$app->user->identity->image_link ?>" class="user-image" alt="User Image">
               <span class="hidden-xs"><?= Yii::$app->user->identity->username ?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                <img src="<?= Yii::$app->user->identity->image_link ?>" class="img-circle" alt="User Image">
 
                 <p>
-                  <?= Yii::$app->user->identity->username ?> - Administrator
-                  <small>Member since Nov. 2012</small>
+                  <?= Yii::$app->user->identity->first_name." - ".Yii::$app->user->identity->last_name ?><br>
+                  <p5>Member since :</p5>
+                  <small><?= Yii::$app->user->identity->created_at ?></small>
                 </p>
               </li>
               <!-- Menu Body -->
               <li class="user-body">
-                <div class="row">
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Followers</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Sales</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Friends</a>
-                  </div>
-                </div>  
+
                 <!-- /.row -->
               </li>
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+                  <span class="btn btn-default btn-flat"><?= Html::a('Profile', ['user/view', 'id' => Yii::$app->user->identity->id],['data' => ['method' => 'post']]) ?></span>
+                  <!-- <a href="#" class="btn btn-default btn-flat">Profile</a> -->
                 </div>
                 <div class="pull-right">
                   <span class="btn btn-default btn-flat"><?= Html::a('Sign Out', ['site/logout'],['data' => ['method' => 'post']]) ?></span>
@@ -311,10 +364,10 @@ AppAsset::register($this);
   <!-- Sidebar user panel -->
   <div class="user-panel">
     <div class="pull-left image">
-      <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+      <img src="<?= Yii::$app->user->identity->image_link ?>" class="img-circle" alt="User Image">
     </div>
     <div class="pull-left info">
-      <p>Alexander Pierce</p>
+      <p><?= Yii::$app->user->identity->first_name." ".Yii::$app->user->identity->last_name ?></p>
       <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
     </div>
   </div>
@@ -340,41 +393,41 @@ AppAsset::register($this);
           <i class="fa fa-angle-left pull-right"></i>
         </span>
       </a>
-      <ul class="treeview-menu">
+      <!-- <ul class="treeview-menu">
         <li><a href="index.html"><i class="fa fa-circle-o"></i>Administration</a></li>
         <li class="active"><a href="index2.html"><i class="fa fa-circle-o"></i>My Statistics</a></li>
-      </ul>
+      </ul> -->
     </li>
     <li class="treeview">
       <a href="#">
         <i class="fa fa-files-o"></i>
         <span>File Manager</span>
         <span class="pull-right-container">
-          <span class="label label-primary pull-right">2</span>
+          <span class="label label-primary pull-right">4</span>
         </span>
       </a>
       <ul class="treeview-menu">
+        <li><?= Html::a(' - Quick Search', ['om-documents/search'],['class' => 'fa  fa-search']) ?></li>
+        <li><?= Html::a(' - Document Management', ['om-documents/home'],['class' => 'fa  fa-folder']) ?></li>
+        <li><?= Html::a(' - Document Category', ['om-document-category/index'],['class' => 'fa  fa-sticky-note']) ?></li>
+        <li><?= Html::a(' - Quick Upload on Root', ['om-documents/create'],['class' => 'fa  fa-sticky-note']) ?></li>
 
-        <li><?= Html::a(' - Document Lists', ['om-documents/index'],['class' => 'fa fa-circle-o']) ?></li>
-        <li><?= Html::a(' - Document Category', ['om-document-category/index'],['class' => 'fa fa-circle-o']) ?></li>
-        <li><?= Html::a(' - Document Registration', ['om-documents/create'],['class' => 'fa fa-circle-o']) ?></li>
-       
       </ul>
     </li>
     <li class="treeview">
       <a href="#">
-        <i class="fa fa-files-o"></i>
+        <i class="fa fa-users"></i>
         <span>User Manager</span>
         <span class="pull-right-container">
-          <span class="label label-primary pull-right">2</span>
+          <span class="label label-primary pull-right">3</span>
         </span>
       </a>
       <ul class="treeview-menu">
 
-        <li><?= Html::a(' - User Lists', ['om-users/index'],['class' => 'fa fa-circle-o']) ?></li>
-        <li><?= Html::a(' - User Registration', ['om-users/create'],['class' => 'fa fa-circle-o']) ?></li>
-        <li><?= Html::a(' - User Logs', ['om-user-logs/index'],['class' => 'fa fa-circle-o']) ?></li>
-       
+        <li><?= Html::a(' - All Users', ['user/index'],['class' => 'fa fa-users']) ?></li>
+        <li><?= Html::a(' - New User', ['user/create'],['class' => 'fa  fa-user-plus']) ?></li>
+        <li><?= Html::a(' - User Rights ', ['user/create'],['class' => 'fa fa-user']) ?></li>
+
       </ul>
     </li>
     <li class="treeview">
@@ -387,150 +440,26 @@ AppAsset::register($this);
       </a>
       <ul class="treeview-menu">
 
-        <li><?= Html::a(' - Directories', ['tr-directories/index'],['class' => 'fa fa-circle-o']) ?></li>
-        <li><?= Html::a(' - Document Registration', ['om-document-category/create'],['class' => 'fa fa-circle-o']) ?></li>
-       
-      </ul>
-    </li>
-        
-    
-    <!-- <li>
-      <a href="pages/widgets.html">
-        <i class="fa fa-th"></i> <span>Widgets</span>
-        <span class="pull-right-container">
-          <small class="label pull-right bg-green">new</small>
-        </span>
-      </a>
-    </li>
-    <li class="treeview">
-      <a href="#">
-        <i class="fa fa-user"></i>
-        <span>User Management</span>
-        <span class="pull-right-container">
-          <i class="fa fa-angle-left pull-right"></i>
-        </span> 
-      </a>
-      <ul class="treeview-menu">
-        <li><a href="../../frontend/web/index.php?r=site%2Fsignup"><i class="fa fa-circle-o"></i> Creade User</a></li>
-        <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i> Update User</a></li>
+        <li><?= Html::a(' - View Directories', ['tr-directories/index'],['class' => 'fa fa-circle-o']) ?></li>
+        <li><?= Html::a(' - Create Directory', ['tr-directories/create'],['class' => 'fa fa-circle-o']) ?></li>
+
       </ul>
     </li>
     <li class="treeview">
       <a href="#">
-        <i class="fa fa-laptop"></i>
-        <span>UI Elements</span>
+        <i class="fa  fa-cogs"></i>
+        <span>Custom Settings</span>
         <span class="pull-right-container">
-          <i class="fa fa-angle-left pull-right"></i>
+          <span class="label label-primary pull-right">3</span>
         </span>
       </a>
       <ul class="treeview-menu">
-        <li><a href="pages/UI/general.html"><i class="fa fa-circle-o"></i> General</a></li>
-        <li><a href="pages/UI/icons.html"><i class="fa fa-circle-o"></i> Icons</a></li>
-        <li><a href="pages/UI/buttons.html"><i class="fa fa-circle-o"></i> Buttons</a></li>
-        <li><a href="pages/UI/sliders.html"><i class="fa fa-circle-o"></i> Sliders</a></li>
-        <li><a href="pages/UI/timeline.html"><i class="fa fa-circle-o"></i> Timeline</a></li>
-        <li><a href="pages/UI/modals.html"><i class="fa fa-circle-o"></i> Modals</a></li>
+      <li><?= Html::a(' - Assign User Group', ['auth-assignment/index'],['class' => 'fa  fa-users']) ?></li>
+        <li><?= Html::a(' - Create User Rights', ['auth-item/index'],['class' => 'fa fa-user-secret']) ?></li>
+        <li><?= Html::a(' - Assign User Rights', ['auth-item-child/index'],['class' => 'fa  fa-user-times']) ?></li>
+
       </ul>
     </li>
-    <li class="treeview">
-      <a href="#">
-        <i class="fa fa-edit"></i> <span>Forms</span>
-        <span class="pull-right-container">
-          <i class="fa fa-angle-left pull-right"></i>
-        </span>
-      </a>
-      <ul class="treeview-menu">
-        <li><a href="pages/forms/general.html"><i class="fa fa-circle-o"></i> General Elements</a></li>
-        <li><a href="pages/forms/advanced.html"><i class="fa fa-circle-o"></i> Advanced Elements</a></li>
-        <li><a href="pages/forms/editors.html"><i class="fa fa-circle-o"></i> Editors</a></li>
-      </ul>
-    </li>
-    <li class="treeview">
-      <a href="#">
-        <i class="fa fa-table"></i> <span>Tables</span>
-        <span class="pull-right-container">
-          <i class="fa fa-angle-left pull-right"></i>
-        </span>
-      </a>
-      <ul class="treeview-menu">
-        <li><a href="pages/tables/simple.html"><i class="fa fa-circle-o"></i> Simple tables</a></li>
-        <li><a href="pages/tables/data.html"><i class="fa fa-circle-o"></i> Data tables</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="pages/calendar.html">
-        <i class="fa fa-calendar"></i> <span>Calendar</span>
-        <span class="pull-right-container">
-          <small class="label pull-right bg-red">3</small>
-          <small class="label pull-right bg-blue">17</small>
-        </span>
-      </a>
-    </li>
-    <li>
-      <a href="pages/mailbox/mailbox.html">
-        <i class="fa fa-envelope"></i> <span>Mailbox</span>
-        <span class="pull-right-container">
-          <small class="label pull-right bg-yellow">12</small>
-          <small class="label pull-right bg-green">16</small>
-          <small class="label pull-right bg-red">5</small>
-        </span>
-      </a>
-    </li>
-    <li class="treeview">
-      <a href="#">
-        <i class="fa fa-folder"></i> <span>Examples</span>
-        <span class="pull-right-container">
-          <i class="fa fa-angle-left pull-right"></i>
-        </span>
-      </a>
-      <ul class="treeview-menu">
-        <li><a href="pages/examples/invoice.html"><i class="fa fa-circle-o"></i> Invoice</a></li>
-        <li><a href="pages/examples/profile.html"><i class="fa fa-circle-o"></i> Profile</a></li>
-        <li><a href="pages/examples/login.html"><i class="fa fa-circle-o"></i> Login</a></li>
-        <li><a href="pages/examples/register.html"><i class="fa fa-circle-o"></i> Register</a></li>
-        <li><a href="pages/examples/lockscreen.html"><i class="fa fa-circle-o"></i> Lockscreen</a></li>
-        <li><a href="pages/examples/404.html"><i class="fa fa-circle-o"></i> 404 Error</a></li>
-        <li><a href="pages/examples/500.html"><i class="fa fa-circle-o"></i> 500 Error</a></li>
-        <li><a href="pages/examples/blank.html"><i class="fa fa-circle-o"></i> Blank Page</a></li>
-        <li><a href="pages/examples/pace.html"><i class="fa fa-circle-o"></i> Pace Page</a></li>
-      </ul>
-    </li>
-    <li class="treeview">
-      <a href="#">
-        <i class="fa fa-share"></i> <span>Multilevel</span>
-        <span class="pull-right-container">
-          <i class="fa fa-angle-left pull-right"></i>
-        </span>
-      </a>
-      <ul class="treeview-menu">
-        <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
-        <li class="treeview">
-          <a href="#"><i class="fa fa-circle-o"></i> Level One
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-circle-o"></i> Level Two</a></li>
-            <li class="treeview">
-              <a href="#"><i class="fa fa-circle-o"></i> Level Two
-                <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
-                <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-        <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
-      </ul>
-    </li>
-    <li><a href="https://adminlte.io/docs"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
-    --> 
-   
     <li class="header">LABELS</li>
     <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
     <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
@@ -538,36 +467,34 @@ AppAsset::register($this);
 
     <li class="header">ACTIONS</li>
     <li><?= Html::a('<i class="fa fa-sign-out"></i>  Sign Out ', ['site/logout'],['data' => ['method' => 'post']]) ?></li>
-    
+
   </ul>
 </section>
 <!-- /.sidebar -->
 </aside>
-    
-        <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
-        <?= Alert::widget() ?>
-        <?= $content ?>
-    
+  <?= Breadcrumbs::widget([
+      'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+  ]) ?>
+  <?= Alert::widget() ?>
+  <?= $content ?>
 
-<footer class="footer">
+ <!-- /.content-wrapper -->
+ <footer class="footer main-footer">
     <div class="container">
-        <p class="pull-left">&copy; <?= Html::encode(Yii::$app->name) ?> <?= date('Y') ?></p>
-
-        <p class="pull-right"><?= Yii::powered() ?></p>
+     <p class="pull-left">Copyright &copy; <?= Html::encode(Yii::$app->name) ?> <?= date('Y') ?> <a href="#">FusionDocs </a></p>| All rights
+    reserved.
+        <p class="pull-right  hidde-xns"><b>Version</b> 1.0.0</p>
     </div>
 </footer>
 
-<?php $this->endBody() ?>
-</body>
-
-
   <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
+
+   <!-- Control Sidebar -->
+   <aside class="control-sidebar control-sidebar-dark"  style="widt:100%; position:absolute;">
     <!-- Create the tabs -->
     <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
       <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+
       <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
     </ul>
     <!-- Tab panes -->
@@ -753,7 +680,36 @@ AppAsset::register($this);
     </div>
   </aside>
   <!-- /.control-sidebar -->
+  <!-- Add the sidebar's background. This div must be placed
+       immediately after the control sidebar -->
+  <div class="control-sidebar-bg"></div>
+</div>
+<!-- ./wrapper -->
 
+<?php $this->endBody() ?>
+</body>
+<!-- /.modal -->
+        <div class="modal modal-warning fade" id="modal-warning">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Warning Modal</h4>
+              </div>
+              <div class="modal-body">
+              <p>Sorry, no sufficient right to access this action&hellip;</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-outline">Save changes</button>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
 
 </html>
 <?php $this->endPage() ?>
