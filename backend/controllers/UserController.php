@@ -3,17 +3,17 @@
 namespace backend\controllers;
 
 use Yii;
-use app\models\User;
-use app\models\UserSearch;
+use backend\models\User;
+use backend\models\UserSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\ForbiddenHttpException;
 use yii\web\UploadedFile;
+use backend\models\AuthItem;
+use backend\models\AuthAssignment;
 
-/**
- * UserController implements the CRUD actions for User model.
- */
+
 class UserController extends Controller
 {
     /**
@@ -37,44 +37,71 @@ class UserController extends Controller
      */
     public function actionIndex()
     {
-        if(Yii::$app->user->can('view-users'))
-        {
+
+        $this->layout='main';
+        // if(Yii::$app->user->can('view-users'))
+        // {
             $searchModel = new UserSearch();
             $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+             $dataProvider->setSort([
+                'attributes' => [
+                    'created_at' => [
+                        'asc' => ['created_at' => SORT_ASC],
+                        'desc' => ['created_at' => SORT_DESC],
+                        'default' => SORT_DESC,
+                    ],
+                    // 'username' => [
+                    //     'asc' => ['username' => SORT_ASC],
+                    //     'desc' => ['username' => SORT_DESC],
+                    //     'default' => SORT_ASC,
+                    // ],
+                ],
+                'defaultOrder' => [
+                    'created_at' => SORT_ASC
+                ]
+            ]);
 
             return $this->render('index', [
                 'searchModel' => $searchModel,
                 'dataProvider' => $dataProvider,
             ]);
-        } else{
-            throw new ForbiddenHttpException;
-        }
+        // } else{
+        //     throw new ForbiddenHttpException;
+        // }
 
            
     }
 
-    /**
-     * Displays a single User model.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     public function actionView($id)
     {
+
+        $this->layout='main';
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
     }
 
-    /**
-     * Creates a new User model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
+    public function beforeSave($insert) {
+    if(isset($this->password_field)) 
+        $this->password = Security::generatePasswordHash($this->password_field);
+        return $this->password;
+}
+
+public function validatePassword($password)
+{
+    return Security::validatePassword($password, $this->password_hash);
+}
+
     public function actionCreate()
     {
-        if(Yii::$app->user->can ('create-user')){
+        // $password=>$model->password;
+       
+        $this->layout='main';
+        // if(Yii::$app->user->can ('create-user')){
             $model = new User();
+            $authItems = AuthItem::find()->all();
+
             if ($model->load(Yii::$app->request->post())) {
                 $imageName = $model->username;
                 $model->attachment = UploadedFile::getInstance($model,'attachment');
@@ -82,6 +109,10 @@ class UserController extends Controller
                 //save the path in the db column
                 $model->image_link = 'uploads/users/'.$imageName.'.'.$model->attachment->extension;
                 $model->updated_at = Yii::$app->user->identity->username;
+
+                 $model->password_hash=Yii::$app->security->generatePasswordHash($model->password);
+
+                 
                 $model->save();
                 return $this->redirect(['view', 'id' => $model->id]);
             }
@@ -89,29 +120,38 @@ class UserController extends Controller
                 'model' => $model,
             ]);
 
-        }else{
-            throw new ForbiddenHttpException;
-        }
+        // }else{
+        //     throw new ForbiddenHttpException;
+        // }
         
     }
-
-    /**
-     * Updates an existing User model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     public function actionUpdate($id)
     {
+        
+        $this->layout='main';
         $model = $this->findModel($id);
+        $authItems = AuthItem::find()->all();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            // Adding permissions
+            $permissionList = $_POST['User']['permissions'];
+            
+            foreach ($permissionList as $value)
+            {
+                $newPermission = new AuthAssignment;
+                $newPermission->user_id=$model->id;
+                $newPermission->item_name=$value;
+                $newPermission->save();
+            }
+
+            $model->save();
             return $this->redirect(['view', 'id' => $model->id]);
+
         }
 
         return $this->render('update', [
             'model' => $model,
+            'authItems'=>$authItems,
         ]);
     }
 

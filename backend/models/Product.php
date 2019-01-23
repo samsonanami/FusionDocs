@@ -1,10 +1,10 @@
 <?php
 
-namespace app\models;
+namespace backend\models;
  
 use Yii;
 
-namespace app\models;
+namespace backend\models;
  
 use Yii;
  

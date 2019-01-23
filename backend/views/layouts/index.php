@@ -30,6 +30,10 @@ AppAsset::register($this);
                 });
     </script>
 
+
+
+<?php include_once 'notification.php';?>
+
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <!-- Page Preloder -->

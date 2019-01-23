@@ -8,15 +8,44 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
 $this->title = 'Login';
+
+include_once 'notification.php';
 ?>
+<script>
+toastr.options = {
+    'closeButton': false,
+    'debug': false,
+    'newestOnTop': false,
+    'progressBar': false,
+    'positionClass': 'toast-bottom-right',
+    'preventDuplicates': false,
+    'onclick': null,
+    'showDuration': '300',
+    'hideDuration': '1000',
+    'timeOut': '5200',
+    'extendedTimeOut': '1000',
+    'showEasing': 'swing',
+    'hideEasing': 'linear',
+    'showMethod': 'fadeIn',
+    'hideMethod': 'fadeOut'
+}
+
+toastr.success('" . $message . "', 'Success Alert');
+</script>
+
+
 <div class="sie-login" >
     <div class="login-box" id="myDiv" class="animate-bottom">
-          <div class="login-logo">
-            <a href="../../index2.html"><b>Fusion</b>Docs</a>
-          </div>
+         
           <!-- /.login-logo -->
+          <div class="box box-primary box-solid">
+          <div class="box-header">
+          	 <div class="login-logo">
+                <p><b>INVESTOBRAIN</b></p>
+              </div>
+          </div>
           <div class="login-box-body">
-            <p class="login-box-msg">Sign in to start your session</p>
+          	 <p class="login-box-msg">Sign in to start your session</p>
 
             <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
                     <div class="form-group has-feedback">
@@ -27,16 +56,18 @@ $this->title = 'Login';
                         <?= $form->field($model, 'password',['inputOptions'=>['autofocus'=>'autofocus', 'class'=>'form-control']])->passwordInput(['autofocus' => true])->input('password',['placeholder'=>"Password"]) ?>
                         <!-- <span class="glyphicon glyphicon-lock form-control-feedback"></span> -->
                     </div>
-                    <?= $form->field($model, 'rememberMe')->checkbox() ?>
                     <div class="form-group">
                         <?= Html::submitButton('Sign In', ['class' => 'btn btn-primary btn-block btn-flat', 'name' => 'login-button']) ?>
                     </div>
-                    <a href="#">I forgot my password</a><br>
-                    <a href="register.html" class="text-center">Register a new membership</a>
+                   
             <?php ActiveForm::end(); ?>
             
           </div>
           <!-- /.login-box-body -->
+          
+          
+          </div>
+           
         </div>
         <!-- /.login-box -->
 

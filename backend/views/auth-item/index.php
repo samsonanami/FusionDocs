@@ -5,11 +5,64 @@ use yii\grid\GridView;
 use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\AuthItemSearch */
+/* @var $searchModel backend\models\AuthItemSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Auth Items';
 ?>
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      
+    </section>
+    <!-- Main content -->
+    <section class="content">
+      <!-- Default box -->
+           
+    <div class="box box-default box-solid">
+    <div class="box-header with-border box-profile">
+         Auth Item  Registration Form
+          <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
+                    title="Collapse">
+              <i class="fa fa-minus"></i></button>
+            <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
+              <i class="fa fa-times"></i></button>
+          </div>
+        </div>
+        <div class="box-body">
+        <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+            <p>
+                <?= Html::a('Create Auth Item', ['create'], ['class' => 'btn btn-flat bg-primary margin']) ?>
+            </p>
+        <div class="customers-index">
+        <?php Pjax::begin(); ?>
+            <?= GridView::widget([
+                'dataProvider' => $dataProvider,
+                'filterModel' => $searchModel,
+                'columns' => [
+                    ['class' => 'yii\grid\SerialColumn'],
+
+                    'name',
+                    'type',
+                    'description:ntext',
+                    'rule_name',
+                    'data',
+                    //'created_at',
+                    //'updated_at',
+
+                    ['class' => 'yii\grid\ActionColumn'],
+                ],
+            ]); ?>
+            <?php Pjax::end(); ?>
+<!-- /.box-body -->
+</div>
+
+</section>
+<!-- /.content -->
+</div>
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper" id="myDiv" class="animate-bottom">
@@ -43,29 +96,8 @@ $this->title = 'Auth Items';
         </div>
         <div class="box-body">
         <div class="auth-item-index">
-            <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-            <p>
-                <?= Html::a('Create Auth Item', ['create'], ['class' => 'btn btn-success']) ?>
-            </p>
-            <?php Pjax::begin(); ?>
-            <?= GridView::widget([
-                'dataProvider' => $dataProvider,
-                'filterModel' => $searchModel,
-                'columns' => [
-                    ['class' => 'yii\grid\SerialColumn'],
-
-                    'name',
-                    'type',
-                    'description:ntext',
-                    'rule_name',
-                    'data',
-                    //'created_at',
-                    //'updated_at',
-
-                    ['class' => 'yii\grid\ActionColumn'],
-                ],
-            ]); ?>
-            <?php Pjax::end(); ?>
+           
+           
         </div>
         </div>
         <!-- /.box-body -->

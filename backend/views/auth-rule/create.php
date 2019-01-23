@@ -4,7 +4,7 @@ use yii\helpers\Html;
 
 
 /* @var $this yii\web\View */
-/* @var $model app\models\AuthRule */
+/* @var $model backend\models\AuthRule */
 
 $this->title = 'Create Auth Rule';
 $this->params['breadcrumbs'][] = ['label' => 'Auth Rules', 'url' => ['index']];

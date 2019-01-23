@@ -1,27 +1,35 @@
 <?php
-
-/* @var $this \yii\web\View */
-/* @var $content string */
-
 use backend\assets\AppAsset;
+use odaialali\yii2toastr\ToastrFlash;
 use yii\helpers\Html;
-use yii\bootstrap\Nav;
-use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use common\widgets\Alert;
+use yii\helpers\Url;
 
 AppAsset::register($this);
+
+\yii\web\YiiAsset::register($this);
+
+$time = time();
+$date = "20" . date('y-m-d', $time);
 ?>
-<?php $this->beginPage() ?>
+
+<?php $this->beginPage()?>
 <!DOCTYPE html>
-<html lang="<?= Yii::$app->language ?>">
+<html>
 <head>
-    <meta charset="<?= Yii::$app->charset ?>">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <?= Html::csrfMetaTags() ?>
-    <title><?= Html::encode($this->title) ?></title>
-    <?php $this->head() ?>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <?php include_once 'notification.php';?>
+
+  <!-- Google Font -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
+
+  <?=Html::csrfMetaTags()?>
+    <title><?=Html::encode($this->title)?></title>
+    <?php $this->head()?>
     <link rel="shortcut icon" href="favicon.ico">
     <script>
     var myVar;
@@ -40,7 +48,6 @@ AppAsset::register($this);
                 });
     </script>
 
-
     <style>
     .example-modal .modal {
       position: relative;
@@ -51,58 +58,22 @@ AppAsset::register($this);
       display: block;
       z-index: 1;
     }
-
     .example-modal .modal {
       background: transparent !important;
     }
   </style>
-
-  <link href="css/main.css" rel="stylesheet">
-  <!-- KRAJEE EXPLORER THEME (ADVANCED) -->
-  <!-- bootstrap 4.x is supported. You can also use the bootstrap css 3.3.x versions -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.9/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
-  <!-- if using RTL (Right-To-Left) orientation, load the RTL CSS file after fileinput.css by uncommenting below -->
-  <!-- link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.9/css/fileinput-rtl.min.css" media="all" rel="stylesheet" type="text/css" /-->
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-  <!-- piexif.min.js is needed for auto orienting image files OR when restoring exif data in resized images and when you
-      wish to resize images before upload. This must be loaded before fileinput.min.js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.9/js/plugins/piexif.min.js" type="text/javascript"></script>
-  <!-- sortable.min.js is only needed if you wish to sort / rearrange files in initial preview.
-      This must be loaded before fileinput.min.js -->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.9/js/plugins/sortable.min.js" type="text/javascript"></script>
-  <!-- purify.min.js is only needed if you wish to purify HTML content in your preview for
-      HTML files. This must be loaded before fileinput.min.js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.9/js/plugins/purify.min.js" type="text/javascript"></script>
-  <!-- popper.min.js below is needed if you use bootstrap 4.x. You can also use the bootstrap js
-    3.3.x versions without popper.min.js. -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
-  <!-- bootstrap.min.js below is needed if you wish to zoom and preview file content in a detail modal
-      dialog. bootstrap 4.x is supported. You can also use the bootstrap js 3.3.x versions. -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" type="text/javascript"></script>
-  <!-- the main fileinput plugin file -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.9/js/fileinput.min.js"></script>
-  <!-- optionally if you need a theme like font awesome theme you can include it as mentioned below -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.9/themes/fa/theme.js"></script>
-  <!-- optionally if you need translation for your language then include  locale file as mentioned below -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.9/js/locales/(lang).js"></script>
-
-  <!-- load the CSS files in the right order -->
-  <link href="css/fileinput.min.css" rel="stylesheet">
-  <link href="themes/explorer/theme.css" rel="stylesheet">
-
+  <script src="js/jquery-3.3.1.min.js"></script>
+ 
 </head>
-<body class="hold-transition skin-blue sidebar-mini" onload="myFunction()" style="margin:0;">
-<!-- Page Preloder -->
-<div id="loader"></div>
-<?php $this->beginBody() ?>
+<?php $this->beginBody()?>
+<body class="hold-transition skin-blue sidebar-mini">
+<!-- Site wrapper -->
+<div class="wrapper">
 
-<div class="rap">
-
-<header class="main-header">
+  <header class="main-header">
     <!-- Logo -->
-
-    <a href="<?php echo Yii::$app->homeUrl?>" class="logo">
-      <?php ['label' => 'Home', 'url' => ['/site/index']] ?>
+    <a href="<?php echo Yii::$app->homeUrl ?>" class="logo">
+      <?php ['label' => 'Home', 'url' => ['/site/index']]?>
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><?php echo Yii::$app->name ?></span>
       <!-- logo for regular state and mobile devices -->
@@ -112,224 +83,35 @@ AppAsset::register($this);
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
       <!-- Sidebar toggle button-->
+
       <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
         <span class="sr-only">Toggle navigation</span>
       </a>
       <!-- Navbar Right Menu -->
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
-          <!-- Messages: style can be found in dropdown.less-->
-          <li class="dropdown messages-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-envelope-o"></i>
-              <span class="label label-success">4</span>
-            </a>
-            <ul class="dropdown-menu">
-              <li class="header">You have 4 messages</li>
-              <li>
-                <!-- inner menu: contains the actual data -->
-                <ul class="menu">
-                  <li><!-- start message -->
-                    <a href="#">
-                      <div class="pull-left">
-                        <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-                      </div>
-                      <h4>
-                        Support Team
-                        <small><i class="fa fa-clock-o"></i> 5 mins</small>
-                      </h4>
-                      <p>Why not buy a new awesome theme?</p>
-                    </a>
-                  </li>
-                  <!-- end message -->
-                  <li>
-                    <a href="#">
-                      <div class="pull-left">
-                        <img src="dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
-                      </div>
-                      <h4>
-                        AdminLTE Design Team
-                        <small><i class="fa fa-clock-o"></i> 2 hours</small>
-                      </h4>
-                      <p>Why not buy a new awesome theme?</p>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <div class="pull-left">
-                        <img src="dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
-                      </div>
-                      <h4>
-                        Developers
-                        <small><i class="fa fa-clock-o"></i> Today</small>
-                      </h4>
-                      <p>Why not buy a new awesome theme?</p>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <div class="pull-left">
-                        <img src="dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
-                      </div>
-                      <h4>
-                        Sales Department
-                        <small><i class="fa fa-clock-o"></i> Yesterday</small>
-                      </h4>
-                      <p>Why not buy a new awesome theme?</p>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <div class="pull-left">
-                        <img src="dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
-                      </div>
-                      <h4>
-                        Reviewers
-                        <small><i class="fa fa-clock-o"></i> 2 days</small>
-                      </h4>
-                      <p>Why not buy a new awesome theme?</p>
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li class="footer"><a href="#">See All Messages</a></li>
-            </ul>
-          </li>
-          <!-- Notifications: style can be found in dropdown.less -->
-          <li class="dropdown notifications-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-bell-o"></i>
-              <span class="label label-warning">10</span>
-            </a>
-            <ul class="dropdown-menu">
-              <li class="header">You have 10 notifications</li>
-              <li>
-                <!-- inner menu: contains the actual data -->
-                <ul class="menu">
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-users text-aqua"></i> 5 new members joined today
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-warning text-yellow"></i> Very long description here that may not fit into the
-                      page and may cause design problems
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-users text-red"></i> 5 new members joined
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-shopping-cart text-green"></i> 25 sales made
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-user text-red"></i> You changed your username
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li class="footer"><a href="#">View all</a></li>
-            </ul>
-          </li>
-          <!-- Tasks: style can be found in dropdown.less -->
-          <li class="dropdown tasks-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-flag-o"></i>
-              <span class="label label-danger">9</span>
-            </a>
-            <ul class="dropdown-menu">
-              <li class="header">You have 9 tasks</li>
-              <li>
-                <!-- inner menu: contains the actual data -->
-                <ul class="menu">
-                  <li><!-- Task item -->
-                    <a href="#">
-                      <h3>
-                        Design some buttons
-                        <small class="pull-right">20%</small>
-                      </h3>
-                      <div class="progress xs">
-                        <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar"
-                             aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                          <span class="sr-only">20% Complete</span>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <!-- end task item -->
-                  <li><!-- Task item -->
-                    <a href="#">
-                      <h3>
-                        Create a nice theme
-                        <small class="pull-right">40%</small>
-                      </h3>
-                      <div class="progress xs">
-                        <div class="progress-bar progress-bar-green" style="width: 40%" role="progressbar"
-                             aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                          <span class="sr-only">40% Complete</span>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <!-- end task item -->
-                  <li><!-- Task item -->
-                    <a href="#">
-                      <h3>
-                        Some task I need to do
-                        <small class="pull-right">60%</small>
-                      </h3>
-                      <div class="progress xs">
-                        <div class="progress-bar progress-bar-red" style="width: 60%" role="progressbar"
-                             aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                          <span class="sr-only">60% Complete</span>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <!-- end task item -->
-                  <li><!-- Task item -->
-                    <a href="#">
-                      <h3>
-                        Make beautiful transitions
-                        <small class="pull-right">80%</small>
-                      </h3>
-                      <div class="progress xs">
-                        <div class="progress-bar progress-bar-yellow" style="width: 80%" role="progressbar"
-                             aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                          <span class="sr-only">80% Complete</span>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <!-- end task item -->
-                </ul>
-              </li>
-              <li class="footer">
-                <a href="#">View all tasks</a>
-              </li>
-            </ul>
-          </li>
-          <!-- User Account: style can be found in dropdown.less -->
+        <?php
+         if(Yii::$app->user->can('view-dashboard')){
+          echo '<li class="pull-left">'. Html::a('<i class="fa fa-wrench"></i> Administrator', ['site/admin'], ['class' => 'text-white']) .'</a></li>';
+          // echo '<li class="pull-left">'. Html::a('Administrator', ['user/create'], ['class' => 'fa fa-users']) .'</a></li>';
+         }
+         ?>
+         <!-- Messages: style can be found in dropdown.less-->
+          
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="<?= Yii::$app->user->identity->image_link ?>" class="user-image" alt="User Image">
-              <span class="hidden-xs"><?= Yii::$app->user->identity->username ?></span>
+              <span class="hidden-xs text-yellow">User: <?=Yii::$app->user->identity->username?></span>
+              <img src="<?=Yii::$app->user->identity->image_link?>" class="user-image pull-right margin" alt="User Image">
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="<?= Yii::$app->user->identity->image_link ?>" class="img-circle" alt="User Image">
+                <img src="<?=Yii::$app->user->identity->image_link?>" class="img-circle" alt="User Image">
 
                 <p>
-                  <?= Yii::$app->user->identity->first_name." - ".Yii::$app->user->identity->last_name ?><br>
-                  <p5>Member since :</p5>
-                  <small><?= Yii::$app->user->identity->created_at ?></small>
+                  <?=Yii::$app->user->identity->first_name . " - " . Yii::$app->user->identity->last_name?><br>
+                  <p5>Created at :</p5>
+                  <small><?=Yii::$app->user->identity->created_at?></small>
                 </p>
               </li>
               <!-- Menu Body -->
@@ -340,11 +122,11 @@ AppAsset::register($this);
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <span class="btn btn-default btn-flat"><?= Html::a('Profile', ['user/view', 'id' => Yii::$app->user->identity->id],['data' => ['method' => 'post']]) ?></span>
+                  <span class="btn btn-default btn-flat"><?=Html::a('Profile', ['user/view', 'id' => Yii::$app->user->identity->id], ['data' => ['method' => 'post']])?></span>
                   <!-- <a href="#" class="btn btn-default btn-flat">Profile</a> -->
                 </div>
                 <div class="pull-right">
-                  <span class="btn btn-default btn-flat"><?= Html::a('Sign Out', ['site/logout'],['data' => ['method' => 'post']]) ?></span>
+                  <span class="btn btn-default btn-flat"><?=Html::a('Sign Out', ['site/logout'], ['data' => ['method' => 'post']])?></span>
                 </div>
               </li>
             </ul>
@@ -357,140 +139,276 @@ AppAsset::register($this);
       </div>
     </nav>
 </header>
-<!-- Left side column. contains the logo and sidebar -->
-<aside class="main-sidebar">
-<!-- sidebar: style can be found in sidebar.less -->
-<section class="sidebar">
-  <!-- Sidebar user panel -->
-  <div class="user-panel">
-    <div class="pull-left image">
-      <img src="<?= Yii::$app->user->identity->image_link ?>" class="img-circle" alt="User Image">
-    </div>
-    <div class="pull-left info">
-      <p><?= Yii::$app->user->identity->first_name." ".Yii::$app->user->identity->last_name ?></p>
-      <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-    </div>
-  </div>
-  <!-- search form -->
-  <form action="#" method="get" class="sidebar-form">
-    <div class="input-group">
-      <input type="text" name="q" class="form-control" placeholder="Search...">
-      <span class="input-group-btn">
-            <button type="submit" name="search" id="search-btn" class="btn btn-flat">
-              <i class="fa fa-search"></i>
-            </button>
-          </span>
-    </div>
-  </form>
-  <!-- /.search form -->
-  <!-- sidebar menu: : style can be found in sidebar.less -->
-  <ul class="sidebar-menu" data-widget="tree">
-    <li class="header">MAIN NAVIGATION</li>
-    <li class="active treeview menu-open">
-      <a href="#">
-        <i class="fa fa-dashboard"></i> <span>Dashboard</span>
-        <span class="pull-right-container">
-          <i class="fa fa-angle-left pull-right"></i>
-        </span>
-      </a>
-      <!-- <ul class="treeview-menu">
-        <li><a href="index.html"><i class="fa fa-circle-o"></i>Administration</a></li>
-        <li class="active"><a href="index2.html"><i class="fa fa-circle-o"></i>My Statistics</a></li>
-      </ul> -->
-    </li>
-    <li class="treeview">
-      <a href="#">
-        <i class="fa fa-files-o"></i>
-        <span>File Manager</span>
-        <span class="pull-right-container">
-          <span class="label label-primary pull-right">4</span>
-        </span>
-      </a>
-      <ul class="treeview-menu">
-        <li><?= Html::a(' - Quick Search', ['om-documents/search'],['class' => 'fa  fa-search']) ?></li>
-        <li><?= Html::a(' - Document Management', ['om-documents/home'],['class' => 'fa  fa-folder']) ?></li>
-        <li><?= Html::a(' - Document Category', ['om-document-category/index'],['class' => 'fa  fa-sticky-note']) ?></li>
-        <li><?= Html::a(' - Quick Upload on Root', ['om-documents/create'],['class' => 'fa  fa-sticky-note']) ?></li>
 
+  <!-- =============================================== -->
+
+  <!-- Left side column. contains the sidebar -->
+  <aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+      <!-- Sidebar user panel -->
+      <div class="user-panel">
+        <div class="pull-left image">
+        <img src="<?= Yii::$app->user->identity->image_link ?>" class="img-circle" alt="User Image">
+        </div>
+        <div class="pull-left info">
+        <p><?= Yii::$app->user->identity->first_name." ".Yii::$app->user->identity->last_name ?></p>
+        <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+        </div>
+      </div>
+
+
+      <!-- search form -->
+     <!--  <form action="#" method="get" class="sidebar-form">
+        <div class="input-group">
+          <input type="text" name="q" class="form-control" placeholder="Search...">
+          <span class="input-group-btn">
+                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                </button>
+              </span>
+        </div>
+      < -->/form>
+      <!-- /.search form -->
+      <!-- sidebar menu: : style can be found in sidebar.less -->
+      <ul class="sidebar-menu" data-widget="tree">
+        <li class="header">MAIN NAVIGATION</li>
+        <?php
+         if(Yii::$app->user->can('view-dashboard')){
+          echo '<li><a href="'. Url::toRoute('/site/index') .'"><i class="fa fa-th text-primary"></i> <span>Dashboard</span></a></li>';
+         }
+         ?>
+        
+    
+        <li class="treeview">
+            <a href="#">
+                <i class="fa  fa-users text-primary"></i>
+                <span>Customers</span>
+                <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>  
+                </span>
+            </a>
+            <ul class="treeview-menu">
+                <li><?= Html::a(' - View Customers', ['customers/index'],['class' => 'fa fa-users']) ?></li>
+                <li><?= Html::a(' - View Customers Groups', ['groups/index'],['class' => 'fa  fa-user-plus']) ?></li>
+                <?php
+                if(Yii::$app->user->can('create-customer')){
+                echo '<li>'. Html::a(' - New Customers', ['customers/create'],['class' => 'fa  fa-user-plus']) .'</li>';
+                echo '<li>'. Html::a(' - New Customers Groups', ['groups/create'],['class' => 'fa  fa-user-plus']).'</li>';
+                }
+                ?>
+            </ul>
+        </li>
+        <li class="treeview">
+        <a href="#">
+                <i class="fa  fa-credit-card  text-primary"></i>
+                <span>Loans</span>
+                <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>  
+                </span>
+            </a>
+            <ul class="treeview-menu">
+            <?php
+              if(Yii::$app->user->can('view-loans')){
+              echo'
+              <li>'. Html::a(' - All Loans', ['loans/index'],['class' => 'fa fa-credit-card']) .'</li>
+              <li>'. Html::a(' - Approved Loans', ['loans/approved'],['class' => 'fa fa-credit-card']) .'</li>
+              <li>'. Html::a(' - Pending Loans', ['loans/pending'],['class' => 'fa fa-credit-card']) .'</li>';
+              }
+              if(Yii::$app->user->can('view-appraisal-one')){
+              echo
+              '<li>'.  Html::a(' - Loans Appraisal Lv1', ['loans/onappraisal1'],['class' => 'fa fa-credit-card']) .'</li>';
+              }
+              if(Yii::$app->user->can('view-appraisal-two')){
+                echo
+                '<li>'.  Html::a(' - Loans Appraisal Lv2', ['loans/onappraisal2'],['class' => 'fa fa-credit-card']) .'</li>';
+              }
+              if(Yii::$app->user->can('view-loans')){
+                echo
+                '<li>'. Html::a(' - Denied Loans', ['loans/denied'],['class' => 'fa fa-credit-card']) .'</li>';
+              }
+              if(Yii::$app->user->can('view-loans')){
+                echo
+                '<li>'. Html::a(' - Past Maturity Date', ['loans/pastmaturity'],['class' => 'fa fa-credit-card']) .'</li>
+                <li>'.  Html::a(' - 1 Month Late Loans', ['loans/onemonthlate'],['class' => 'fa fa-credit-card']) .'</li>
+                <li>'.  Html::a(' - 3 Months Late Loan', ['loans/threemonthlate'],['class' => 'fa fa-credit-card']) .'</li>
+                <li>'.  Html::a(' - Today Released Loans', ['loans/todayloans'],['class' => 'fa fa-credit-card']) .'</li>';
+              }
+              ?>
+            </ul>
+        </li>
+
+        <li class="treeview">
+            <a href="#">
+                <i class="fa  fa-money text-primary"></i>
+                <span>Repayments</span>
+                <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>  
+                </span>
+            </a>
+            <ul class="treeview-menu">
+                <li><?= Html::a(' - View Repayments', ['loanrepayments/index'],['class' => 'fa fa-money ']) ?></li>
+            </ul>
+        </li>
+        
+        <li class="treeview">
+            <a href="#">
+                <i class="fa  fa-bank  text-primary"></i>
+                <span>Savings</span>
+                <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>  
+                </span>
+            </a>
+            <ul class="treeview-menu">
+                <li><?= Html::a(' - View Savings Accounts', ['savings/index'],['class' => 'fa fa-bank']) ?></li>
+            </ul>
+        </li>
+        <li class="treeview">
+            <a href="#">
+                <i class="fa fa-cart-plus  text-primary"></i>
+                <span>Withdrawals</span>
+                <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>  
+                </span>
+            </a>
+            <ul class="treeview-menu">
+                <li><?= Html::a(' - View Withdraws', ['wiithdrawals/index'],['class' => 'fa fa-cart-plus']) ?></li>
+            </ul>
+        </li>
+        <li class="treeview ">
+            <a href="#">
+                <i class="fa  fa fa-mail-forward  text-primary"></i>
+                <span>Expenses</span>
+                <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>  
+                </span>
+            </a>
+            <ul class="treeview-menu">
+                <li><?= Html::a(' - Add Expenses', ['expenses/create'],['class' => 'fa fa-search-plus']) ?></li>
+                <li><?= Html::a(' - View Expenses', ['expenses/index'],['class' => 'fa fa-mail-forward']) ?></li>
+            </ul>
+        </li>
+        
+        
+        
+       
+        <li class="header">REPORTS PANEL</li>
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa  fa-file-text text-primary"></i>
+                    <span>Collection Sheets</span>
+                    <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>  
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><?= Html::a(' - Daily Collection Sheet', ['loanschedule/rptcollection'],['class' => 'fa fa-file-text']) ?></li>
+                    <li><?= Html::a(' - Past Maturity Date Loans', ['loanschedule/rptpastmaturity', 'from'=>date('Y-m-d')],['class' => 'fa  fa-file-text']) ?></li>
+                    <li><?= Html::a(' - Send SMS', ['customer-groups/index'],['class' => 'fa fa-envelope-o']) ?></li>
+                    </ul>
+            </li>
+            <?php
+            if(Yii::$app->user->can('view-loans')){
+            echo
+            '<li class="treeview">
+            <a href="#">
+                    <i class="fa  fa-credit-card  text-primary"></i>
+                    <span>Loans Related</span>
+                    <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>  
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li>'. Html::a(' - Loans Master', ['loans/reportsloanmaster'],['class' => 'fa fa-credit-card']) .'</li>
+                    <li>'. Html::a(' - Approved Loans', ['loans/approved'],['class' => 'fa fa-credit-card']) .'</li>
+                    <li>'. Html::a(' - Pending Loans', ['loans/pending'],['class' => 'fa fa-credit-card']) .'</li>
+                    <li>'.  Html::a(' - On Appraisal Loans', ['loans/onappraisal'],['class' => 'fa fa-credit-card']) .'</li>
+                    <li>'. Html::a(' - Denied Loans', ['loans/denied'],['class' => 'fa fa-credit-card']) .'</li>
+                    <li>'. Html::a(' - Past Maturity Date', ['loans/pastmaturity'],['class' => 'fa fa-credit-card']) .'</li>
+                    <li>'.  Html::a(' - 1 Month Late Loans', ['loans/onemonthlate'],['class' => 'fa fa-credit-card']) .'</li>
+                    <li>'.  Html::a(' - 3 Months Late Loan', ['loans/threemonthlate'],['class' => 'fa fa-credit-card']) .'</li>
+                    <li>'.  Html::a(' - Today Released Loans', ['loans/todayloans'],['class' => 'fa fa-credit-card']) .'</li>
+                </ul>
+            </li>
+            <li>';
+            }
+            ?>
+            <li class="treeview ">
+                <a href="#">
+                    <i class="fa  fa-area-chart text-primary"></i>
+                    <span>Reports</span>
+                    <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>  
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><?= Html::a(' - Loans Due', ['loans/reports'],['class' => 'fa fa-file']) ?></li>
+                    <li><?= Html::a(' - Collection Report', ['loans/reports'],['class' => 'fa fa-file']) ?></li>
+                    <li><?= Html::a(' - Cash Flow', ['customers/create'],['class' => 'fa  fa-file']) ?></li>
+                    <li><?= Html::a(' - Profit / Loss', ['customer-groups/index'],['class' => 'fa  fa-file']) ?></li>
+                    <li><?= Html::a(' - Portfolio at Risk (PAR)', ['customer-groups/create'],['class' => 'fa  fa-file']) ?></li>
+                    <li><?= Html::a(' - All Entries', ['customer-groups/create'],['class' => 'fa  fa-file']) ?></li>
+                
+                </ul>
+            </li>
+        
+            <li class="header">ADMINISTRATION PANEL</li>
+            
+            <li><a href="<?php echo Url::toRoute('loanproducts/index'); ?>"><i class="fa fa-circle-o text-primary"></i> <span>Loan Products</span></a></li>
+            <li><a href="<?php echo Url::toRoute('user/index'); ?>"><i class="fa fa-circle-o text-primary"></i> <span>System User</span></a></li>
+            <li><a href="<?php echo Url::toRoute('site/signup'); ?>"><i class="fa fa-plus text-primary"></i> <span>New User</span></a></li>
+            <li><a href="<?php echo Url::toRoute('auth-item/create'); ?>"><i class="fa fa-plus text-primary"></i> <span>New Auth Item</span></a></li>
+
+
+        <li class="header">ACTIONS</li> 
+            <li><?= Html::a('<i class="fa fa-sign-out text-danger"></i>  Sign Out ', ['site/logout'],['data' => ['method' => 'post']]) ?></li>
+            <li><a href="https://fusionsolutions.co.ke"><i class="fa fa-book text-primary"></i> <span>Documentation</span></a></li>
+       
       </ul>
-    </li>
-    <li class="treeview">
-      <a href="#">
-        <i class="fa fa-users"></i>
-        <span>User Manager</span>
-        <span class="pull-right-container">
-          <span class="label label-primary pull-right">3</span>
-        </span>
-      </a>
-      <ul class="treeview-menu">
+    </section>
+    <!-- /.sidebar -->
+  </aside>
 
-        <li><?= Html::a(' - All Users', ['user/index'],['class' => 'fa fa-users']) ?></li>
-        <li><?= Html::a(' - New User', ['user/create'],['class' => 'fa  fa-user-plus']) ?></li>
-        <li><?= Html::a(' - User Rights ', ['user/create'],['class' => 'fa fa-user']) ?></li>
+  <!-- =============================================== -->
 
-      </ul>
-    </li>
-    <li class="treeview">
-      <a href="#">
-        <i class="fa fa-files-o"></i>
-        <span>Directory Manager</span>
-        <span class="pull-right-container">
-          <span class="label label-primary pull-right">2</span>
-        </span>
-      </a>
-      <ul class="treeview-menu">
-
-        <li><?= Html::a(' - View Directories', ['tr-directories/index'],['class' => 'fa fa-circle-o']) ?></li>
-        <li><?= Html::a(' - Create Directory', ['tr-directories/create'],['class' => 'fa fa-circle-o']) ?></li>
-
-      </ul>
-    </li>
-    <li class="treeview">
-      <a href="#">
-        <i class="fa  fa-cogs"></i>
-        <span>Custom Settings</span>
-        <span class="pull-right-container">
-          <span class="label label-primary pull-right">3</span>
-        </span>
-      </a>
-      <ul class="treeview-menu">
-      <li><?= Html::a(' - Assign User Group', ['auth-assignment/index'],['class' => 'fa  fa-users']) ?></li>
-        <li><?= Html::a(' - Create User Rights', ['auth-item/index'],['class' => 'fa fa-user-secret']) ?></li>
-        <li><?= Html::a(' - Assign User Rights', ['auth-item-child/index'],['class' => 'fa  fa-user-times']) ?></li>
-
-      </ul>
-    </li>
-    <li class="header">LABELS</li>
-    <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
-    <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
-    <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>
-
-    <li class="header">ACTIONS</li>
-    <li><?= Html::a('<i class="fa fa-sign-out"></i>  Sign Out ', ['site/logout'],['data' => ['method' => 'post']]) ?></li>
-
-  </ul>
-</section>
-<!-- /.sidebar -->
-</aside>
+  <!-- Content Wrapper. Contains page content -->
   <?= Breadcrumbs::widget([
       'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
   ]) ?>
-  <?= Alert::widget() ?>
+  <?= ToastrFlash::widget([
+        'options' => [
+            "closeButton" => true,
+            "debug" => false,
+            "newestOnTop" => true,
+            "progressBar" => false,
+            "positionClass" => 'toast-top-right',
+            "preventDuplicates" => false,
+            "onclick" => null,
+            "showDuration" => "1000",
+            "hideDuration" => "1000",
+            "timeOut" => "6000",
+            "extendedTimeOut" => "1000",
+            "showEasing" => "swing",
+            "hideEasing" => "linear",
+            "showMethod" => "fadeIn",
+            "hideMethod" => "fadeOut"
+        ]
+    ]);?>
   <?= $content ?>
 
- <!-- /.content-wrapper -->
- <footer class="footer main-footer">
-    <div class="container">
-     <p class="pull-left">Copyright &copy; <?= Html::encode(Yii::$app->name) ?> <?= date('Y') ?> <a href="#">FusionDocs </a></p>| All rights
-    reserved.
-        <p class="pull-right  hidde-xns"><b>Version</b> 1.0.0</p>
+  <!-- /.content-wrapper -->
+
+  <!-- =============================================== -->
+  <footer class="main-footer">
+    <div class="pull-right hidden-xs">
+      <b>Version</b> 2.4.0
     </div>
-</footer>
+    <strong>Copyright &copy; <?= Html::encode(Yii::$app->name) ?> <?= date('Y') ?></strong>Fusion Sacco | All rights
+    reserved.
+  </footer>
 
   <!-- Control Sidebar -->
-
-   <!-- Control Sidebar -->
-   <aside class="control-sidebar control-sidebar-dark"  style="widt:100%; position:absolute;">
+  <aside class="control-sidebar control-sidebar-dark">
     <!-- Create the tabs -->
     <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
       <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
@@ -686,30 +604,49 @@ AppAsset::register($this);
 </div>
 <!-- ./wrapper -->
 
-<?php $this->endBody() ?>
+<!-- jQuery 3 -->
+<script src="../../bower_components/jquery/dist/jquery.min.js"></script>
+<!-- SlimScroll -->
+<script src="../../bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<!-- FastClick -->
+<script src="../../bower_components/fastclick/lib/fastclick.js"></script>
+<!-- AdminLTE App -->
+<script src="../../dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="../../dist/js/demo.js"></script>
+<script>
+  $(document).ready(function () {
+    $('.sidebar-menu').tree()
+  })
+</script>
 </body>
-<!-- /.modal -->
-        <div class="modal modal-warning fade" id="modal-warning">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Warning Modal</h4>
-              </div>
-              <div class="modal-body">
-              <p>Sorry, no sufficient right to access this action&hellip;</p>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-outline">Save changes</button>
-              </div>
-            </div>
-            <!-- /.modal-content -->
-          </div>
-          <!-- /.modal-dialog -->
-        </div>
-        <!-- /.modal -->
 
-</html>
-<?php $this->endPage() ?>
+
+
+ <!-- /.content-wrapper -->
+ <?php $this->endBody() ?>
+  <!-- /.modal -->
+          <div class="modal modal-warning fade" id="modal-warning">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title">Warning Modal</h4>
+                </div>
+                <div class="modal-body">
+                <p>Sorry, no sufficient right to access this action&hellip;</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-outline">Save changes</button>
+                </div>
+              </div>
+              <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+          </div>
+          <!-- /.modal -->
+
+  </html>
+  <?php $this->endPage() ?>

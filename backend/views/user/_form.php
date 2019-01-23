@@ -2,10 +2,10 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
+use backend\models\AuthItem;
 
-/* @var $this yii\web\View */
-/* @var $model app\models\User */
-/* @var $form yii\widgets\ActiveForm */
+$authItems = AuthItem::find()->all();
 ?>
 
 <div class="user-form">
@@ -16,17 +16,17 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'last_name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
-
     <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'phone')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'attachment')->fileInput(['maxlength' => true, 'class'=>'form-control']); ?>
-
+        
+    <?php
+    $authItems= ArrayHelper::map($authItems,'name','name');
+    ?>
+    <?= $form->field($model, 'permissions')->checkboxList($authItems); ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Save New User', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Save New User', ['class' => 'btn btn-flat bg-olive pull-right']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

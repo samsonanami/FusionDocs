@@ -5,42 +5,22 @@ use yii\grid\GridView;
 use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\UserSearch */
+/* @var $searchModel backend\models\UserSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Users';
 ?>
-
- <!-- Content Wrapper. Contains page content -->
- <div class="content-wrapper" id="myDiv" class="animate-bottom">
+<!-- Content Wrapper. Contains page content -->
+ <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-      <h1><?= Html::encode($this->title) ?></h1>
-        <small>
-        <p>
-            <?= Html::a('Create New User >>', ['create'], ['class' => 'btn btn-success']) ?>
-        </p>
-        </small>
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Users</a></li>
-        <li class="active">Users List</li>
-      </ol>
-    </section>
-    
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
-    
     <!-- Main content -->
     <section class="content">
-
       <!-- Default box -->
-      <div class="box">
-        <div class="box-header with-border">
-          <h3 class="box-title">Users View</h3>
 
+
+    <div class="box box-primary box-solid">
+    <div class="box-header with-border box-profile">
+        <small>Group List</small>
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
                     title="Collapse">
@@ -50,8 +30,14 @@ $this->title = 'Users';
           </div>
         </div>
         <div class="box-body">
-        <div class="user-index">
-        <?php Pjax::begin(); ?>
+        <div class="groups-index">
+        <small>
+        <p>
+            <?= Html::a('Create New User >>', ['create'], ['class' => 'btn btn-flat bg-aqua']) ?>
+        </p>
+        </small>
+
+         <?php Pjax::begin(); ?>
         <?= GridView::widget([
             'dataProvider' => $dataProvider,
             'filterModel' => $searchModel,
@@ -66,27 +52,23 @@ $this->title = 'Users';
                 //'password_reset_token',
                 'email:email',
                 'status',
+                'phone',
                 'created_at',
                 //'updated_at',
                 //'image_link:ntext',
-                'phone',
 
                 ['class' => 'yii\grid\ActionColumn'],
             ],
         ]); ?>
         <?php Pjax::end(); ?>
+<!-- /.box-body -->
+</div>
 
-        </div>
-        <div class="box-footer">
-        </div>
-        </div>
-        <!-- /.box-body -->
-        
-        <!-- /.box-footer-->
-      </div>
-      <!-- /.box -->
+<div class="box-footer">
+  <!-- footer area -->
+</div>
+<!-- /.box-footer-->
 
-    </section>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
+</section>
+<!-- /.content -->
+</div>

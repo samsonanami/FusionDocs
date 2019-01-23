@@ -1,6 +1,6 @@
 <?php
 
-namespace app\models;
+namespace backend\models;
 
 use Yii;
 
@@ -38,7 +38,7 @@ class AuthItem extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'type'], 'required'],
+            [['name','type'], 'required'],
             [['type'], 'integer'],
             [['description', 'data'], 'string'],
             [['created_at', 'updated_at'], 'safe'],

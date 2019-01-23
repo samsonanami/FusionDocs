@@ -1,6 +1,6 @@
 <?php
 
-namespace app\models;
+namespace backend\models;
 
 use Yii;
 
@@ -28,29 +28,30 @@ class User extends \yii\db\ActiveRecord
      */
     
     public $attachment;
+    public $password;
     public $path = 'uploads/users/';
+    public $permissions;
+
+    // public $pass = Yii::$app->security->generatePasswordHash('password_hash');
 
     public static function tableName()
     {
         return 'user';
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function rules()
     {
         return [
-            [['first_name', 'last_name', 'username','email', 'image_link', 'phone'], 'required'],
-            [['status', 'created_at'], 'integer'],
-            [['image_link'], 'string'],
+            [['first_name', 'permissions', 'last_name', 'phone'], 'required'],
+            // [['status', 'created_at'], 'integer'],
+            // [['image_link'], 'string'],
             [['first_name', 'last_name', 'username'], 'string', 'max' => 50],
-            [['auth_key'], 'string', 'max' => 32],
-            [['password_hash', 'password_reset_token', 'email'], 'string', 'max' => 255],
+            // [['auth_key'], 'string', 'max' => 32],
+            // [['password_hash', 'password_reset_token', 'email'], 'string', 'max' => 255],
             [['phone'], 'string', 'max' => 15],
             [['username'], 'unique'],
             [['email'], 'unique'],
-            [['password_reset_token'], 'unique'],
+            // [['password_reset_token'], 'unique'],
         ];
     }
 
@@ -74,6 +75,7 @@ class User extends \yii\db\ActiveRecord
             'attachment' => 'Upload user portrait here',
             'image_link' => 'Image Link',
             'phone' => 'Phone',
+            'password_hash'=>'Password',
         ];
     }
 }

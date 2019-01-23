@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\TrDirectories */
+/* @var $model backend\models\TrDirectories */
 
 $this->title = $model->dir_id;
 ?>

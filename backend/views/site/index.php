@@ -1,794 +1,727 @@
  <?php
 
-use app\models\TrDirectories;;
-use app\models\OmDocuments;
-use app\models\User;
-
-use yii\widgets\Pjax;
-use yii\grid\GridView;
-
+use yii\helpers\Html;
+use backend\models\Customers;
+use backend\models\Loans;
+use backend\models\Savings;
 use backend\assets\HighChartsAsset;
 HighChartsAsset::register($this);
 
 /* @var $this yii\web\View */
 
-$this->title = 'FusionDocs :: Home';
+$this->title = 'FusionSacco :: Home';
 // getting summaries
-$docs = OmDocuments::find()->count();
-$dirs = TrDirectories::find()->count();
 $time = time();
-$date = "20".date('y-m-d',$time);
+$date = "20" . date('y-m-d', $time);
 
-$dirs = TrDirectories::find()->count();
+$user = customers::find()->count();
+$applied_loans = loans::find()->andWhere("ln_status!=5")->count();
+// $applied_loans = loans::find()->andWhere("ln_status=3")->count();
+$approved_loans = loans::find()->andWhere("ln_application_status=4")->count();
+$onappraisal_loans = loans::find()->andWhere("ln_application_status=2 or ln_application_status=3")->count();
+$paid_loans = loans::find()->andWhere("ln_status=2")->count();
+$denied_loans = loans::find()->andWhere("ln_application_status=5")->count();
 
-$user = user::find()->count();
-$docs_shared = OmDocuments::find()->where(['dir_id'=>1])->count();
+$customers = customers::find()->count();
+$customersM = customers::find()->andWhere("GENDER = 'Male'")->count();
+$customersF = customers::find()->andWhere("GENDER = 'Female'")->count();
+$savings = savings::find()->sum('svg_bal');
+$loans = loans::find()->sum("ln_principal");
+
+$Members = customers::find()->andWhere("cust_account_type  = 'Member'")->count();
+$Groups = customers::find()->andWhere("cust_account_type  = 'Group'")->count();
+$Shareholders = customers::find()->andWhere("cust_account_type  = 'Shareholder'")->count();
 
 ?>
-<!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper" id="myDiv" class="animate-bottom" >
+
+ <!-- Content Wrapper. Contains page content -->
+ <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
         Dashboard
-        <small>Version 2.0</small>
+        <small>Version 2.4.0</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Dashboard</li>
+        <li class="active"></li><?php echo date('Y-m-d H:i:s'); ?></li>
       </ol>
     </section>
 
-    <!-- Main content -->
+    <!-- Main content --> 
     <section class="content">
+
+
       <!-- Info boxes -->
-      <div class="row">
-        <div class="col-md-3 col-sm-6 col-xs-12">
-          <div class="info-box">
-            <span class="info-box-icon bg-aqua"><i class="ion ion-ios-people-outline"></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-text">Active Users</span>
-              <span class="info-box-number"><?= $user ?><small>- Users</small></span>
-
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-        </div>
-        <!-- /.col -->
-        <div class="col-md-3 col-sm-6 col-xs-12">
-          <div class="info-box">
-            <span class="info-box-icon bg-aqua"><i class="fa fa-cart-plus"></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-text">Recent documents</span>
-              <span class="info-box-number"><?= $docs ?><small>- Documents</small></span>
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-        </div>
-        <!-- /.col -->
-
-        <!-- fix for small devices only -->
-        <div class="clearfix visible-sm-block"></div>
-
-        <div class="col-md-3 col-sm-6 col-xs-12">
-          <div class="info-box">
-            <span class="info-box-icon bg-green"><i class="fa fa-files-o"></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-text">Uploads</span>
-              <span class="info-box-number"><?= $dirs ?><small></i>- Directories</small></span>
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-        </div>
-        <!-- /.col -->
-        <div class="col-md-3 col-sm-6 col-xs-12">
-          <div class="info-box">
-            <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-text">Shared documents</span>
-              <span class="info-box-number"><?= $docs_shared ?></i><small>- Documents</small></span>
-            </div>
-            <!-- <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-warning">
-                Launch Warning Modal
-              </button> -->
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-        </div>
-        <!-- /.col -->
-      </div>
-      <!-- /.row -->
-
-      <div class="row">
-        <div class="col-md-12">
-          <div class="box">
-            <div class="box-header with-border">
-              <h3 class="box-title">Monthly Documents Uploads Report:::Today: <?= $date ?></h3>
-              <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-                <div class="btn-group">
-                  <button type="button" class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown">
-                    <i class="fa fa-wrench"></i></button>
-                  <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">Separated link</a></li>
-                  </ul>
-                </div>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+      <div class="box box-default box-solid">
+        <div class="box-body with-border box-profile">
+          <div class="row"> 
+            <div class="col-md-3 col-sm-6 col-xs-12">
+            <!-- small box -->
+            <div class="small-box bg-aqua membr custom" style="cursor:pointer;">
+              <div class="inner">
+                <h3><?=$user?></h3>
+                <p>User Registrations</p>
               </div>
+              <div class="icon">
+                <i class="ion ion-person-add"></i>
+              </div>
+              <?= Html::a('More info <i class="fa fa-arrow-circle-right"></i>', ['customers/index'],['class' => 'small-box-footer']) ?>
             </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-              <!-- High Chart -->
-              <div id="my-chart"></div>
+          </div>  
+          <!-- ./col -->
 
-              <!-- /.row -->
-            </div>
-            <!-- ./box-body -->
-            <div class="box-footer">
-              <div class="row">
-                <div class="col-sm-3 col-xs-6">
-                  <div class="description-block border-right">
-                    <span class="description-percentage text-green"><i class="fa fa-caret-up"></i> 17%</span>
-                    <h5 class="description-header">35,210</h5>
-                    <span class="description-text">TOTAL DOCUMENTS</span>
-                  </div>
-                  <!-- /.description-block -->
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="info-box wk-progress membr custom">
+                <span class="info-box-icon bg-aqua"><i class="fa fa-bank"></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text">Savings</span>
+                  <span class="info-box-number"><small></small><?=$savings?></span>
+                  <!-- <span class="info-box-number"><small></small><?php $savings?></span> -->
                 </div>
-                <!-- /.col -->
-                <div class="col-sm-3 col-xs-6">
-                  <div class="description-block border-right">
-                    <span class="description-percentage text-yellow"><i class="fa fa-caret-left"></i> 0%</span>
-                    <h5 class="description-header">20 MB</h5>
-                    <span class="description-text">TOTAL SPACE</span>
-                  </div>
-                  <!-- /.description-block -->
-                </div>
-                <!-- /.col -->
-                <div class="col-sm-3 col-xs-6">
-                  <div class="description-block border-right">
-                    <span class="description-percentage text-green"><i class="fa fa-caret-up"></i> 20%</span>
-                    <h5 class="description-header">24,813</h5>
-                    <span class="description-text">ACTIVITIES</span>
-                  </div>
-                  <!-- /.description-block -->
-                </div>
-                <!-- /.col -->
-                <div class="col-sm-3 col-xs-6">
-                  <div class="description-block">
-                    <span class="description-percentage text-red"><i class="fa fa-caret-down"></i> 18%</span>
-                    <h5 class="description-header">1200</h5>
-                    <span class="description-text">TARGET ARCHIEVED</span>
-                  </div>
-                  <!-- /.description-block -->
+                <!-- /.info-box-content -->
+                 <div class="pull-right">
+                  <?= Html::a(' More', ['savings/index'],['class' => 'btn fa fa-list-ul']) ?>
                 </div>
               </div>
-              <!-- /.row -->
-            </div>
-            <!-- /.box-footer -->
-          </div>
-          <!-- /.box -->
-        </div>
-        <!-- /.col -->
-      </div>
-      <!-- /.row -->
-
-      <!-- Main row -->
-      <div class="row">
-        <!-- Left col -->
-        <div class="col-md-8">
-          <!-- TABLE: LATEST ORDERS -->
-          <div class="box box-info">
-            <div class="box-header with-border">
-              <h3 class="box-title">Latest Documents</h3>
-
-              <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-              </div>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-              <div class="table-responsive">
-                <table class="table no-margin">
-                <?php
-                $query = "SELECT * FROM om_documents where date_created LIKE '".$date."%' ";
-                $result = OmDocuments::findBySql($query)->all();
-                while($result){
-                  echo $result->date_created;
-                }
-                ?>
-                
-                  // $parent_two = OmDocuments::find()->andWhere(['created_by'=>'samdoh'])->andWhere(['date_created'=>$parent_one->dir_id])->all(); 
-               
-                  <thead>
-                  <tr>
-                    <th>Order ID</th>
-                    <th>Item</th>
-                    <th>Status</th>
-                    <th>Popularity</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  <tr>
-                    <td><a href="pages/examples/invoice.html">OR9842</a></td>
-                    <td>Call of Duty IV</td>
-                    <td><span class="label label-success">Shipped</span></td>
-                    <td>
-                      <div class="sparkbar" data-color="#00a65a" data-height="20">90,80,90,-70,61,-83,63</div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><a href="pages/examples/invoice.html">OR1848</a></td>
-                    <td>Samsung Smart TV</td>
-                    <td><span class="label label-warning">Pending</span></td>
-                    <td>
-                      <div class="sparkbar" data-color="#f39c12" data-height="20">90,80,-90,70,61,-83,68</div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                    <td>iPhone 6 Plus</td>
-                    <td><span class="label label-danger">Delivered</span></td>
-                    <td>
-                      <div class="sparkbar" data-color="#f56954" data-height="20">90,-80,90,70,-61,83,63</div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                    <td>Samsung Smart TV</td>
-                    <td><span class="label label-info">Processing</span></td>
-                    <td>
-                      <div class="sparkbar" data-color="#00c0ef" data-height="20">90,80,-90,70,-61,83,63</div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><a href="pages/examples/invoice.html">OR1848</a></td>
-                    <td>Samsung Smart TV</td>
-                    <td><span class="label label-warning">Pending</span></td>
-                    <td>
-                      <div class="sparkbar" data-color="#f39c12" data-height="20">90,80,-90,70,61,-83,68</div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                    <td>iPhone 6 Plus</td>
-                    <td><span class="label label-danger">Delivered</span></td>
-                    <td>
-                      <div class="sparkbar" data-color="#f56954" data-height="20">90,-80,90,70,-61,83,63</div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><a href="pages/examples/invoice.html">OR9842</a></td>
-                    <td>Call of Duty IV</td>
-                    <td><span class="label label-success">Shipped</span></td>
-                    <td>
-                      <div class="sparkbar" data-color="#00a65a" data-height="20">90,80,90,-70,61,-83,63</div>
-                    </td>
-                  </tr>
-                  </tbody>
-                </table>
-              </div>
-              <!-- /.table-responsive -->
-            </div>
-            <!-- /.box-body -->
-            <div class="box-footer clearfix">
-              <a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-left">Place New Order</a>
-              <a href="javascript:void(0)" class="btn btn-sm btn-default btn-flat pull-right">View All Orders</a>
-            </div>
-            <!-- /.box-footer -->
-          </div>
-          <!-- /.box -->
-          <div class="row">
-            <div class="col-md-6">
-              <!-- DIRECT CHAT -->
-              <div class="box box-warning direct-chat direct-chat-warning">
-                <div class="box-header with-border">
-                  <h3 class="box-title">Blog & Support</h3>
-
-                  <div class="box-tools pull-right">
-                    <span data-toggle="tooltip" title="3 New Messages" class="badge bg-yellow">3</span>
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                    </button>
-                    <button type="button" class="btn btn-box-tool" data-toggle="tooltip" title="Contacts"
-                            data-widget="chat-pane-toggle">
-                      <i class="fa fa-comments"></i></button>
-                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i>
-                    </button>
-                  </div>
-                </div>
-                <!-- /.box-header -->
-                <div class="box-body">
-                  <!-- Conversations are loaded here -->
-                  <div class="direct-chat-messages">
-                    <!-- Message. Default to the left -->
-                    <div class="direct-chat-msg">
-                      <div class="direct-chat-info clearfix">
-                        <span class="direct-chat-name pull-left">Alexander Pierce</span>
-                        <span class="direct-chat-timestamp pull-right">23 Jan 2:00 pm</span>
-                      </div>
-                      <!-- /.direct-chat-info -->
-                      <img class="direct-chat-img" src="dist/img/user1-128x128.jpg" alt="message user image">
-                      <!-- /.direct-chat-img -->
-                      <div class="direct-chat-text">
-                        Is this template really for free? That's unbelievable!
-                      </div>
-                      <!-- /.direct-chat-text -->
-                    </div>
-                    <!-- /.direct-chat-msg -->
-
-                    <!-- Message to the right -->
-                    <div class="direct-chat-msg right">
-                      <div class="direct-chat-info clearfix">
-                        <span class="direct-chat-name pull-right">Sarah Bullock</span>
-                        <span class="direct-chat-timestamp pull-left">23 Jan 2:05 pm</span>
-                      </div>
-                      <!-- /.direct-chat-info -->
-                      <img class="direct-chat-img" src="dist/img/user3-128x128.jpg" alt="message user image">
-                      <!-- /.direct-chat-img -->
-                      <div class="direct-chat-text">
-                        You better believe it!
-                      </div>
-                      <!-- /.direct-chat-text -->
-                    </div>
-                    <!-- /.direct-chat-msg -->
-
-                    <!-- Message. Default to the left -->
-                    <div class="direct-chat-msg">
-                      <div class="direct-chat-info clearfix">
-                        <span class="direct-chat-name pull-left">Alexander Pierce</span>
-                        <span class="direct-chat-timestamp pull-right">23 Jan 5:37 pm</span>
-                      </div>
-                      <!-- /.direct-chat-info -->
-                      <img class="direct-chat-img" src="dist/img/user1-128x128.jpg" alt="message user image">
-                      <!-- /.direct-chat-img -->
-                      <div class="direct-chat-text">
-                        Working with AdminLTE on a great new app! Wanna join?
-                      </div>
-                      <!-- /.direct-chat-text -->
-                    </div>
-                    <!-- /.direct-chat-msg -->
-
-                    <!-- Message to the right -->
-                    <div class="direct-chat-msg right">
-                      <div class="direct-chat-info clearfix">
-                        <span class="direct-chat-name pull-right">Sarah Bullock</span>
-                        <span class="direct-chat-timestamp pull-left">23 Jan 6:10 pm</span>
-                      </div>
-                      <!-- /.direct-chat-info -->
-                      <img class="direct-chat-img" src="dist/img/user3-128x128.jpg" alt="message user image">
-                      <!-- /.direct-chat-img -->
-                      <div class="direct-chat-text">
-                        I would love to.
-                      </div>
-                      <!-- /.direct-chat-text -->
-                    </div>
-                    <!-- /.direct-chat-msg -->
-
-                  </div>
-                  <!--/.direct-chat-messages-->
-
-                  <!-- Contacts are loaded here -->
-                  <div class="direct-chat-contacts">
-                    <ul class="contacts-list">
-                      <li>
-                        <a href="#">
-                          <img class="contacts-list-img" src="dist/img/user1-128x128.jpg" alt="User Image">
-
-                          <div class="contacts-list-info">
-                                <span class="contacts-list-name">
-                                  Count Dracula
-                                  <small class="contacts-list-date pull-right">2/28/2015</small>
-                                </span>
-                            <span class="contacts-list-msg">How have you been? I was...</span>
-                          </div>
-                          <!-- /.contacts-list-info -->
-                        </a>
-                      </li>
-                      <!-- End Contact Item -->
-                      <li>
-                        <a href="#">
-                          <img class="contacts-list-img" src="dist/img/user7-128x128.jpg" alt="User Image">
-
-                          <div class="contacts-list-info">
-                                <span class="contacts-list-name">
-                                  Sarah Doe
-                                  <small class="contacts-list-date pull-right">2/23/2015</small>
-                                </span>
-                            <span class="contacts-list-msg">I will be waiting for...</span>
-                          </div>
-                          <!-- /.contacts-list-info -->
-                        </a>
-                      </li>
-                      <!-- End Contact Item -->
-                      <li>
-                        <a href="#">
-                          <img class="contacts-list-img" src="dist/img/user3-128x128.jpg" alt="User Image">
-
-                          <div class="contacts-list-info">
-                                <span class="contacts-list-name">
-                                  Nadia Jolie
-                                  <small class="contacts-list-date pull-right">2/20/2015</small>
-                                </span>
-                            <span class="contacts-list-msg">I'll call you back at...</span>
-                          </div>
-                          <!-- /.contacts-list-info -->
-                        </a>
-                      </li>
-                      <!-- End Contact Item -->
-                      <li>
-                        <a href="#">
-                          <img class="contacts-list-img" src="dist/img/user5-128x128.jpg" alt="User Image">
-
-                          <div class="contacts-list-info">
-                                <span class="contacts-list-name">
-                                  Nora S. Vans
-                                  <small class="contacts-list-date pull-right">2/10/2015</small>
-                                </span>
-                            <span class="contacts-list-msg">Where is your new...</span>
-                          </div>
-                          <!-- /.contacts-list-info -->
-                        </a>
-                      </li>
-                      <!-- End Contact Item -->
-                      <li>
-                        <a href="#">
-                          <img class="contacts-list-img" src="dist/img/user6-128x128.jpg" alt="User Image">
-
-                          <div class="contacts-list-info">
-                                <span class="contacts-list-name">
-                                  John K.
-                                  <small class="contacts-list-date pull-right">1/27/2015</small>
-                                </span>
-                            <span class="contacts-list-msg">Can I take a look at...</span>
-                          </div>
-                          <!-- /.contacts-list-info -->
-                        </a>
-                      </li>
-                      <!-- End Contact Item -->
-                      <li>
-                        <a href="#">
-                          <img class="contacts-list-img" src="dist/img/user8-128x128.jpg" alt="User Image">
-
-                          <div class="contacts-list-info">
-                                <span class="contacts-list-name">
-                                  Kenneth M.
-                                  <small class="contacts-list-date pull-right">1/4/2015</small>
-                                </span>
-                            <span class="contacts-list-msg">Never mind I found...</span>
-                          </div>
-                          <!-- /.contacts-list-info -->
-                        </a>
-                      </li>
-                      <!-- End Contact Item -->
-                    </ul>
-                    <!-- /.contatcts-list -->
-                  </div>
-                  <!-- /.direct-chat-pane -->
-                </div>
-                <!-- /.box-body -->
-                <div class="box-footer">
-                  <form action="#" method="post">
-                    <div class="input-group">
-                      <input type="text" name="message" placeholder="Type Message ..." class="form-control">
-                      <span class="input-group-btn">
-                            <button type="button" class="btn btn-warning btn-flat">Send</button>
-                          </span>
-                    </div>
-                  </form>
-                </div>
-                <!-- /.box-footer-->
-              </div>
-              <!--/.direct-chat -->
+              <!-- /.info-box -->
             </div>
             <!-- /.col -->
 
-            <div class="col-md-6">
-              <!-- USERS LIST -->
-              <div class="box box-danger">
-                <div class="box-header with-border">
-                  <h3 class="box-title">Latest Members</h3>
+            <!-- fix for small devices only -->
+            <div class="clearfix visible-sm-block"></div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="info-box wk-progress membr custom">
+                <span class="info-box-icon bg-aqua"><i class="fa fa-money"></i></span>
 
-                  <div class="box-tools pull-right">
-                    <span class="label label-danger">8 New Documents</span>
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                    </button>
-                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i>
-                    </button>
-                  </div>
+                <div class="info-box-content">
+                  <span class="info-box-text">Released loans</span>
+                  <span class="info-box-number"><small></small><?=$loans?></i></span>
                 </div>
-                <!-- /.box-header -->
-                <div class="box-body no-padding">
-                  <ul class="users-list clearfix">
-                    <li>
-                      <img src="dist/img/user1-128x128.jpg" alt="User Image">
-                      <a class="users-list-name" href="#">Alexander Pierce</a>
-                      <span class="users-list-date">Today</span>
-                    </li>
-                    <li>
-                      <img src="dist/img/user8-128x128.jpg" alt="User Image">
-                      <a class="users-list-name" href="#">Norman</a>
-                      <span class="users-list-date">Yesterday</span>
-                    </li>
-                    <li>
-                      <img src="dist/img/user7-128x128.jpg" alt="User Image">
-                      <a class="users-list-name" href="#">Jane</a>
-                      <span class="users-list-date">12 Jan</span>
-                    </li>
-                    <li>
-                      <img src="dist/img/user6-128x128.jpg" alt="User Image">
-                      <a class="users-list-name" href="#">John</a>
-                      <span class="users-list-date">12 Jan</span>
-                    </li>
-                    <li>
-                      <img src="dist/img/user2-160x160.jpg" alt="User Image">
-                      <a class="users-list-name" href="#">Alexander</a>
-                      <span class="users-list-date">13 Jan</span>
-                    </li>
-                    <li>
-                      <img src="dist/img/user5-128x128.jpg" alt="User Image">
-                      <a class="users-list-name" href="#">Sarah</a>
-                      <span class="users-list-date">14 Jan</span>
-                    </li>
-                    <li>
-                      <img src="dist/img/user4-128x128.jpg" alt="User Image">
-                      <a class="users-list-name" href="#">Nora</a>
-                      <span class="users-list-date">15 Jan</span>
-                    </li>
-                    <li>
-                      <img src="dist/img/user3-128x128.jpg" alt="User Image">
-                      <a class="users-list-name" href="#">Nadia</a>
-                      <span class="users-list-date">15 Jan</span>
-                    </li>
-                  </ul>
-                  <!-- /.users-list -->
+                <!-- /.info-box-content -->
+                 <div class="pull-right">
+                  <?= Html::a(' More', ['loans/index'],['class' => 'btn fa fa-list-ul']) ?>
                 </div>
-                <!-- /.box-body -->
-                <div class="box-footer text-center">
-                  <a href="javascript:void(0)" class="uppercase">View All Users</a>
-                </div>
-                <!-- /.box-footer -->
               </div>
-              <!--/.box -->
+              <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="info-box wk-progress membr custom">
+                <span class="info-box-icon bg-aqua"><i class="fa fa-cart-plus"></i></span>
+
+                <div class="info-box-content">
+                  <span class="info-box-text"> Collections</span>
+                  <span class="info-box-number"><?=$loans?></i></span>
+                </div>
+                <!-- <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-warning">
+                    Launch Warning Modal
+                  </button> -->
+                <!-- /.info-box-content -->
+                 <div class="pull-right">
+                  <?= Html::a(' More', ['loanrepayments/index'],['class' => 'btn fa fa-list-ul']) ?>
+                </div>
+              </div>
+              <!-- /.info-box -->
             </div>
             <!-- /.col -->
           </div>
           <!-- /.row -->
+          <div class="row">
+            <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box wk-progress membr custom bg-aqua" style="cursor:pointer;">
+              <!-- <div class="info-box bg-aqua"> -->
+                <span class="info-box-icon"><i class="fa fa-bookmark-o"></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text">applied loans</span>
+                  <span class="info-box-number"><?=$applied_loans?></span>
 
-
-        </div>
-        <!-- /.col -->
-
-        <div class="col-md-4">
-          <!-- Info Boxes Style 2 -->
-          <div class="info-box bg-yellow">
-            <span class="info-box-icon"><i class="ion ion-ios-pricetag-outline"></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-text">Uploads</span>
-              <span class="info-box-number">5,200</span>
-
-              <div class="progress">
-                <div class="progress-bar" style="width: 50%"></div>
-              </div>
-              <span class="progress-description">
-                    50% Increase in 30 Days
-                  </span>
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-          <div class="info-box bg-green">
-            <span class="info-box-icon"><i class="ion ion-ios-heart-outline"></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-text">Edits</span>
-              <span class="info-box-number">92,050</span>
-
-              <div class="progress">
-                <div class="progress-bar" style="width: 20%"></div>
-              </div>
-              <span class="progress-description">
-                    20% Increase in 30 Days
-                  </span>
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-          <div class="info-box bg-red">
-            <span class="info-box-icon"><i class="ion ion-ios-cloud-download-outline"></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-text">Downloads</span>
-              <span class="info-box-number">114,381</span>
-
-              <div class="progress">
-                <div class="progress-bar" style="width: 70%"></div>
-              </div>
-              <span class="progress-description">
-                    70% Increase in 30 Days
-                  </span>
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-          <div class="info-box bg-aqua">
-            <span class="info-box-icon"><i class="ion-ios-chatbubble-outline"></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-text">Communication</span>
-              <span class="info-box-number">163,921</span>
-
-              <div class="progress">
-                <div class="progress-bar" style="width: 40%"></div>
-              </div>
-              <span class="progress-description">
-                    40% Increase in 30 Days
-                  </span>
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-
-          <!-- PRODUCT LIST -->
-          <div class="box box-primary">
-            <div class="box-header with-border">
-              <h3 class="box-title">Recently Added Products</h3>
-
-              <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-              </div>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-              <ul class="products-list product-list-in-box">
-                <li class="item">
-                  <div class="product-img">
-                    <img src="dist/img/default-50x50.gif" alt="Product Image">
+                  <div class="progress">
+                    <div class="progress-bar" style="width: <?=$applied_loans/1000*100?>%"></div>
                   </div>
-                  <div class="product-info">
-                    <a href="javascript:void(0)" class="product-title">Samsung TV
-                      <span class="label label-warning pull-right">$1800</span></a>
-                    <span class="product-description">
-                          Samsung 32" 1080p 60Hz LED Smart HDTV.
+                      <span class="progress-description">
+                      <?=$applied_loans/1000*100?>% Increase in 30 Days
+                      </span>
+                </div>
+                <!-- /.info-box-content -->
+              </div>
+              <!-- /.info-box -->
+            </div>
+
+             <div class="col-md-3 col-sm-6 col-xs-12">
+
+            <div class="info-box wk-progress membr custom bg-yellow" style="cursor:pointer;">
+                <!-- <div class="info-box bg-yellow"> -->
+                  <span class="info-box-icon"><i class="fa fa-calendar"></i></span>
+
+                  <div class="info-box-content">
+                    <span class="info-box-text">On appraisal</span>
+                    <span class="info-box-number"><?= round($onappraisal_loans) ?></span>
+
+                    <div class="progress">
+                      <div class="progress-bar" style="width: <?=round($onappraisal_loans/$applied_loans*100) ?>%"></div>
+                    </div>
+                        <span class="progress-description">
+                        <?=$onappraisal_loans/$applied_loans*100?>% Increase in 30 Days
                         </span>
                   </div>
-                </li>
-                <!-- /.item -->
-                <li class="item">
-                  <div class="product-img">
-                    <img src="dist/img/default-50x50.gif" alt="Product Image">
-                  </div>
-                  <div class="product-info">
-                    <a href="javascript:void(0)" class="product-title">Bicycle
-                      <span class="label label-info pull-right">$700</span></a>
-                    <span class="product-description">
-                          26" Mongoose Dolomite Men's 7-speed, Navy Blue.
+                  <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+              </div>
+
+            <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box wk-progress membr custom bg-olive" style="cursor:pointer;">
+                  <span class="info-box-icon"><i class="fa fa-thumbs-o-up"></i></span>
+
+                  <div class="info-box-content">
+                    <span class="info-box-text">approved loans</span>
+                    <span class="info-box-number"><?=$approved_loans?></span>
+
+                    <div class="progress">
+                      <div class="progress-bar" style="width: <?=$approved_loans/$applied_loans*100?>%"></div>
+                    </div>
+                        <span class="progress-description">
+                        <?=$approved_loans/$applied_loans*100?>% Increase in 30 Days
                         </span>
                   </div>
-                </li>
-                <!-- /.item -->
-                <li class="item">
-                  <div class="product-img">
-                    <img src="dist/img/default-50x50.gif" alt="Product Image">
-                  </div>
-                  <div class="product-info">
-                    <a href="javascript:void(0)" class="product-title">Xbox One <span
-                        class="label label-danger pull-right">$350</span></a>
-                    <span class="product-description">
-                          Xbox One Console Bundle with Halo Master Chief Collection.
+                  <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+              </div>
+
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="info-box wk-progress membr custom bg-aqua" style="cursor:pointer;">
+                <!-- <div class="info-box bg-yellow"> -->
+                  <span class="info-box-icon"><i class="fa fa-envelope-o"></i></span>
+
+                  <div class="info-box-content">
+                    <span class="info-box-text">fully paid loans</span>
+                    <span class="info-box-number"><?=$onappraisal_loans?></span>
+
+                    <div class="progress">
+                      <div class="progress-bar" style="width: <?=$paid_loans/$applied_loans*100?>%"></div>
+                    </div>
+                        <span class="progress-description">
+                        <?=$paid_loans/$applied_loans*100?>% Increase in 30 Days
                         </span>
                   </div>
-                </li>
-                <!-- /.item -->
-                <li class="item">
-                  <div class="product-img">
-                    <img src="dist/img/default-50x50.gif" alt="Product Image">
-                  </div>
-                  <div class="product-info">
-                    <a href="javascript:void(0)" class="product-title">PlayStation 4
-                      <span class="label label-success pull-right">$399</span></a>
-                    <span class="product-description">
-                          PlayStation 4 500GB Console (PS4)
-                        </span>
-                  </div>
-                </li>
-                <!-- /.item -->
-              </ul>
-            </div>
-            <!-- /.box-body -->
-            <div class="box-footer text-center">
-              <a href="javascript:void(0)" class="uppercase">View All Products</a>
-            </div>
-            <!-- /.box-footer -->
+                  <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+              </div>
+
+            <!-- fix for small devices only -->
+            <div class="clearfix visible-sm-block"></div>
+
+             
           </div>
-          <!-- /.box -->
+        <!-- row 2 -->
+        <div class="row">
+            <div class="col-md-8">
+              <!-- AREA CHART -->
+              <div class="box box-danger">
+                <div class="box-header with-border">
+                  <h3 class="box-title text-danger">Released & Completed Loans - Monthly, Year <?=date('Y');?></h3>
+
+                  <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                  </div>
+                </div>
+                <div class="box-body">
+                  <div class="chart">
+                    <canvas id="areaChart" style="height:250px"></canvas>
+                  </div>
+                </div>
+                <!-- /.box-body -->
+              </div>
+              <!-- /.box -->
+
+              <!-- LINE CHART -->
+              <div class="box box-primary">
+                <div class="box-header with-border">
+                  <h3 class="box-title text-primary">Members Registration - Monthly, Year <?=date('Y');?></h3>
+                  <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                  </div>
+                </div>
+                <div class="box-body">
+                  <div class="chart">
+                    <canvas id="lineChart" style="height:250px"></canvas>
+                  </div>
+                </div>
+                <!-- /.box-body -->
+              </div>
+              <!-- /.box -->
+
+              <!-- BAR CHART -->
+              <div class="box box-success">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Members Registration - Monthly, <?= date('Y')?></h3>
+
+                  <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                  </div>
+                </div>
+                <div class="box-body">
+                  <div class="chart">
+                    <canvas id="barChart" style="height:230px"></canvas>
+                  </div>
+                </div>
+                <!-- /.box-body -->
+              </div>
+              <!-- /.box -->
+            
+            </div>
+            <!-- /.col (LEFT) -->
+            <div class="col-md-4">
+              <!-- DONUT CHART -->
+              <div class="box box-danger">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Active Customers</h3>
+                  <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                  </div>
+                </div>
+                <div class="box-body">
+                  <div class="row">
+                    <div class="col-md-8">
+                      <div class="chart-responsive">
+                        <canvas id="pieChart" height="150"></canvas>
+                      </div>
+                      <!-- ./chart-responsive -->
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-md-4">
+                      <ul class="chart-legend clearfix">
+                        <li><i class="fa fa-circle-o text-aqua"></i> Male</li>
+                        <li><i class="fa fa-circle-o text-yellow"></i> Female</li>
+                      </ul>
+                    </div>
+                    <!-- /.col -->
+                  </div>
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer no-padding">
+                  <ul class="nav nav-pills nav-stacked">
+                    <li><a href="#">Male by percentage
+                      <span class="pull-right text-aqua"><i class="fa fa-angle-up"></i> <?= round($customersM/$customers*100) ?>%</span></a></li>
+                    <li><a href="#">Female by percentage <span class="pull-right text-yellow"><i class="fa fa-angle-down"></i>  <?= round($customersF/$customers*100) ?>%</span></a>
+                    </li>
+                  </ul>
+                </div>
+                <!-- /.footer -->
+              </div>
+              <!-- /.box -->
+
+              <!-- Account types area -->
+              <!-- DONUT CHART -->
+              <div class="box box-danger">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Account Types</h3>
+                  <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                  </div>
+                </div>
+                <div class="box-body">
+                  <div class="row">
+                    <div class="col-md-8">
+                      <div class="chart-responsive">
+                        <canvas id="pieChart2" height="150"></canvas>
+                      </div>
+                      <!-- ./chart-responsive -->
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-md-4">
+                      <ul class="chart-legend clearfix">
+                        <li><i class="fa fa-circle-o text-aqua"></i> Members</li>
+                        <li><i class="fa fa-circle-o text-olive"></i> Groups</li>
+                        <li><i class="fa fa-circle-o text-yellow"></i> Shareholders</li>
+                      </ul>
+                    </div>
+                    <!-- /.col -->
+                  </div>
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer no-padding">
+                  <ul class="nav nav-pills nav-stacked">
+                    <li><a href="#">Members <span class="pull-right text-aqua"><i class="fa fa-angle-up"></i> <?= $Members ?></span></a></li>
+                    <li><a href="#">Groups <span class="pull-right text-olive"><i class="fa fa-angle-up"></i>  <?= $Groups ?></span></a>
+                    <li><a href="#">Shareholders <span class="pull-right text-yellow"><i class="fa fa-angle-up"></i>  <?= $Shareholders ?></span></a>
+                    </li>
+                  </ul>
+                </div>
+                <!-- /.footer -->
+              </div>
+              <!-- /.box -->
 
 
-        </div>
-        <!-- /.col -->
+              <!-- small box -->
+              <div class="small-box bg-yellow">
+                <div class="inner">
+                  <h3><?= $denied_loans ?></h3>
+                  <p>Default/Rejected Loans</p>
+                </div>
+                <div class="icon">
+                  <i class="ion ion-pie-graph"></i>
+                </div>
+                <?= Html::a('More info <i class="fa fa-arrow-circle-right"></i>', ['loans/denied'],['class' => 'small-box-footer']) ?>
+        
+              </div>
+
+              <!-- small box -->
+              <div class="small-box bg-aqua">
+                <div class="inner">
+                  <h4>Average Tenure</h4>
+                  <h3>53<sup style="font-size: 20px">days</sup></h3>
+
+                  <p>Average number of days for loans to be fully paid</p>
+                </div>
+                <div class="icon">
+                  <i class="ion ion-stats-bars"></i>
+                </div>
+                <a href="#" class="small-box-footer">
+                  More info <i class="fa fa-arrow-circle-right"></i>
+                </a>
+              </div>
+
+            </div>
+            <!-- /.col (RIGHT) -->
+
+          </div>
+          <!-- /.row 3 -->
+        </section>
+        <!-- /.content -->
       </div>
-      <!-- /.row -->
-    </section>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
+      <!-- /.content-wrapper -->
 
-  <?php
-  $this->registerJs("
-  Highcharts.chart('my-chart', {
-      title: {
-          text: 'Document Upload History'
+
+
+
+<script>
+  $(function () {
+    /* ChartJS
+     * -------
+     * Here we will create a few charts using ChartJS
+     */
+
+    //--------------
+    //- AREA CHART -
+    //--------------
+
+    // Get context with jQuery - using jQuery's .get() method.
+    var areaChartCanvas = $('#areaChart').get(0).getContext('2d')
+    // This will get the first returned node in the jQuery collection.
+    var areaChart       = new Chart(areaChartCanvas)
+
+<?php
+
+$user = customers::find()->count();
+$open_loans1 = loans::find()->andWhere("ln_status=1 AND ln_released LIKE '%".date('Y')."-01-%'")->count();
+$open_loans2 = loans::find()->andWhere("ln_status=1 AND ln_released LIKE '%".date('Y')."-02-%'")->count();
+$open_loans3 = loans::find()->andWhere("ln_status=1 AND ln_released LIKE '%".date('Y')."-03-%'")->count();
+$open_loans4 = loans::find()->andWhere("ln_status=1 AND ln_released LIKE '%".date('Y')."-04-%'")->count();
+$open_loans5 = loans::find()->andWhere("ln_status=1 AND ln_released LIKE '%".date('Y')."-05-%'")->count();
+$open_loans6 = loans::find()->andWhere("ln_status=1 AND ln_released LIKE '%".date('Y')."-06-%'")->count();
+$open_loans7 = loans::find()->andWhere("ln_status=1 AND ln_released LIKE '%".date('Y')."-07-%'")->count();
+$open_loans8 = loans::find()->andWhere("ln_status=1 AND ln_released LIKE '%".date('Y')."-08-%'")->count();
+$open_loans9 = loans::find()->andWhere("ln_status=1 AND ln_released LIKE '%".date('Y')."-09-%'")->count();
+$open_loans10 = loans::find()->andWhere("ln_status=1 AND ln_released LIKE '%".date('Y')."-10-%'")->count();
+$open_loans11 = loans::find()->andWhere("ln_status=1 AND ln_released LIKE '%".date('Y')."-11-%'")->count();
+$open_loans12 = loans::find()->andWhere("ln_status=1 AND ln_released LIKE '%".date('Y')."-12-%'")->count();
+
+$closed_loans1 = loans::find()->andWhere("ln_status=1 AND ln_due LIKE '%".date('Y')."-01-%'")->count();
+$closed_loans2 = loans::find()->andWhere("ln_status=1 AND ln_due LIKE '%".date('Y')."-02-%'")->count();
+$closed_loans3 = loans::find()->andWhere("ln_status=1 AND ln_due LIKE '%".date('Y')."-03-%'")->count();
+$closed_loans4 = loans::find()->andWhere("ln_status=1 AND ln_due LIKE '%".date('Y')."-04-%'")->count();
+$closed_loans5 = loans::find()->andWhere("ln_status=1 AND ln_due LIKE '%".date('Y')."-05-%'")->count();
+$closed_loans6 = loans::find()->andWhere("ln_status=1 AND ln_due LIKE '%".date('Y')."-06-%'")->count();
+$closed_loans7 = loans::find()->andWhere("ln_status=1 AND ln_due LIKE '%".date('Y')."-07-%'")->count();
+$closed_loans8 = loans::find()->andWhere("ln_status=1 AND ln_due LIKE '%".date('Y')."-08-%'")->count();
+$closed_loans9 = loans::find()->andWhere("ln_status=1 AND ln_due LIKE '%".date('Y')."-09-%'")->count();
+$closed_loans10 = loans::find()->andWhere("ln_status=1 AND ln_due LIKE '%".date('Y')."-10-%'")->count();
+$closed_loans11 = loans::find()->andWhere("ln_status=1 AND ln_due LIKE '%".date('Y')."-11-%'")->count();
+$closed_loans12 = loans::find()->andWhere("ln_status=1 AND ln_due LIKE '%".date('Y')."-12-%'")->count();
+
+?>
+    var areaChartData = {
+      labels  : ['January', 'February', 'March', 'April', 'May', 'June', 'July','August','September','October', 'November','December'],
+
+      // OPEN LOANS DATA
+      datasets: [
+        {
+          label               : 'Open Loans',
+          fillColor           : 'rgba(210, 214, 222, 1)',
+          strokeColor         : 'rgba(210, 214, 222, 1)',
+          pointColor          : 'rgba(210, 214, 222, 1)',
+          pointStrokeColor    : '#c1c7d1',
+          pointHighlightFill  : '#fff',
+          pointHighlightStroke: 'rgba(220,220,220,1)',
+          data                : [<?=$open_loans1?>,<?=$open_loans2?>,<?=$open_loans3?>,<?=$open_loans4?>,<?=$open_loans5?>,<?=$open_loans6?>,<?=$open_loans7?>,<?=$open_loans8?>,<?=$open_loans9?>,<?=$open_loans10?>,<?=$open_loans11?>,<?=$open_loans12?>],
+        },
+        {
+          label               : 'Closed Loans',
+          fillColor           : 'rgba(60,141,188,0.9)',
+          strokeColor         : 'rgba(60,141,188,0.8)',
+          pointColor          : '#3b8bba',
+          pointStrokeColor    : 'rgba(60,141,188,1)',
+          pointHighlightFill  : '#fff',
+          pointHighlightStroke: 'rgba(60,141,188,1)',
+          data                : [<?=$closed_loans1?>,<?=$closed_loans2?>,<?=$closed_loans3?>,<?=$closed_loans4?>,<?=$closed_loans5?>,<?=$closed_loans6?>,<?=$closed_loans7?>,<?=$closed_loans8?>,<?=$closed_loans9?>,<?=$closed_loans10?>,<?=$closed_loans11?>,<?=$closed_loans12?>],
+        }
+      ]
+    }
+
+
+// SECOND CHART DATA
+<?php
+
+$user = customers::find()->count();
+$open_cust1 = customers::find()->andWhere(" cust_created_at  LIKE '%".date('Y')."-01-%'")->count();
+$open_cust2 = customers::find()->andWhere(" cust_created_at  LIKE '%".date('Y')."-02-%'")->count();
+$open_cust3 = customers::find()->andWhere(" cust_created_at  LIKE '%".date('Y')."-03-%'")->count();
+$open_cust4 = customers::find()->andWhere(" cust_created_at  LIKE '%".date('Y')."-04-%'")->count();
+$open_cust5 = customers::find()->andWhere(" cust_created_at  LIKE '%".date('Y')."-05-%'")->count();
+$open_cust6 = customers::find()->andWhere(" cust_created_at  LIKE '%".date('Y')."-06-%'")->count();
+$open_cust7 = customers::find()->andWhere(" cust_created_at  LIKE '%".date('Y')."-07-%'")->count();
+$open_cust8 = customers::find()->andWhere(" cust_created_at  LIKE '%".date('Y')."-08-%'")->count();
+$open_cust9 = customers::find()->andWhere(" cust_created_at  LIKE '%".date('Y')."-09-%'")->count();
+$open_cust10 = customers::find()->andWhere(" cust_created_at  LIKE '%".date('Y')."-10-%'")->count();
+$open_cust11 = customers::find()->andWhere(" cust_created_at  LIKE '%".date('Y')."-11-%'")->count();
+$open_cust12 = customers::find()->andWhere(" cust_created_at  LIKE '%".date('Y')."-12-%'")->count();
+
+$closed_custF1 = customers::find()->andWhere("GENDER ='Female' AND cust_created_at LIKE '%".date('Y')."-01-%'")->count();
+$closed_custF2 = customers::find()->andWhere("GENDER ='Female' AND cust_created_at  LIKE '%".date('Y')."-02-%'")->count();
+$closed_custF3 = customers::find()->andWhere("GENDER ='Female' AND cust_created_at  LIKE '%".date('Y')."-03-%'")->count();
+$closed_custF4 = customers::find()->andWhere("GENDER ='Female' AND cust_created_at  LIKE '%".date('Y')."-04-%'")->count();
+$closed_custF5 = customers::find()->andWhere("GENDER ='Female' AND cust_created_at  LIKE '%".date('Y')."-05-%'")->count();
+$closed_custF6 = customers::find()->andWhere("GENDER ='Female' AND cust_created_at  LIKE '%".date('Y')."-06-%'")->count();
+$closed_custF7 = customers::find()->andWhere("GENDER ='Female' AND cust_created_at  LIKE '%".date('Y')."-07-%'")->count();
+$closed_custF8 = customers::find()->andWhere("GENDER ='Female' AND cust_created_at  LIKE '%".date('Y')."-08-%'")->count();
+$closed_custF9 = customers::find()->andWhere("GENDER ='Female' AND cust_created_at  LIKE '%".date('Y')."-09-%'")->count();
+$closed_custF10 = customers::find()->andWhere("GENDER ='Female' AND cust_created_at LIKE '%".date('Y')."-10-%'")->count();
+$closed_custF11 = customers::find()->andWhere("GENDER ='Female' AND cust_created_at  LIKE '%".date('Y')."-11-%'")->count();
+$closed_custF12 = customers::find()->andWhere("GENDER ='Female' AND cust_created_at  LIKE '%".date('Y')."-12-%'")->count();
+
+?>
+    var areaChartData2 = {
+      labels  : ['January', 'February', 'March', 'April', 'May', 'June', 'July','August','September','October', 'November','December'],
+
+      // OPEN LOANS DATA
+      datasets: [
+        {
+          label               : 'All Members',
+          fillColor           : '#3c8dbc',
+          strokeColor         : '#3c8dbc',
+          pointColor          : 'rgba(210, 214, 222, 1)',
+          pointStrokeColor    : '#c1c7d1',
+          pointHighlightFill  : '#fff',
+          pointHighlightStroke: 'rgba(220,220,220,1)',
+          data                : [<?=$open_cust1?>,<?=$open_cust2?>,<?=$open_cust3?>,<?=$open_cust4?>,<?=$open_cust5?>,<?=$open_cust6?>,<?=$open_cust7?>,<?=$open_cust8?>,<?=$open_cust9?>,<?=$open_cust10?>,<?=$open_cust11?>,<?=$open_cust12?>],
+        },
+        {
+          label               : 'Male Members',
+          fillColor           : '#00a65a',
+          strokeColor         : '#00a65a',
+          pointColor          : '#3b8bba',
+          pointStrokeColor    : 'rgba(60,141,188,1)',
+          pointHighlightFill  : '#fff',
+          pointHighlightStroke: 'rgba(60,141,188,1)',
+          data                : [<?=$open_cust1-$closed_custF1?>,<?=$open_cust2-$closed_custF2?>,<?=$open_cust3-$closed_custF3?>,<?=$open_cust4-$closed_custF4?>,<?=$open_cust5-$closed_custF5?>,<?=$open_cust6-$closed_custF6?>,<?=$open_cust7-$closed_custF7?>,<?=$open_cust8-$closed_loans8?>,<?=$open_cust9-$closed_custF9?>,<?=$open_cust10-$closed_custF10?>,<?=$open_cust11-$closed_custF11?>,<?=$open_cust12-$closed_custF12?>],
+        },
+        {
+          label               : 'Female Members',
+          fillColor           : '#f39c12',
+          strokeColor         : '#f39c12',
+          pointColor          : '#3b8bba',
+          pointStrokeColor    : 'rgba(60,141,188,1)',
+          pointHighlightFill  : '#fff',
+          pointHighlightStroke: 'rgba(60,141,188,1)',
+          data                : [<?=$closed_custF1?>,<?=$closed_custF2?>,<?=$closed_custF3?>,<?=$closed_custF4?>,<?=$closed_custF5?>,<?=$closed_custF6?>,<?=$closed_custF7?>,<?=$closed_loans8?>,<?=$closed_custF9?>,<?=$closed_custF10?>,<?=$closed_custF11?>,<?=$closed_custF12?>],
+        }
+        
+      ]
+    }
+
+
+    var areaChartOptions = {
+      //Boolean - If we should show the scale at all
+      showScale               : true,
+      //Boolean - Whether grid lines are shown across the chart
+      scaleShowGridLines      : true,
+      //String - Colour of the grid lines
+      scaleGridLineColor      : 'rgba(0,0,0,.05)',
+      //Number - Width of the grid lines
+      scaleGridLineWidth      : 1,
+      //Boolean - Whether to show horizontal lines (except X axis)
+      scaleShowHorizontalLines: true,
+      //Boolean - Whether to show vertical lines (except Y axis)
+      scaleShowVerticalLines  : true,
+      //Boolean - Whether the line is curved between points
+      bezierCurve             : true,
+      //Number - Tension of the bezier curve between points
+      bezierCurveTension      : 0.3,
+      //Boolean - Whether to show a dot for each point
+      pointDot                : false,
+      //Number - Radius of each point dot in pixels
+      pointDotRadius          : 4,
+      //Number - Pixel width of point dot stroke
+      pointDotStrokeWidth     : 1,
+      //Number - amount extra to add to the radius to cater for hit detection outside the drawn point
+      pointHitDetectionRadius : 20,
+      //Boolean - Whether to show a stroke for datasets
+      datasetStroke           : true,
+      //Number - Pixel width of dataset stroke
+      datasetStrokeWidth      : 2,
+      //Boolean - Whether to fill the dataset with a color
+      datasetFill             : true,
+      //String - A legend template
+      legendTemplate          : '<ul class="<%=name.toLowerCase()%>-legend"><% for (var i=0; i<datasets.length; i++){%><li><span style="background-color:<%=datasets[i].lineColor%>"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>',
+      //Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
+      maintainAspectRatio     : true,
+      //Boolean - whether to make the chart responsive to window resizing
+      responsive              : true
+    }
+
+    //Create the line chart
+    areaChart.Line(areaChartData, areaChartOptions)
+
+    //-------------
+    //- LINE CHART -
+    //--------------
+    var lineChartCanvas          = $('#lineChart').get(0).getContext('2d')
+    var lineChart                = new Chart(lineChartCanvas)
+    var lineChartOptions         = areaChartOptions
+    lineChartOptions.datasetFill = false
+    lineChart.Line(areaChartData, lineChartOptions)
+
+    //-------------
+    //- PIE CHART -
+    //-------------
+    // Get context with jQuery - using jQuery's .get() method.
+    var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
+    var pieChart       = new Chart(pieChartCanvas)
+    var PieData        = [
+     {
+        value    : <?=$customersM?>,
+        color    : '#00c0ef',
+        highlight: '#00c0ef',
+        label    : 'Male'
       },
-      subtitle: {
-          text: 'Source: fusiondocs.com'
+      {
+        value    : <?=$customersF?>,
+        color    : '#f39c12',
+        highlight: '#3c8dbc',
+        label    : 'Female'
       },
-      yAxis: {
-          title: {
-              text: 'Number of Diocuments'
-          }
+    ]
+
+
+    //-------------
+    //- PIE CHART 2 -
+    //-------------
+    // Get context with jQuery - using jQuery's .get() method.
+    var pieChartCanvas = $('#pieChart2').get(0).getContext('2d')
+    var pieChart2       = new Chart(pieChartCanvas)
+    var PieData2        = [
+     {
+        value    : <?=$Members?>,
+        color    : '#00c0ef',
+        highlight: '#00c0ef',
+        label    : 'Members'
       },
-      legend: {
-          layout: 'vertical',
-          align: 'right',
-          verticalAlign: 'middle'
+      {
+        value    : <?=$Groups?>,
+        color    : '#00a65a',
+        highlight: '#00a65a',
+        label    : 'Groups'
       },
-
-      plotOptions: {
-          series: {
-              label: {
-                  connectorAllowed: false
-              },
-              pointStart: 01
-          }
+      {
+        value    : <?=$Shareholders?>,
+        color    : '#f39c12',
+        highlight: '#3c8dbc',
+        label    : 'Shareholders'
       },
+    ]
 
-      series: [{
 
-          name: 'Admin',
-          data: [".$dirs.", 52503, 57177, 69658, 97031, 119931, 137133, 154175]
-      }, {
-          name: 'User One',
-          data: [24916, 24064, 29742, 29851, 32490, 30282, 38121, 40434]
-      }, {
-          name: 'User Two',
-          data: [11744, 17722, 16005, 19771, 20185, 24377, 32147, 39387]
-      }, {
-          name: 'User Three',
-          data: [null, null, 7988, 12169, 15112, 22452, 34400, 34227]
-      }, {
-          name: 'Other User',
-          data: [12908, 5948, 8105, 11248, 8989, 11816, 18274, 18111]
-      }],
+    var pieOptions     = {
+      //Boolean - Whether we should show a stroke on each segment
+      segmentShowStroke    : true,
+      //String - The colour of each segment stroke
+      segmentStrokeColor   : '#fff',
+      //Number - The width of each segment stroke
+      segmentStrokeWidth   : 1,
+      //Number - The percentage of the chart that we cut out of the middle
+      percentageInnerCutout: 50, // This is 0 for Pie charts
+      //Number - Amount of animation steps
+      animationSteps       : 100,
+      //String - Animation easing effect
+      animationEasing      : 'easeOutBounce',
+      //Boolean - Whether we animate the rotation of the Doughnut
+      animateRotate        : true,
+      //Boolean - Whether we animate scaling the Doughnut from the centre
+      animateScale         : true,
+      //Boolean - whether to make the chart responsive to window resizing
+      responsive           : true,
+      // Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
+      maintainAspectRatio  : true,
+      //String - A legend template
+      legendTemplate       : '<ul class="<%=name.toLowerCase()%>-legend"><% for (var i=0; i<segments.length; i++){%><li><span style="background-color:<%=segments[i].fillColor%>"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>'
+    }
+    //Create pie or douhnut chart
+    // You can switch between pie and douhnut using the method below.
+    pieChart.Doughnut(PieData, pieOptions)
+    pieChart2.Doughnut(PieData2, pieOptions)
 
-      responsive: {
-          rules: [{
-              condition: {
-                  maxWidth: 500
-              },
-              chartOptions: {
-                  legend: {
-                      layout: 'horizontal',
-                      align: 'center',
-                      verticalAlign: 'bottom'
-                  }
-              }
-          }]
-      }
+    //-------------
+    //- BAR CHART -
+    //-------------
+    var barChartCanvas                   = $('#barChart').get(0).getContext('2d')
+    var barChart                         = new Chart(barChartCanvas)
+    var barChartData                     = areaChartData2
+    barChartData.datasets[1].fillColor   = '#00a65a'
+    barChartData.datasets[1].strokeColor = '#00a65a'
+    barChartData.datasets[1].pointColor  = '#00a65a'
+    var barChartOptions                  = {
+      //Boolean - Whether the scale should start at zero, or an order of magnitude down from the lowest value
+      scaleBeginAtZero        : true,
+      //Boolean - Whether grid lines are shown across the chart
+      scaleShowGridLines      : true,
+      //String - Colour of the grid lines
+      scaleGridLineColor      : 'rgba(0,0,0,.05)',
+      //Number - Width of the grid lines
+      scaleGridLineWidth      : 1,
+      //Boolean - Whether to show horizontal lines (except X axis)
+      scaleShowHorizontalLines: true,
+      //Boolean - Whether to show vertical lines (except Y axis)
+      scaleShowVerticalLines  : true,
+      //Boolean - If there is a stroke on each bar
+      barShowStroke           : true,
+      //Number - Pixel width of the bar stroke
+      barStrokeWidth          : 2,
+      //Number - Spacing between each of the X value sets
+      barValueSpacing         : 5,
+      //Number - Spacing between data sets within X values
+      barDatasetSpacing       : 1,
+      //String - A legend template
+      legendTemplate          : '<ul class="<%=name.toLowerCase()%>-legend"><% for (var i=0; i<datasets.length; i++){%><li><span style="background-color:<%=datasets[i].fillColor%>"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>',
+      //Boolean - whether to make the chart responsive
+      responsive              : true,
+      maintainAspectRatio     : true
+    }
 
-  });
-  ")?>
+    barChartOptions.datasetFill = false
+    barChart.Bar(barChartData, barChartOptions)
+  })
+</script>

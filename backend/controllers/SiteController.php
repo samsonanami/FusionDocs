@@ -6,32 +6,43 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\LoginForm;
+use backend\models\SignupForm;
+use yii\web\NotFoundHttpException;
+use yii\web\ForbiddenHttpException;
+use backend\models\AuthItem;
 
-use app\models\OmDocuments;
-use app\models\OmDocumentsSearch;
+use backend\models\User;
+use backend\models\OmDocumentsSearch;
 
-/**
- * Site controller
- */
+
+
 class SiteController extends Controller
 {
-    /**
-     * {@inheritdoc}
-     */
     public function behaviors()
     {
         return [
             'access' => [
                 'class' => AccessControl::className(),
+                // 'only' => ['logout', 'signup'],
                 'rules' => [
                     [
-                        'actions' => ['login', 'error'],
+                        'actions' => ['signup'],
                         'allow' => true,
+                        'roles' => ['@'],
                     ],
-                    [
+                   [
                         'actions' => ['logout', 'index'],
                         'allow' => true,
                         'roles' => ['@'],
+                    ],
+                    [
+                        'actions' => ['logout', 'admin'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    [
+                        'actions' => ['login', 'error'],
+                        'allow' => true,
                     ],
                 ],
             ],
@@ -44,9 +55,6 @@ class SiteController extends Controller
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function actions()
     {
         return [
@@ -56,38 +64,66 @@ class SiteController extends Controller
         ];
     }
 
-    /**
-     * Displays homepage.
-     *
-     * @return string
-     */
     public function actionIndex()
     {
+
         $this->layout='main';
-        $searchModel = new OmDocumentsSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+         if(Yii::$app->user->can('view-dashboard')){
+            Yii::$app->getSession()->setFlash('info', 'Successful login! Welcome Home');
+            return $this->render('index', []);
+        }else{
+           throw new ForbiddenHttpException(Yii::t('yii', 'You are not allowed to perform this action.'));
+        }
+        
+//         Yii::$app->mailer->compose()
+//         ->setFrom("maithyaknife@gmail.com")
+//         ->setTo("samsonanami@gmail.com")
+//         ->setSubject("Test")
+//         ->setTextBody("Welcome")
+//         ->send();
+       
     }
-
+    public function actionAdmin()
+    {
+        $this->layout='main';
+         if(Yii::$app->user->can('view-admin-dashboard')){
+            return $this->render('admin', []);
+        }else{
+           throw new ForbiddenHttpException(Yii::t('yii', 'You are not allowed to perform this action.'));
+        }
+       
+    }
+   
     public function actionSignup()
     {
-        if(Yii::$app->user->can('create-document-category')){
-            $this->layout='main';
-            return $this->render('signup');
+        $this->layout='main';
+        $model = new SignupForm();
+        $authItems = AuthItem::find()->all();
+            if ($model->load(Yii::$app->request->post())) {
+                if ($user = $model->signup()) {
+                return $this->redirect(['user/index']);
+            }
+            // if ($user = $model->signup()) {
+            //     if (Yii::$app->getUser()->login($user)) {
+            //         return $this->goHome();
+            //     }
+            // }
+        }
+        return $this->render('signup',[
+            'model'=>$model,
+            'authItems'=>$authItems,
+        ]);
+    }
+    public function actionUsercreate()
+    {
+        $this->layout='main';
+        if(Yii::$app->user->can('create-user')){
+            return $this->render('user/create');
         }else{
             throw new FobiddenHttpException;
         }
     }
 
-    /**
-     * Login action.
-     *
-     * @return string
-     */
     public function actionLogin()
     {
         $this->layout='login';

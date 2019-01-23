@@ -4,38 +4,27 @@ use yii\helpers\Html;
 
 
 /* @var $this yii\web\View */
-/* @var $model app\models\User */
+/* @var $model backend\models\User */
 
 $this->title = 'Create User';
 // $this->params['breadcrumbs'][] = ['label' => 'Users', 'url' => ['index']];
 // $this->params['breadcrumbs'][] = $this->title;
 ?>
- <!-- Content Wrapper. Contains page content -->
- <div class="content-wrapper" id="myDiv" class="animate-bottom">
+
+
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1>
-      <h1><?= Html::encode($this->title) ?></h1>
-        
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Users</a></li>
-        <li class="active">New Users</li>
-      </ol>
     </section>
-    
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
-    
     <!-- Main content -->
     <section class="content">
-
       <!-- Default box -->
-      <div class="box">
-        <div class="box-header with-border">
-          <h3 class="box-title">User Details</h3>
-
+           
+    <div class="box box-primary box-solid">
+    <div class="box-header with-border box-profile">
+        Fill the form to add user
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
                     title="Collapse">
@@ -45,29 +34,19 @@ $this->title = 'Create User';
           </div>
         </div>
         <div class="box-body">
-        <div class="user-create">
+        <div class="customers-index">
+            <?= $this->render('_form', [
+                'model' => $model,
+            ]) ?>
+<!-- /.box-body -->
+</div>
 
-        <?= $this->render('_form', [
-            'model' => $model,
-        ]) ?>
+<div class="box-footer">
+  <!-- footer area -->
+</div>
+<!-- /.box-footer-->
 
-        </div>
-        <div class="box-footer">
-        </div>
-        </div>
-        <!-- /.box-body -->
-        
-        <!-- /.box-footer-->
-      </div>
-      <!-- /.box -->
+</section>
+<!-- /.content -->
 
-    </section>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
-
-
-
-
-
-
+</div>

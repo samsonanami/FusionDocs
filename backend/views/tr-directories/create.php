@@ -4,7 +4,7 @@ use yii\helpers\Html;
 
 
 /* @var $this yii\web\View */
-/* @var $model app\models\TrDirectories */
+/* @var $model backend\models\TrDirectories */
 
 $this->title = 'Create Tr Directories';
 ?>

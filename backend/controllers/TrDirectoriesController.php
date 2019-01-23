@@ -3,8 +3,8 @@
 namespace backend\controllers;
 
 use Yii;
-use app\models\TrDirectories;
-use app\models\TrDirectoriesSearch;
+use backend\models\TrDirectories;
+use backend\models\TrDirectoriesSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;

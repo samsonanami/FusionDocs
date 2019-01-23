@@ -29,13 +29,13 @@ use yii\grid\GridView;
 
 // VIEW - views/product/index.php
 use kartik\tree\TreeView;
-use app\models\Product;
+use backend\models\Product;
 use kartik\file\FileInput;
 
 
  
 echo TreeView::widget([
-  'query' => \app\models\Product::find()->addOrderBy('root, lft'),
+  'query' => \backend\models\Product::find()->addOrderBy('root, lft'),
   'headingOptions' => ['label' => 'Store'],
   'rootOptions' => ['label'=>'<span class="text-primary">Directories</span>'],
   'topRootAsHeading' => true, // this will override the headingOptions

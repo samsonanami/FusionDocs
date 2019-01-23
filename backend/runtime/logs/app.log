@@ -1,0 +1,952 @@
+2019-01-23 06:26:09 [::1][-][-][error][ParseError] ParseError: syntax error, unexpected ')', expecting ',' or ';' in /opt/lampp/htdocs/stl_trans/backend/views/customers/_form.php:49
+Stack trace:
+#0 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/base/View.php(257): yii\base\View->renderPhpFile('/opt/lampp/htdo...', Array)
+#1 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/base/View.php(156): yii\base\View->renderFile('/opt/lampp/htdo...', Array, NULL)
+#2 /opt/lampp/htdocs/stl_trans/backend/views/customers/create.php(32): yii\base\View->render('_form', Array)
+#3 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/base/View.php(348): require('/opt/lampp/htdo...')
+#4 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/base/View.php(257): yii\base\View->renderPhpFile('/opt/lampp/htdo...', Array)
+#5 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/base/View.php(156): yii\base\View->renderFile('/opt/lampp/htdo...', Array, Object(backend\controllers\CustomersController))
+#6 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/base/Controller.php(384): yii\base\View->render('create', Array, Object(backend\controllers\CustomersController))
+#7 /opt/lampp/htdocs/stl_trans/backend/controllers/CustomersController.php(199): yii\base\Controller->render('create', Array)
+#8 [internal function]: backend\controllers\CustomersController->actionCreate()
+#9 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/base/InlineAction.php(57): call_user_func_array(Array, Array)
+#10 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/base/Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#11 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/base/Module.php(528): yii\base\Controller->runAction('create', Array)
+#12 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/web/Application.php(103): yii\base\Module->runAction('customers/creat...', Array)
+#13 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/base/Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#14 /opt/lampp/htdocs/stl_trans/backend/web/index.php(17): yii\base\Application->run()
+#15 {main}
+2019-01-23 06:26:09 [::1][-][-][info][application] $_GET = [
+    'r' => 'customers/create'
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    '_identity-backend' => 'c06607f95e1097ccae919e752d15d52237c1184ec4cfe4ab264bfea570f1a1d0a:2:{i:0;s:17:\"_identity-backend\";i:1;s:46:\"[4,\"CIJc_IXqdZp0oa7-OtxNIH66rRUXM_YN\",2592000]\";}'
+    'PHPSESSID' => 'd2df0e84594461044263b614f64989c3'
+    'advanced-backend' => 'c0d3f2c8864cd43a9d59db20d257b9eb'
+    '_csrf-backend' => '016b696c361d76c1f2488dc9fe6a0c2f374bf5d82bf706ff481fab2bd71579f9a:2:{i:0;s:13:\"_csrf-backend\";i:1;s:32:\"3CKQkk1ToGf4Mr2vVtNTmua-YGHYkDgF\";}'
+]
+
+$_SERVER = [
+    'UNIQUE_ID' => 'XEf68QCVRZx0gA7U3JRprgAAAAY'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/60.0'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.5'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'HTTP_REFERER' => 'http://localhost/stl_trans/backend/web/'
+    'HTTP_COOKIE' => '_identity-backend=c06607f95e1097ccae919e752d15d52237c1184ec4cfe4ab264bfea570f1a1d0a%3A2%3A%7Bi%3A0%3Bs%3A17%3A%22_identity-backend%22%3Bi%3A1%3Bs%3A46%3A%22%5B4%2C%22CIJc_IXqdZp0oa7-OtxNIH66rRUXM_YN%22%2C2592000%5D%22%3B%7D; PHPSESSID=d2df0e84594461044263b614f64989c3; advanced-backend=c0d3f2c8864cd43a9d59db20d257b9eb; _csrf-backend=016b696c361d76c1f2488dc9fe6a0c2f374bf5d82bf706ff481fab2bd71579f9a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%223CKQkk1ToGf4Mr2vVtNTmua-YGHYkDgF%22%3B%7D'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'PATH' => '/sbin:/bin:/usr/sbin:/usr/bin'
+    'LD_LIBRARY_PATH' => '/opt/lampp/lib:/opt/lampp/lib'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.37 (Unix) OpenSSL/1.0.2q PHP/7.3.0 mod_perl/2.0.8-dev Perl/v5.16.3'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => '/opt/lampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/opt/lampp/htdocs'
+    'SERVER_ADMIN' => 'you@example.com'
+    'SCRIPT_FILENAME' => '/opt/lampp/htdocs/stl_trans/backend/web/index.php'
+    'REMOTE_PORT' => '35120'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'r=customers%2Fcreate'
+    'REQUEST_URI' => '/stl_trans/backend/web/index.php?r=customers%2Fcreate'
+    'SCRIPT_NAME' => '/stl_trans/backend/web/index.php'
+    'PHP_SELF' => '/stl_trans/backend/web/index.php'
+    'REQUEST_TIME_FLOAT' => 1548221169.315
+    'REQUEST_TIME' => 1548221169
+]
+2019-01-23 07:15:50 [::1][-][-][error][Error] Error: Call to undefined function label() in /opt/lampp/htdocs/stl_trans/backend/views/customers/_form.php:119
+Stack trace:
+#0 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/base/View.php(348): require()
+#1 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/base/View.php(257): yii\base\View->renderPhpFile('/opt/lampp/htdo...', Array)
+#2 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/base/View.php(156): yii\base\View->renderFile('/opt/lampp/htdo...', Array, NULL)
+#3 /opt/lampp/htdocs/stl_trans/backend/views/customers/create.php(32): yii\base\View->render('_form', Array)
+#4 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/base/View.php(348): require('/opt/lampp/htdo...')
+#5 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/base/View.php(257): yii\base\View->renderPhpFile('/opt/lampp/htdo...', Array)
+#6 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/base/View.php(156): yii\base\View->renderFile('/opt/lampp/htdo...', Array, Object(backend\controllers\CustomersController))
+#7 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/base/Controller.php(384): yii\base\View->render('create', Array, Object(backend\controllers\CustomersController))
+#8 /opt/lampp/htdocs/stl_trans/backend/controllers/CustomersController.php(199): yii\base\Controller->render('create', Array)
+#9 [internal function]: backend\controllers\CustomersController->actionCreate()
+#10 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/base/InlineAction.php(57): call_user_func_array(Array, Array)
+#11 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/base/Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#12 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/base/Module.php(528): yii\base\Controller->runAction('create', Array)
+#13 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/web/Application.php(103): yii\base\Module->runAction('customers/creat...', Array)
+#14 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/base/Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#15 /opt/lampp/htdocs/stl_trans/backend/web/index.php(17): yii\base\Application->run()
+#16 {main}
+2019-01-23 07:15:50 [::1][-][-][info][application] $_GET = [
+    'r' => 'customers/create'
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    '_identity-backend' => 'c06607f95e1097ccae919e752d15d52237c1184ec4cfe4ab264bfea570f1a1d0a:2:{i:0;s:17:\"_identity-backend\";i:1;s:46:\"[4,\"CIJc_IXqdZp0oa7-OtxNIH66rRUXM_YN\",2592000]\";}'
+    'PHPSESSID' => 'd2df0e84594461044263b614f64989c3'
+    'advanced-backend' => 'c0d3f2c8864cd43a9d59db20d257b9eb'
+    '_csrf-backend' => '016b696c361d76c1f2488dc9fe6a0c2f374bf5d82bf706ff481fab2bd71579f9a:2:{i:0;s:13:\"_csrf-backend\";i:1;s:32:\"3CKQkk1ToGf4Mr2vVtNTmua-YGHYkDgF\";}'
+]
+
+$_SERVER = [
+    'UNIQUE_ID' => 'XEgGlhuoWXn8QqBXZiQY@wAAAAE'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/60.0'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.5'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'HTTP_REFERER' => 'http://localhost/stl_trans/backend/web/'
+    'HTTP_COOKIE' => '_identity-backend=c06607f95e1097ccae919e752d15d52237c1184ec4cfe4ab264bfea570f1a1d0a%3A2%3A%7Bi%3A0%3Bs%3A17%3A%22_identity-backend%22%3Bi%3A1%3Bs%3A46%3A%22%5B4%2C%22CIJc_IXqdZp0oa7-OtxNIH66rRUXM_YN%22%2C2592000%5D%22%3B%7D; PHPSESSID=d2df0e84594461044263b614f64989c3; advanced-backend=c0d3f2c8864cd43a9d59db20d257b9eb; _csrf-backend=016b696c361d76c1f2488dc9fe6a0c2f374bf5d82bf706ff481fab2bd71579f9a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%223CKQkk1ToGf4Mr2vVtNTmua-YGHYkDgF%22%3B%7D'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'PATH' => '/sbin:/bin:/usr/sbin:/usr/bin'
+    'LD_LIBRARY_PATH' => '/opt/lampp/lib:/opt/lampp/lib'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.37 (Unix) OpenSSL/1.0.2q PHP/7.3.0 mod_perl/2.0.8-dev Perl/v5.16.3'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => '/opt/lampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/opt/lampp/htdocs'
+    'SERVER_ADMIN' => 'you@example.com'
+    'SCRIPT_FILENAME' => '/opt/lampp/htdocs/stl_trans/backend/web/index.php'
+    'REMOTE_PORT' => '36416'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'r=customers%2Fcreate'
+    'REQUEST_URI' => '/stl_trans/backend/web/index.php?r=customers%2Fcreate'
+    'SCRIPT_NAME' => '/stl_trans/backend/web/index.php'
+    'PHP_SELF' => '/stl_trans/backend/web/index.php'
+    'REQUEST_TIME_FLOAT' => 1548224150.614
+    'REQUEST_TIME' => 1548224150
+]
+2019-01-23 07:27:14 [::1][-][-][error][yii\base\ErrorException:2] yii\base\ErrorException: move_uploaded_file(uploads/customers/760245Customer.jpg): failed to open stream: Permission denied in /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/web/UploadedFile.php:164
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleError(2, 'move_uploaded_f...', '/opt/lampp/htdo...', 164, Array)
+#1 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/web/UploadedFile.php(164): move_uploaded_file('/opt/lampp/temp...', 'uploads/custome...')
+#2 /opt/lampp/htdocs/stl_trans/backend/controllers/CustomersController.php(183): yii\web\UploadedFile->saveAs('uploads/custome...')
+#3 [internal function]: backend\controllers\CustomersController->actionCreate()
+#4 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/base/InlineAction.php(57): call_user_func_array(Array, Array)
+#5 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/base/Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#6 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/base/Module.php(528): yii\base\Controller->runAction('create', Array)
+#7 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/web/Application.php(103): yii\base\Module->runAction('customers/creat...', Array)
+#8 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/base/Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#9 /opt/lampp/htdocs/stl_trans/backend/web/index.php(17): yii\base\Application->run()
+#10 {main}
+2019-01-23 07:27:14 [::1][-][-][info][application] $_GET = [
+    'r' => 'customers/create'
+]
+
+$_POST = [
+    '_csrf-backend' => 'csAZKb2Ohs7Z0iPvVz8xRufb35frrYeZ_xj3J43y7idBg1J41uW3mraVRdsaTQMwsa-Rw4bY5rSmX79-5raJYQ=='
+    'Customers' => [
+        'TITLE' => '0'
+        'MOBILE' => '07154474589'
+        'EMAIL' => 'test@customer.com'
+        'DOB' => '2019-01-22'
+        'FIRST_NAME' => 'Test'
+        'cust_id_no' => '0232211241'
+        'cust_kra_pin' => 'A254564254242J'
+        'ADDRESS' => '200'
+        'LAST_NAME' => 'Customer'
+        'GENDER' => 'Male'
+        'COUNTRY' => 'Kenya'
+        'ZIPCODE' => '254'
+        'LANDINE_PHONE' => '0715245542'
+        'CITY' => 'Nairobi'
+        'PROVINCE_STATE' => 'Nairobi'
+        'cust_grp_id' => '2'
+        'nxt_of_king_name' => 'Simon'
+        'nxt_of_king_id' => '2152365'
+        'nxt_of_king_email' => 'simon@yahoo.com'
+        'nxt_of_king_phone' => '0715445451'
+        'nxt_of_king_rel' => 'Father'
+        'emp_name' => 'Safaricom'
+        'emp_designation' => 'Manager'
+        'emp_department' => 'Development'
+        'emp_occupation' => 'Manager'
+        'emp_email' => 'saf@yahoo.com'
+        'emp_address' => '125sss'
+        'emp_income' => '250000'
+        'emp_director_name' => 'Bob Colimo'
+        'emp_mobile_no' => '0714554457'
+        'emp_office_no' => '12455425544'
+        'BUSINESS_NAME' => 'Safaricom Ltd'
+        'WORKING_STATUS' => 'Employee'
+        'cust_account_type' => 'Member'
+        'file' => ''
+        'attachment' => ''
+        'referee_name' => 'Samson'
+        'referee_phone' => '0714544512'
+        'DESCRIPTION' => 'No more datails'
+    ]
+]
+
+$_FILES = [
+    'Customers' => [
+        'name' => [
+            'file' => 'app_ic.jpg'
+            'attachment' => 'app_ic.jpg'
+        ]
+        'type' => [
+            'file' => 'image/jpeg'
+            'attachment' => 'image/jpeg'
+        ]
+        'tmp_name' => [
+            'file' => '/opt/lampp/temp/phpLc38EY'
+            'attachment' => '/opt/lampp/temp/phpyiIpjo'
+        ]
+        'error' => [
+            'file' => 0
+            'attachment' => 0
+        ]
+        'size' => [
+            'file' => 6637
+            'attachment' => 6637
+        ]
+    ]
+]
+
+$_COOKIE = [
+    '_identity-backend' => 'c06607f95e1097ccae919e752d15d52237c1184ec4cfe4ab264bfea570f1a1d0a:2:{i:0;s:17:\"_identity-backend\";i:1;s:46:\"[4,\"CIJc_IXqdZp0oa7-OtxNIH66rRUXM_YN\",2592000]\";}'
+    'PHPSESSID' => 'd2df0e84594461044263b614f64989c3'
+    'advanced-backend' => 'c0d3f2c8864cd43a9d59db20d257b9eb'
+    '_csrf-backend' => '016b696c361d76c1f2488dc9fe6a0c2f374bf5d82bf706ff481fab2bd71579f9a:2:{i:0;s:13:\"_csrf-backend\";i:1;s:32:\"3CKQkk1ToGf4Mr2vVtNTmua-YGHYkDgF\";}'
+]
+
+$_SERVER = [
+    'UNIQUE_ID' => 'XEgJQvJMwzlb0XKGmS8ycAAAAAc'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/60.0'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.5'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'HTTP_REFERER' => 'http://localhost/stl_trans/backend/web/index.php?r=customers%2Fcreate'
+    'CONTENT_TYPE' => 'multipart/form-data; boundary=---------------------------13540842491609885271634723261'
+    'CONTENT_LENGTH' => '19275'
+    'HTTP_COOKIE' => '_identity-backend=c06607f95e1097ccae919e752d15d52237c1184ec4cfe4ab264bfea570f1a1d0a%3A2%3A%7Bi%3A0%3Bs%3A17%3A%22_identity-backend%22%3Bi%3A1%3Bs%3A46%3A%22%5B4%2C%22CIJc_IXqdZp0oa7-OtxNIH66rRUXM_YN%22%2C2592000%5D%22%3B%7D; PHPSESSID=d2df0e84594461044263b614f64989c3; advanced-backend=c0d3f2c8864cd43a9d59db20d257b9eb; _csrf-backend=016b696c361d76c1f2488dc9fe6a0c2f374bf5d82bf706ff481fab2bd71579f9a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%223CKQkk1ToGf4Mr2vVtNTmua-YGHYkDgF%22%3B%7D'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'PATH' => '/sbin:/bin:/usr/sbin:/usr/bin'
+    'LD_LIBRARY_PATH' => '/opt/lampp/lib:/opt/lampp/lib'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.37 (Unix) OpenSSL/1.0.2q PHP/7.3.0 mod_perl/2.0.8-dev Perl/v5.16.3'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => '/opt/lampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/opt/lampp/htdocs'
+    'SERVER_ADMIN' => 'you@example.com'
+    'SCRIPT_FILENAME' => '/opt/lampp/htdocs/stl_trans/backend/web/index.php'
+    'REMOTE_PORT' => '36626'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => 'r=customers%2Fcreate'
+    'REQUEST_URI' => '/stl_trans/backend/web/index.php?r=customers%2Fcreate'
+    'SCRIPT_NAME' => '/stl_trans/backend/web/index.php'
+    'PHP_SELF' => '/stl_trans/backend/web/index.php'
+    'REQUEST_TIME_FLOAT' => 1548224834.74
+    'REQUEST_TIME' => 1548224834
+]
+2019-01-23 07:28:13 [::1][4][-][warning][yii\validators\FileValidator::validateValue] File was only partially uploaded: app_ic.jpg
+    in /opt/lampp/htdocs/stl_trans/backend/controllers/CustomersController.php:182
+2019-01-23 07:28:13 [::1][4][-][warning][yii\validators\FileValidator::validateValue] File was only partially uploaded: app_ic.jpg
+    in /opt/lampp/htdocs/stl_trans/backend/controllers/CustomersController.php:193
+2019-01-23 07:28:13 [::1][4][-][info][application] $_GET = [
+    'r' => 'customers/create'
+]
+
+$_POST = [
+    '_csrf-backend' => 'csAZKb2Ohs7Z0iPvVz8xRufb35frrYeZ_xj3J43y7idBg1J41uW3mraVRdsaTQMwsa-Rw4bY5rSmX79-5raJYQ=='
+    'Customers' => [
+        'TITLE' => '0'
+        'MOBILE' => '07154474589'
+        'EMAIL' => 'test@customer.com'
+        'DOB' => '2019-01-22'
+        'FIRST_NAME' => 'Test'
+        'cust_id_no' => '0232211241'
+        'cust_kra_pin' => 'A254564254242J'
+        'ADDRESS' => '200'
+        'LAST_NAME' => 'Customer'
+        'GENDER' => 'Male'
+        'COUNTRY' => 'Kenya'
+        'ZIPCODE' => '254'
+        'LANDINE_PHONE' => '0715245542'
+        'CITY' => 'Nairobi'
+        'PROVINCE_STATE' => 'Nairobi'
+        'cust_grp_id' => '2'
+        'nxt_of_king_name' => 'Simon'
+        'nxt_of_king_id' => '2152365'
+        'nxt_of_king_email' => 'simon@yahoo.com'
+        'nxt_of_king_phone' => '0715445451'
+        'nxt_of_king_rel' => 'Father'
+        'emp_name' => 'Safaricom'
+        'emp_designation' => 'Manager'
+        'emp_department' => 'Development'
+        'emp_occupation' => 'Manager'
+        'emp_email' => 'saf@yahoo.com'
+        'emp_address' => '125sss'
+        'emp_income' => '250000'
+        'emp_director_name' => 'Bob Colimo'
+        'emp_mobile_no' => '0714554457'
+        'emp_office_no' => '12455425544'
+        'BUSINESS_NAME' => 'Safaricom Ltd'
+        'WORKING_STATUS' => 'Employee'
+        'cust_account_type' => 'Member'
+        'file' => ''
+    ]
+]
+
+$_FILES = [
+    'Customers' => [
+        'name' => [
+            'file' => 'app_ic.jpg'
+        ]
+        'type' => [
+            'file' => ''
+        ]
+        'tmp_name' => [
+            'file' => ''
+        ]
+        'error' => [
+            'file' => 3
+        ]
+        'size' => [
+            'file' => 0
+        ]
+    ]
+]
+
+$_COOKIE = [
+    '_identity-backend' => 'c06607f95e1097ccae919e752d15d52237c1184ec4cfe4ab264bfea570f1a1d0a:2:{i:0;s:17:\"_identity-backend\";i:1;s:46:\"[4,\"CIJc_IXqdZp0oa7-OtxNIH66rRUXM_YN\",2592000]\";}'
+    'PHPSESSID' => 'd2df0e84594461044263b614f64989c3'
+    'advanced-backend' => 'c0d3f2c8864cd43a9d59db20d257b9eb'
+    '_csrf-backend' => '016b696c361d76c1f2488dc9fe6a0c2f374bf5d82bf706ff481fab2bd71579f9a:2:{i:0;s:13:\"_csrf-backend\";i:1;s:32:\"3CKQkk1ToGf4Mr2vVtNTmua-YGHYkDgF\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 4
+]
+
+$_SERVER = [
+    'UNIQUE_ID' => 'XEgJfVAIrgmJXXTgG9KyygAAAAo'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/60.0'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.5'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'HTTP_REFERER' => 'http://localhost/stl_trans/backend/web/index.php?r=customers%2Fcreate'
+    'CONTENT_TYPE' => 'multipart/form-data; boundary=---------------------------13540842491609885271634723261'
+    'CONTENT_LENGTH' => '5221'
+    'HTTP_COOKIE' => '_identity-backend=c06607f95e1097ccae919e752d15d52237c1184ec4cfe4ab264bfea570f1a1d0a%3A2%3A%7Bi%3A0%3Bs%3A17%3A%22_identity-backend%22%3Bi%3A1%3Bs%3A46%3A%22%5B4%2C%22CIJc_IXqdZp0oa7-OtxNIH66rRUXM_YN%22%2C2592000%5D%22%3B%7D; PHPSESSID=d2df0e84594461044263b614f64989c3; advanced-backend=c0d3f2c8864cd43a9d59db20d257b9eb; _csrf-backend=016b696c361d76c1f2488dc9fe6a0c2f374bf5d82bf706ff481fab2bd71579f9a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%223CKQkk1ToGf4Mr2vVtNTmua-YGHYkDgF%22%3B%7D'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'PATH' => '/sbin:/bin:/usr/sbin:/usr/bin'
+    'LD_LIBRARY_PATH' => '/opt/lampp/lib:/opt/lampp/lib'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.37 (Unix) OpenSSL/1.0.2q PHP/7.3.0 mod_perl/2.0.8-dev Perl/v5.16.3'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => '/opt/lampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/opt/lampp/htdocs'
+    'SERVER_ADMIN' => 'you@example.com'
+    'SCRIPT_FILENAME' => '/opt/lampp/htdocs/stl_trans/backend/web/index.php'
+    'REMOTE_PORT' => '36630'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => 'r=customers%2Fcreate'
+    'REQUEST_URI' => '/stl_trans/backend/web/index.php?r=customers%2Fcreate'
+    'SCRIPT_NAME' => '/stl_trans/backend/web/index.php'
+    'PHP_SELF' => '/stl_trans/backend/web/index.php'
+    'REQUEST_TIME_FLOAT' => 1548224893.722
+    'REQUEST_TIME' => 1548224893
+]
+2019-01-23 07:35:11 [::1][-][-][error][yii\base\UnknownClassException] yii\base\UnknownClassException: Unable to find 'backend\models\Customers' in file: /opt/lampp/htdocs/stl_trans/backend/models/Customers.php. Namespace missing? in /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/BaseYii.php:296
+Stack trace:
+#0 [internal function]: yii\BaseYii::autoload('backend\\models\\...')
+#1 /opt/lampp/htdocs/stl_trans/backend/controllers/CustomersController.php(175): spl_autoload_call('backend\\models\\...')
+#2 [internal function]: backend\controllers\CustomersController->actionCreate()
+#3 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/base/InlineAction.php(57): call_user_func_array(Array, Array)
+#4 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/base/Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#5 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/base/Module.php(528): yii\base\Controller->runAction('create', Array)
+#6 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/web/Application.php(103): yii\base\Module->runAction('customers/creat...', Array)
+#7 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/base/Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#8 /opt/lampp/htdocs/stl_trans/backend/web/index.php(17): yii\base\Application->run()
+#9 {main}
+2019-01-23 07:35:11 [::1][-][-][info][application] $_GET = [
+    'r' => 'customers/create'
+]
+
+$_POST = [
+    '_csrf-backend' => 'csAZKb2Ohs7Z0iPvVz8xRufb35frrYeZ_xj3J43y7idBg1J41uW3mraVRdsaTQMwsa-Rw4bY5rSmX79-5raJYQ=='
+    'Customers' => [
+        'TITLE' => '0'
+        'MOBILE' => '07154474589'
+        'EMAIL' => 'test@customer.com'
+        'DOB' => '2019-01-22'
+        'FIRST_NAME' => 'Test'
+        'cust_id_no' => '0232211241'
+        'cust_kra_pin' => 'A254564254242J'
+        'ADDRESS' => '200'
+        'LAST_NAME' => 'Customer'
+        'GENDER' => 'Male'
+        'COUNTRY' => 'Kenya'
+        'ZIPCODE' => '254'
+        'LANDINE_PHONE' => '0715245542'
+        'CITY' => 'Nairobi'
+        'PROVINCE_STATE' => 'Nairobi'
+        'cust_grp_id' => '2'
+        'nxt_of_king_name' => 'Simon'
+        'nxt_of_king_id' => '2152365'
+        'nxt_of_king_email' => 'simon@yahoo.com'
+        'nxt_of_king_phone' => '0715445451'
+        'nxt_of_king_rel' => 'Father'
+        'emp_name' => 'Safaricom'
+        'emp_designation' => 'Manager'
+        'emp_department' => 'Development'
+        'emp_occupation' => 'Manager'
+        'emp_email' => 'saf@yahoo.com'
+        'emp_address' => '125sss'
+        'emp_income' => '250000'
+        'emp_director_name' => 'Bob Colimo'
+        'emp_mobile_no' => '0714554457'
+        'emp_office_no' => '12455425544'
+        'BUSINESS_NAME' => 'Safaricom Ltd'
+        'WORKING_STATUS' => 'Employee'
+        'cust_account_type' => 'Member'
+        'file' => ''
+    ]
+]
+
+$_FILES = [
+    'Customers' => [
+        'name' => [
+            'file' => 'app_ic.jpg'
+        ]
+        'type' => [
+            'file' => ''
+        ]
+        'tmp_name' => [
+            'file' => ''
+        ]
+        'error' => [
+            'file' => 3
+        ]
+        'size' => [
+            'file' => 0
+        ]
+    ]
+]
+
+$_COOKIE = [
+    '_identity-backend' => 'c06607f95e1097ccae919e752d15d52237c1184ec4cfe4ab264bfea570f1a1d0a:2:{i:0;s:17:\"_identity-backend\";i:1;s:46:\"[4,\"CIJc_IXqdZp0oa7-OtxNIH66rRUXM_YN\",2592000]\";}'
+    'PHPSESSID' => 'd2df0e84594461044263b614f64989c3'
+    'advanced-backend' => 'c0d3f2c8864cd43a9d59db20d257b9eb'
+    '_csrf-backend' => '016b696c361d76c1f2488dc9fe6a0c2f374bf5d82bf706ff481fab2bd71579f9a:2:{i:0;s:13:\"_csrf-backend\";i:1;s:32:\"3CKQkk1ToGf4Mr2vVtNTmua-YGHYkDgF\";}'
+]
+
+$_SERVER = [
+    'UNIQUE_ID' => 'XEgLH05Agoz@Y1UbVMiKKwAAAAM'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/60.0'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.5'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'HTTP_REFERER' => 'http://localhost/stl_trans/backend/web/index.php?r=customers%2Fcreate'
+    'CONTENT_TYPE' => 'multipart/form-data; boundary=---------------------------13540842491609885271634723261'
+    'CONTENT_LENGTH' => '5221'
+    'HTTP_COOKIE' => '_identity-backend=c06607f95e1097ccae919e752d15d52237c1184ec4cfe4ab264bfea570f1a1d0a%3A2%3A%7Bi%3A0%3Bs%3A17%3A%22_identity-backend%22%3Bi%3A1%3Bs%3A46%3A%22%5B4%2C%22CIJc_IXqdZp0oa7-OtxNIH66rRUXM_YN%22%2C2592000%5D%22%3B%7D; PHPSESSID=d2df0e84594461044263b614f64989c3; advanced-backend=c0d3f2c8864cd43a9d59db20d257b9eb; _csrf-backend=016b696c361d76c1f2488dc9fe6a0c2f374bf5d82bf706ff481fab2bd71579f9a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%223CKQkk1ToGf4Mr2vVtNTmua-YGHYkDgF%22%3B%7D'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'PATH' => '/sbin:/bin:/usr/sbin:/usr/bin'
+    'LD_LIBRARY_PATH' => '/opt/lampp/lib:/opt/lampp/lib'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.37 (Unix) OpenSSL/1.0.2q PHP/7.3.0 mod_perl/2.0.8-dev Perl/v5.16.3'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => '/opt/lampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/opt/lampp/htdocs'
+    'SERVER_ADMIN' => 'you@example.com'
+    'SCRIPT_FILENAME' => '/opt/lampp/htdocs/stl_trans/backend/web/index.php'
+    'REMOTE_PORT' => '36768'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => 'r=customers%2Fcreate'
+    'REQUEST_URI' => '/stl_trans/backend/web/index.php?r=customers%2Fcreate'
+    'SCRIPT_NAME' => '/stl_trans/backend/web/index.php'
+    'PHP_SELF' => '/stl_trans/backend/web/index.php'
+    'REQUEST_TIME_FLOAT' => 1548225311.823
+    'REQUEST_TIME' => 1548225311
+]
+2019-01-23 07:35:13 [::1][-][-][error][yii\base\UnknownClassException] yii\base\UnknownClassException: Unable to find 'backend\models\Customers' in file: /opt/lampp/htdocs/stl_trans/backend/models/Customers.php. Namespace missing? in /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/BaseYii.php:296
+Stack trace:
+#0 [internal function]: yii\BaseYii::autoload('backend\\models\\...')
+#1 /opt/lampp/htdocs/stl_trans/backend/controllers/CustomersController.php(175): spl_autoload_call('backend\\models\\...')
+#2 [internal function]: backend\controllers\CustomersController->actionCreate()
+#3 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/base/InlineAction.php(57): call_user_func_array(Array, Array)
+#4 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/base/Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#5 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/base/Module.php(528): yii\base\Controller->runAction('create', Array)
+#6 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/web/Application.php(103): yii\base\Module->runAction('customers/creat...', Array)
+#7 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/base/Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#8 /opt/lampp/htdocs/stl_trans/backend/web/index.php(17): yii\base\Application->run()
+#9 {main}
+2019-01-23 07:35:13 [::1][-][-][info][application] $_GET = [
+    'r' => 'customers/create'
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    '_identity-backend' => 'c06607f95e1097ccae919e752d15d52237c1184ec4cfe4ab264bfea570f1a1d0a:2:{i:0;s:17:\"_identity-backend\";i:1;s:46:\"[4,\"CIJc_IXqdZp0oa7-OtxNIH66rRUXM_YN\",2592000]\";}'
+    'PHPSESSID' => 'd2df0e84594461044263b614f64989c3'
+    'advanced-backend' => 'c0d3f2c8864cd43a9d59db20d257b9eb'
+    '_csrf-backend' => '016b696c361d76c1f2488dc9fe6a0c2f374bf5d82bf706ff481fab2bd71579f9a:2:{i:0;s:13:\"_csrf-backend\";i:1;s:32:\"3CKQkk1ToGf4Mr2vVtNTmua-YGHYkDgF\";}'
+]
+
+$_SERVER = [
+    'UNIQUE_ID' => 'XEgLITvNAqd5Zp1R@IJbNgAAAAQ'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/60.0'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.5'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'HTTP_REFERER' => 'http://localhost/stl_trans/backend/web/'
+    'HTTP_COOKIE' => '_identity-backend=c06607f95e1097ccae919e752d15d52237c1184ec4cfe4ab264bfea570f1a1d0a%3A2%3A%7Bi%3A0%3Bs%3A17%3A%22_identity-backend%22%3Bi%3A1%3Bs%3A46%3A%22%5B4%2C%22CIJc_IXqdZp0oa7-OtxNIH66rRUXM_YN%22%2C2592000%5D%22%3B%7D; PHPSESSID=d2df0e84594461044263b614f64989c3; advanced-backend=c0d3f2c8864cd43a9d59db20d257b9eb; _csrf-backend=016b696c361d76c1f2488dc9fe6a0c2f374bf5d82bf706ff481fab2bd71579f9a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%223CKQkk1ToGf4Mr2vVtNTmua-YGHYkDgF%22%3B%7D'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'PATH' => '/sbin:/bin:/usr/sbin:/usr/bin'
+    'LD_LIBRARY_PATH' => '/opt/lampp/lib:/opt/lampp/lib'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.37 (Unix) OpenSSL/1.0.2q PHP/7.3.0 mod_perl/2.0.8-dev Perl/v5.16.3'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => '/opt/lampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/opt/lampp/htdocs'
+    'SERVER_ADMIN' => 'you@example.com'
+    'SCRIPT_FILENAME' => '/opt/lampp/htdocs/stl_trans/backend/web/index.php'
+    'REMOTE_PORT' => '36780'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'r=customers%2Fcreate'
+    'REQUEST_URI' => '/stl_trans/backend/web/index.php?r=customers%2Fcreate'
+    'SCRIPT_NAME' => '/stl_trans/backend/web/index.php'
+    'PHP_SELF' => '/stl_trans/backend/web/index.php'
+    'REQUEST_TIME_FLOAT' => 1548225313.438
+    'REQUEST_TIME' => 1548225313
+]
+2019-01-23 07:35:29 [::1][-][-][error][yii\base\UnknownPropertyException] yii\base\UnknownPropertyException: Getting unknown property: backend\models\Customers::file in /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/base/Component.php:154
+Stack trace:
+#0 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/db/BaseActiveRecord.php(298): yii\base\Component->__get('file')
+#1 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/helpers/BaseHtml.php(2195): yii\db\BaseActiveRecord->__get('file')
+#2 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/helpers/BaseHtml.php(1326): yii\helpers\BaseHtml::getAttributeValue(Object(backend\models\Customers), 'file')
+#3 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/helpers/BaseHtml.php(1472): yii\helpers\BaseHtml::activeInput('file', Object(backend\models\Customers), 'file', Array)
+#4 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/widgets/ActiveField.php(488): yii\helpers\BaseHtml::activeFileInput(Object(backend\models\Customers), 'file', Array)
+#5 /opt/lampp/htdocs/stl_trans/backend/views/customers/_form.php(128): yii\widgets\ActiveField->fileInput()
+#6 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/base/View.php(348): require('/opt/lampp/htdo...')
+#7 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/base/View.php(257): yii\base\View->renderPhpFile('/opt/lampp/htdo...', Array)
+#8 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/base/View.php(156): yii\base\View->renderFile('/opt/lampp/htdo...', Array, NULL)
+#9 /opt/lampp/htdocs/stl_trans/backend/views/customers/create.php(32): yii\base\View->render('_form', Array)
+#10 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/base/View.php(348): require('/opt/lampp/htdo...')
+#11 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/base/View.php(257): yii\base\View->renderPhpFile('/opt/lampp/htdo...', Array)
+#12 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/base/View.php(156): yii\base\View->renderFile('/opt/lampp/htdo...', Array, Object(backend\controllers\CustomersController))
+#13 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/base/Controller.php(384): yii\base\View->render('create', Array, Object(backend\controllers\CustomersController))
+#14 /opt/lampp/htdocs/stl_trans/backend/controllers/CustomersController.php(199): yii\base\Controller->render('create', Array)
+#15 [internal function]: backend\controllers\CustomersController->actionCreate()
+#16 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/base/InlineAction.php(57): call_user_func_array(Array, Array)
+#17 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/base/Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#18 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/base/Module.php(528): yii\base\Controller->runAction('create', Array)
+#19 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/web/Application.php(103): yii\base\Module->runAction('customers/creat...', Array)
+#20 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/base/Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#21 /opt/lampp/htdocs/stl_trans/backend/web/index.php(17): yii\base\Application->run()
+#22 {main}
+2019-01-23 07:35:29 [::1][-][-][info][application] $_GET = [
+    'r' => 'customers/create'
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    '_identity-backend' => 'c06607f95e1097ccae919e752d15d52237c1184ec4cfe4ab264bfea570f1a1d0a:2:{i:0;s:17:\"_identity-backend\";i:1;s:46:\"[4,\"CIJc_IXqdZp0oa7-OtxNIH66rRUXM_YN\",2592000]\";}'
+    'PHPSESSID' => 'd2df0e84594461044263b614f64989c3'
+    'advanced-backend' => 'c0d3f2c8864cd43a9d59db20d257b9eb'
+    '_csrf-backend' => '016b696c361d76c1f2488dc9fe6a0c2f374bf5d82bf706ff481fab2bd71579f9a:2:{i:0;s:13:\"_csrf-backend\";i:1;s:32:\"3CKQkk1ToGf4Mr2vVtNTmua-YGHYkDgF\";}'
+]
+
+$_SERVER = [
+    'UNIQUE_ID' => 'XEgLMQCVRZx0gA7U3JRqsAAAAAY'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/60.0'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.5'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'HTTP_REFERER' => 'http://localhost/stl_trans/backend/web/'
+    'HTTP_COOKIE' => '_identity-backend=c06607f95e1097ccae919e752d15d52237c1184ec4cfe4ab264bfea570f1a1d0a%3A2%3A%7Bi%3A0%3Bs%3A17%3A%22_identity-backend%22%3Bi%3A1%3Bs%3A46%3A%22%5B4%2C%22CIJc_IXqdZp0oa7-OtxNIH66rRUXM_YN%22%2C2592000%5D%22%3B%7D; PHPSESSID=d2df0e84594461044263b614f64989c3; advanced-backend=c0d3f2c8864cd43a9d59db20d257b9eb; _csrf-backend=016b696c361d76c1f2488dc9fe6a0c2f374bf5d82bf706ff481fab2bd71579f9a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%223CKQkk1ToGf4Mr2vVtNTmua-YGHYkDgF%22%3B%7D'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'PATH' => '/sbin:/bin:/usr/sbin:/usr/bin'
+    'LD_LIBRARY_PATH' => '/opt/lampp/lib:/opt/lampp/lib'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.37 (Unix) OpenSSL/1.0.2q PHP/7.3.0 mod_perl/2.0.8-dev Perl/v5.16.3'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => '/opt/lampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/opt/lampp/htdocs'
+    'SERVER_ADMIN' => 'you@example.com'
+    'SCRIPT_FILENAME' => '/opt/lampp/htdocs/stl_trans/backend/web/index.php'
+    'REMOTE_PORT' => '36782'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'r=customers%2Fcreate'
+    'REQUEST_URI' => '/stl_trans/backend/web/index.php?r=customers%2Fcreate'
+    'SCRIPT_NAME' => '/stl_trans/backend/web/index.php'
+    'PHP_SELF' => '/stl_trans/backend/web/index.php'
+    'REQUEST_TIME_FLOAT' => 1548225329.537
+    'REQUEST_TIME' => 1548225329
+]
+2019-01-23 07:39:51 [::1][-][-][error][ParseError] ParseError: syntax error, unexpected '}', expecting end of file in /opt/lampp/htdocs/stl_trans/backend/models/Customers.php:187
+Stack trace:
+#0 [internal function]: yii\BaseYii::autoload('backend\\models\\...')
+#1 /opt/lampp/htdocs/stl_trans/backend/controllers/CustomersController.php(175): spl_autoload_call('backend\\models\\...')
+#2 [internal function]: backend\controllers\CustomersController->actionCreate()
+#3 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/base/InlineAction.php(57): call_user_func_array(Array, Array)
+#4 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/base/Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#5 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/base/Module.php(528): yii\base\Controller->runAction('create', Array)
+#6 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/web/Application.php(103): yii\base\Module->runAction('customers/creat...', Array)
+#7 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/base/Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#8 /opt/lampp/htdocs/stl_trans/backend/web/index.php(17): yii\base\Application->run()
+#9 {main}
+2019-01-23 07:39:51 [::1][-][-][info][application] $_GET = [
+    'r' => 'customers/create'
+]
+
+$_POST = [
+    '_csrf-backend' => 'n1l_4j_wc7BXwwq-saJxq-HpM34I4gwVYaJgEEVgC86sGjSzVJtC5DiEbIr80EPdt519KmWXbTg45ShJLiRsiA=='
+    'Customers' => [
+        'TITLE' => '1'
+        'MOBILE' => '07154474589'
+        'EMAIL' => 'test@customer.com'
+        'DOB' => '2019-01-28'
+        'FIRST_NAME' => 'Test'
+        'cust_id_no' => '023221124145'
+        'cust_kra_pin' => 'A2545642546242J'
+        'ADDRESS' => '200'
+        'LAST_NAME' => 'Customer'
+        'GENDER' => 'Male'
+        'COUNTRY' => 'Kenya'
+        'ZIPCODE' => '254'
+        'LANDINE_PHONE' => '0715245542'
+        'CITY' => 'Nairobi'
+        'PROVINCE_STATE' => 'Nairobi'
+        'cust_grp_id' => '2'
+        'nxt_of_king_name' => 'Simon'
+        'nxt_of_king_id' => '2152365'
+        'nxt_of_king_email' => 'simon@yahoo.com'
+        'nxt_of_king_phone' => '0715445451'
+        'nxt_of_king_rel' => 'Father'
+        'emp_name' => 'Safaricom'
+        'emp_designation' => 'Manager'
+        'emp_department' => 'Development'
+        'emp_email' => 'saf@yahoo.com'
+        'emp_address' => '125sss'
+        'emp_income' => '250000'
+        'emp_director_name' => 'Bob Colimo'
+        'emp_mobile_no' => '0714554457'
+        'emp_office_no' => '12455425544'
+        'BUSINESS_NAME' => 'Safaricom Ltd'
+        'WORKING_STATUS' => 'Employee'
+        'emp_occupation' => 'Manager'
+        'cust_account_type' => 'Member'
+        'file' => ''
+        'attachment' => ''
+        'referee_name' => 'Samson'
+        'referee_phone' => '0714544512'
+        'DESCRIPTION' => 'asasasasasas'
+    ]
+]
+
+$_FILES = [
+    'Customers' => [
+        'name' => [
+            'file' => ''
+            'attachment' => ''
+        ]
+        'type' => [
+            'file' => ''
+            'attachment' => ''
+        ]
+        'tmp_name' => [
+            'file' => ''
+            'attachment' => ''
+        ]
+        'error' => [
+            'file' => 4
+            'attachment' => 4
+        ]
+        'size' => [
+            'file' => 0
+            'attachment' => 0
+        ]
+    ]
+]
+
+$_COOKIE = [
+    '_identity-backend' => 'c06607f95e1097ccae919e752d15d52237c1184ec4cfe4ab264bfea570f1a1d0a:2:{i:0;s:17:\"_identity-backend\";i:1;s:46:\"[4,\"CIJc_IXqdZp0oa7-OtxNIH66rRUXM_YN\",2592000]\";}'
+    'PHPSESSID' => 'd2df0e84594461044263b614f64989c3'
+    'advanced-backend' => 'c0d3f2c8864cd43a9d59db20d257b9eb'
+    '_csrf-backend' => '016b696c361d76c1f2488dc9fe6a0c2f374bf5d82bf706ff481fab2bd71579f9a:2:{i:0;s:13:\"_csrf-backend\";i:1;s:32:\"3CKQkk1ToGf4Mr2vVtNTmua-YGHYkDgF\";}'
+]
+
+$_SERVER = [
+    'UNIQUE_ID' => 'XEgMNyV7na5XszBc5H8vUAAAAAU'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/60.0'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.5'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'HTTP_REFERER' => 'http://localhost/stl_trans/backend/web/index.php?r=customers%2Fcreate'
+    'CONTENT_TYPE' => 'multipart/form-data; boundary=---------------------------20210704811344935231332981669'
+    'CONTENT_LENGTH' => '5876'
+    'HTTP_COOKIE' => '_identity-backend=c06607f95e1097ccae919e752d15d52237c1184ec4cfe4ab264bfea570f1a1d0a%3A2%3A%7Bi%3A0%3Bs%3A17%3A%22_identity-backend%22%3Bi%3A1%3Bs%3A46%3A%22%5B4%2C%22CIJc_IXqdZp0oa7-OtxNIH66rRUXM_YN%22%2C2592000%5D%22%3B%7D; PHPSESSID=d2df0e84594461044263b614f64989c3; advanced-backend=c0d3f2c8864cd43a9d59db20d257b9eb; _csrf-backend=016b696c361d76c1f2488dc9fe6a0c2f374bf5d82bf706ff481fab2bd71579f9a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%223CKQkk1ToGf4Mr2vVtNTmua-YGHYkDgF%22%3B%7D'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'PATH' => '/sbin:/bin:/usr/sbin:/usr/bin'
+    'LD_LIBRARY_PATH' => '/opt/lampp/lib:/opt/lampp/lib'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.37 (Unix) OpenSSL/1.0.2q PHP/7.3.0 mod_perl/2.0.8-dev Perl/v5.16.3'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => '/opt/lampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/opt/lampp/htdocs'
+    'SERVER_ADMIN' => 'you@example.com'
+    'SCRIPT_FILENAME' => '/opt/lampp/htdocs/stl_trans/backend/web/index.php'
+    'REMOTE_PORT' => '36880'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => 'r=customers%2Fcreate'
+    'REQUEST_URI' => '/stl_trans/backend/web/index.php?r=customers%2Fcreate'
+    'SCRIPT_NAME' => '/stl_trans/backend/web/index.php'
+    'PHP_SELF' => '/stl_trans/backend/web/index.php'
+    'REQUEST_TIME_FLOAT' => 1548225591.944
+    'REQUEST_TIME' => 1548225591
+]
+2019-01-23 13:23:26 [::1][-][-][error][yii\db\IntegrityException] PDOException: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '' for key 'cust_kra_pin' in /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/db/Command.php:1290
+Stack trace:
+#0 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/db/Command.php(1290): PDOStatement->execute()
+#1 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/db/Command.php(1091): yii\db\Command->internalExecute('INSERT INTO `cu...')
+#2 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/db/Schema.php(433): yii\db\Command->execute()
+#3 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/db/ActiveRecord.php(549): yii\db\Schema->insert('customers', Array)
+#4 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/db/ActiveRecord.php(515): yii\db\ActiveRecord->insertInternal(NULL)
+#5 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/db/BaseActiveRecord.php(678): yii\db\ActiveRecord->insert(true, NULL)
+#6 /opt/lampp/htdocs/stl_trans/backend/controllers/CustomersController.php(195): yii\db\BaseActiveRecord->save()
+#7 [internal function]: backend\controllers\CustomersController->actionCreate()
+#8 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/base/InlineAction.php(57): call_user_func_array(Array, Array)
+#9 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/base/Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#10 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/base/Module.php(528): yii\base\Controller->runAction('create', Array)
+#11 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/web/Application.php(103): yii\base\Module->runAction('customers/creat...', Array)
+#12 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/base/Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#13 /opt/lampp/htdocs/stl_trans/backend/web/index.php(17): yii\base\Application->run()
+#14 {main}
+
+Next yii\db\IntegrityException: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '' for key 'cust_kra_pin'
+The SQL being executed was: INSERT INTO `customers` (`TITLE`, `MOBILE`, `EMAIL`, `DOB`, `FIRST_NAME`, `cust_id_no`, `cust_kra_pin`, `ADDRESS`, `LAST_NAME`, `GENDER`, `COUNTRY`, `ZIPCODE`, `LANDINE_PHONE`, `CITY`, `PROVINCE_STATE`, `cust_grp_id`, `nxt_of_king_name`, `nxt_of_king_id`, `nxt_of_king_email`, `nxt_of_king_phone`, `nxt_of_king_rel`, `emp_name`, `emp_designation`, `emp_department`, `emp_email`, `emp_address`, `emp_income`, `emp_director_name`, `emp_mobile_no`, `emp_office_no`, `BUSINESS_NAME`, `WORKING_STATUS`, `emp_occupation`, `cust_account_type`, `referee_name`, `referee_phone`, `DESCRIPTION`) VALUES ('0', '', '', NULL, 'Test', '0232211248', '', '', 'Customer', '', '', '', '', '', '', NULL, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Member', '', '', '') in /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/db/Schema.php:664
+Stack trace:
+#0 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/db/Command.php(1295): yii\db\Schema->convertException(Object(PDOException), 'INSERT INTO `cu...')
+#1 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/db/Command.php(1091): yii\db\Command->internalExecute('INSERT INTO `cu...')
+#2 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/db/Schema.php(433): yii\db\Command->execute()
+#3 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/db/ActiveRecord.php(549): yii\db\Schema->insert('customers', Array)
+#4 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/db/ActiveRecord.php(515): yii\db\ActiveRecord->insertInternal(NULL)
+#5 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/db/BaseActiveRecord.php(678): yii\db\ActiveRecord->insert(true, NULL)
+#6 /opt/lampp/htdocs/stl_trans/backend/controllers/CustomersController.php(195): yii\db\BaseActiveRecord->save()
+#7 [internal function]: backend\controllers\CustomersController->actionCreate()
+#8 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/base/InlineAction.php(57): call_user_func_array(Array, Array)
+#9 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/base/Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#10 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/base/Module.php(528): yii\base\Controller->runAction('create', Array)
+#11 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/web/Application.php(103): yii\base\Module->runAction('customers/creat...', Array)
+#12 /opt/lampp/htdocs/stl_trans/vendor/yiisoft/yii2/base/Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#13 /opt/lampp/htdocs/stl_trans/backend/web/index.php(17): yii\base\Application->run()
+#14 {main}
+Additional Information:
+Array
+(
+    [0] => 23000
+    [1] => 1062
+    [2] => Duplicate entry '' for key 'cust_kra_pin'
+)
+
+2019-01-23 13:23:25 [::1][-][-][info][application] $_GET = [
+    'r' => 'customers/create'
+]
+
+$_POST = [
+    '_csrf-backend' => 'EMeAiIeyvIfqFVBW0ZBru2KM2RTk5VCI_T-jM26hR98gs9K81ouL7MdYGB-e4yiPV-m7Jd2MOvqeCMV3AJkXjg=='
+    'Customers' => [
+        'TITLE' => '0'
+        'MOBILE' => ''
+        'EMAIL' => ''
+        'DOB' => ''
+        'FIRST_NAME' => 'Test'
+        'cust_id_no' => '0232211248'
+        'cust_kra_pin' => ''
+        'ADDRESS' => ''
+        'LAST_NAME' => 'Customer'
+        'GENDER' => ''
+        'COUNTRY' => ''
+        'ZIPCODE' => ''
+        'LANDINE_PHONE' => ''
+        'CITY' => ''
+        'PROVINCE_STATE' => ''
+        'cust_grp_id' => ''
+        'nxt_of_king_name' => ''
+        'nxt_of_king_id' => ''
+        'nxt_of_king_email' => ''
+        'nxt_of_king_phone' => ''
+        'nxt_of_king_rel' => ''
+        'emp_name' => ''
+        'emp_designation' => ''
+        'emp_department' => ''
+        'emp_email' => ''
+        'emp_address' => ''
+        'emp_income' => ''
+        'emp_director_name' => ''
+        'emp_mobile_no' => ''
+        'emp_office_no' => ''
+        'BUSINESS_NAME' => ''
+        'WORKING_STATUS' => ''
+        'emp_occupation' => ''
+        'cust_account_type' => 'Member'
+        'file' => ''
+        'attachment' => ''
+        'referee_name' => ''
+        'referee_phone' => ''
+        'DESCRIPTION' => ''
+    ]
+]
+
+$_FILES = [
+    'Customers' => [
+        'name' => [
+            'file' => ''
+            'attachment' => ''
+        ]
+        'type' => [
+            'file' => ''
+            'attachment' => ''
+        ]
+        'tmp_name' => [
+            'file' => ''
+            'attachment' => ''
+        ]
+        'error' => [
+            'file' => 4
+            'attachment' => 4
+        ]
+        'size' => [
+            'file' => 0
+            'attachment' => 0
+        ]
+    ]
+]
+
+$_COOKIE = [
+    '_identity-backend' => 'c06607f95e1097ccae919e752d15d52237c1184ec4cfe4ab264bfea570f1a1d0a:2:{i:0;s:17:\"_identity-backend\";i:1;s:46:\"[4,\"CIJc_IXqdZp0oa7-OtxNIH66rRUXM_YN\",2592000]\";}'
+    'PHPSESSID' => 'd2df0e84594461044263b614f64989c3'
+    'advanced-backend' => 'df5c7201ae34e9d1ee1919a7fb6f7794'
+    '_csrf-backend' => '41e358e46ef2b8eb141c94aa4ff6a2803c470e24e5afecb00c4307bc879b3612a:2:{i:0;s:13:\"_csrf-backend\";i:1;s:32:\"0tR4Q97k-MHIOsC45eb19ijrc7fDn8PQ\";}'
+    '_csrf' => '1cf28dd39e3eda2f1f5d74d6b9b6b8ae1919f8108b1f7ca32d764a08665ba7aba:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"khN0rWMrlPbe2C1og4uUM1ACiu94Uywj\";}'
+]
+
+$_SERVER = [
+    'UNIQUE_ID' => 'XEhcvfMuVU1AbZWgfIemkAAAAAQ'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/60.0'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.5'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'HTTP_REFERER' => 'http://localhost/stl_trans/backend/web/index.php?r=customers%2Fcreate'
+    'CONTENT_TYPE' => 'multipart/form-data; boundary=---------------------------122156901420023391111624446044'
+    'CONTENT_LENGTH' => '5642'
+    'HTTP_COOKIE' => '_identity-backend=c06607f95e1097ccae919e752d15d52237c1184ec4cfe4ab264bfea570f1a1d0a%3A2%3A%7Bi%3A0%3Bs%3A17%3A%22_identity-backend%22%3Bi%3A1%3Bs%3A46%3A%22%5B4%2C%22CIJc_IXqdZp0oa7-OtxNIH66rRUXM_YN%22%2C2592000%5D%22%3B%7D; PHPSESSID=d2df0e84594461044263b614f64989c3; advanced-backend=df5c7201ae34e9d1ee1919a7fb6f7794; _csrf-backend=41e358e46ef2b8eb141c94aa4ff6a2803c470e24e5afecb00c4307bc879b3612a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%220tR4Q97k-MHIOsC45eb19ijrc7fDn8PQ%22%3B%7D; _csrf=1cf28dd39e3eda2f1f5d74d6b9b6b8ae1919f8108b1f7ca32d764a08665ba7aba%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22khN0rWMrlPbe2C1og4uUM1ACiu94Uywj%22%3B%7D'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'PATH' => '/sbin:/bin:/usr/sbin:/usr/bin'
+    'LD_LIBRARY_PATH' => '/opt/lampp/lib:/opt/lampp/lib'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.37 (Unix) OpenSSL/1.0.2q PHP/7.3.0 mod_perl/2.0.8-dev Perl/v5.16.3'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => '/opt/lampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/opt/lampp/htdocs'
+    'SERVER_ADMIN' => 'you@example.com'
+    'SCRIPT_FILENAME' => '/opt/lampp/htdocs/stl_trans/backend/web/index.php'
+    'REMOTE_PORT' => '42844'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => 'r=customers%2Fcreate'
+    'REQUEST_URI' => '/stl_trans/backend/web/index.php?r=customers%2Fcreate'
+    'SCRIPT_NAME' => '/stl_trans/backend/web/index.php'
+    'PHP_SELF' => '/stl_trans/backend/web/index.php'
+    'REQUEST_TIME_FLOAT' => 1548246205.977
+    'REQUEST_TIME' => 1548246205
+]

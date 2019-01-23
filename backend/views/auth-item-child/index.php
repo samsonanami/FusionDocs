@@ -5,7 +5,7 @@ use yii\grid\GridView;
 use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\AuthItemChildSearch */
+/* @var $searchModel backend\models\AuthItemChildSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Auth Item Children';

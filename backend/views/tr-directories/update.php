@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\TrDirectories */
+/* @var $model backend\models\TrDirectories */
 
 $this->title = 'Update Tr Directories: {nameAttribute}';
 $this->params['breadcrumbs'][] = ['label' => 'Tr Directories', 'url' => ['index']];
