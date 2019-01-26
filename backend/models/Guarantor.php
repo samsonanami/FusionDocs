@@ -30,8 +30,8 @@ class Guarantor extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['grt_ln_id', 'grt_member_id', 'grt_amount', 'grt_lnp_id', 'grt_created_at'], 'required'],
-            [['grt_ln_id', 'grt_member_id', 'grt_lnp_id'], 'integer'],
+            [['grt_ln_id', 'grt_member_id', 'grt_amount'], 'required'],
+            [['grt_ln_id', 'grt_member_id'], 'integer'],
             [['grt_amount'], 'number'],
             [['grt_created_at'], 'safe'],
         ];

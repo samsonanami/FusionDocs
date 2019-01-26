@@ -65,9 +65,13 @@ class GuarantorController extends Controller
     public function actionCreate()
     {
         $model = new Guarantor();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->grt_id]);
+        if ($model->load(Yii::$app->request->post()) {
+            if($model->save()){
+                return $this->redirect(['view', 'id' => $model->grt_id]);
+            }else{
+                return $model->
+            }
+            
         }
 
         return $this->render('create', [

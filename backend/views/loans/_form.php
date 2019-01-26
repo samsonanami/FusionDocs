@@ -42,8 +42,10 @@ use backend\models\Loanproducts;
         <?= $form->field($model, 'ln_fees')->textInput(['maxlength' => true])->input('ln_fees', ['placeholder' => "e.g 500"]); ?>
     </div>
     <div class="col-md-4">
+    <button type="button" class="btn btn-flat btn-info margin" data-toggle="modal" data-target="#modal-info"><i class="fa fa-plus">&nbsp;</i>Add Guarantors</button>
+        
     <div class="form-group">
-            <?=Html::submitButton('Save Updates', ['class' => 'btn btn-md bg-success btn-flat'])?>
+            <?=Html::submitButton('<i class="fa fa-check">&nbsp;</i>Save Updates', ['class' => 'btn btn-primary btn-flat margin'])?>
     </div>  
     <div>
 </div>

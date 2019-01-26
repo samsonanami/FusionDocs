@@ -66,6 +66,8 @@ class SharesController extends Controller
     public function actionCreate()
     {
         $model = new Shares();
+        $model->created_by = Yii::$app->user->identity->username;
+        
         if ($model->load(Yii::$app->request->post())) {
             if($model->save()){
                 Yii::$app->getSession()->setFlash('success',"Share added successfuly!");
