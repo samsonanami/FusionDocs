@@ -10,14 +10,32 @@ $this->title = 'View Loans';
 
 \yii\web\YiiAsset::register($this);
 ?>
+
+
+
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+
+    <!-- Main content -->
     <section class="content">
       <!-- Default box -->
+      <div class="margin">
+      <?=  Html::a('<i class="fa fa-download">&nbsp;</i> Generate PDF', ['customers/report','id' => $modelCustomer['ACCOUNT_NO']],['class' => 'btn btn-flat btn-primary']);?>&nbsp                  
+<button class="btn btn-flat btn-primary" onclick="window.print()"> <i class="fa fa-camera"></i> Snapshot</button> &nbsp
 
-    <div class="box box-default box-solid">
-    <div class="box-header with-border box-profile">
-          <small>Customer Loans View</small>
+      <?=Html::a('<i class="fa fa-pencil"> </i> Update', ['update', 'id' => $modelCustomer->ACCOUNT_NO], ['class' => 'btn btn-flat btn-primary'])?>
+                  <?=Html::a('<i class="fa fa-trash"></i> Delete', ['delete', 'id' => $modelCustomer->ACCOUNT_NO], [
+                  'class' => 'btn btn-flat btn-danger',
+                  'data' => [
+                      'confirm' => 'Are you sure you want to delete this item?',
+                      'method' => 'post',
+                      ],
+                  ])?>
+                  </div>
+      <div class="box box-default box-solid">
+        <div class="box-header with-border box-profile">
+          User Profile
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
                     title="Collapse">
@@ -28,59 +46,83 @@ $this->title = 'View Loans';
         </div>
         <div class="box-body">
         <div class="customers-index">
-
+            <br>
              <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-2">
             <!-- Profile Image -->
-            <div class="box box-default box-solid">
-                <div class="box-body box-profile">
-                <img class="profile-user-img img-responsive img-circle" src="<?=$modelCustomer->logo?>" alt="User profile picture">
-                <h3 class="profile-username text-center"><?=$modelCustomer->FIRST_NAME . ' - ' . $modelCustomer->LAST_NAME?></h3>
-                <p class="text-muted text-center">Customer</p>
-                <?=Html::a('<span class="btn btn-flat bg-success margin"><b class="fa fa-plus"> Add Loan</b></span>', ['loans/create', 'id' => $modelCustomer['ACCOUNT_NO']], ['title' => 'View', 'id' => 'modal-btn-view']);?>
-                 <?=Html::a('<span class="btn btn-flat bg-success margin"><b class="fa fa-money"> Add Shares</b></span>', ['savings/create', 'id' => $modelCustomer['ACCOUNT_NO']], ['title' => 'View', 'id' => 'modal-btn-view']);?>
-                 <?=Html::a('<span class="btn btn-flat bg-success margin"><b class="fa fa-money"> Add Repayment</b></span>', ['loanrepayments/create', 'id' => $modelCustomer['ACCOUNT_NO']], ['title' => 'View', 'id' => 'modal-btn-view']);?>
-
-                 </div>
+                <h4 class="profile-username text-center"><?=$modelCustomer->FIRST_NAME . ' - ' . $modelCustomer->LAST_NAME?></h4>
+                <p class="text-muted text-center"></p>
+                
+                <div class="thumbnail">
+                   <img src="<?=$modelCustomer->logo?>" alt="User profile picture">
+                  </div>
                 <!-- /.box-body -->
-            </div>
             <!-- /.box -->
             </div>
-            <div class="col-md-6">
+            <div class="col-md-5">
             <!-- Profile Image -->
-            
-            <div class="box box-default box-solid">
-                <div class="box-body box-profile"></div>
-                <?=DetailView::widget([
-                    'model' => $modelCustomer,
-                    'attributes' => [
-                        'FIRST_NAME', // title attribute (in plain text)
-                        'LAST_NAME', // description attribute in HTML
-                        'COUNTRY',
-                        'MOBILE',
-                        'EMAIL:email',
-                    ],
-                ]);?>
+            <div class="">
+                <div class="">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                    Account Number<a class="pull-right"><?=$modelCustomer->UNIQUE_NO?></a>
+                    </li>
+                    <li class="list-group-item">
+                    Account Name<a class="pull-right"><?=$modelCustomer->ln_account_name?></a>
+                    </li>
+                    <li class="list-group-item">
+                    Account Type<a class="pull-right"><?=$modelCustomer->cust_account_type ?></a>
+                    </li>
+                    <li class="list-group-item">
+                    National ID # <a class="pull-right"><?=$modelCustomer->cust_id_no?></a>
+                    </li>
+                    <li class="list-group-item">
+                        Phone Number<a class="pull-right"><?=$modelCustomer->MOBILE?></a>
+                    </li>
+                   
+                    
+                </ul>
 
                 </div>
                 <!-- /.box-body -->
             </div>
             <!-- /.box -->
             </div>
-
+            <div class="col-md-5">
+            <!-- Profile Image -->
+                <ul class="list-group">
+                    <li class="list-group-item">
+                      Gender<a class="pull-right"><?=$modelCustomer->GENDER?></a>
+                    </li>
+                    <li class="list-group-item">
+                        KRA Pin<a class="pull-right"><?=$modelCustomer->cust_kra_pin ?></a>
+                    </li>
+                    <li class="list-group-item">
+                        <b><a class="pull-right"><?=$modelCustomer->PROVINCE_STATE ?></a></b>County
+                    </li>
+                </ul>
+                <div class="margin">
+                   </div>
+                </div>
+                <!-- /.box-body -->
+            </div>
 <!-- /.box-body -->
-</div>
-
 <div class="box-footer">
+<?= Html::a('<i class="fa fa-eye"></i>&nbsp; Loans', ['customers/viewloans','id' => $modelCustomer['ACCOUNT_NO']],['class' => 'btn  btn-flat btn-primary pull-left']); ?>
+<?=  Html::a('<i class="fa fa-eye"></i>&nbsp; Shares', ['customers/viewshares','id' => $modelCustomer['ACCOUNT_NO']],['class' => 'btn  btn-flat btn-info pull-left']);?>
+<?=  Html::a('<i class="fa fa-eye"></i>&nbsp;Savings', ['customers/viewsavings','id' => $modelCustomer['ACCOUNT_NO']],['class' => 'btn  btn-flat btn-info pull-left']);?>
+<?=  Html::a('<i class="fa fa-plus "></i>&nbsp; Add Repayment', ['loanrepayments/create','id' => $modelCustomer['ACCOUNT_NO']],['class' => 'btn  btn-flat btn-info pull-right']);?>               
+<?=  Html::a('<i class="fa fa-plus "></i>&nbsp; Add Savings', ['savings/create','id' => $modelCustomer['ACCOUNT_NO']],['class' => 'btn  btn-flat btn-info  pull-right']);?>              
+<?=  Html::a('<i class="fa fa-plus "></i>&nbsp; Add Shares', ['shares/create','id' => $modelCustomer['ACCOUNT_NO']],['class' => 'btn  btn-flat btn-info pull-right']);?>              
+<?=  Html::a('<i class="fa fa-plus "></i>&nbsp; Add Loan', ['loans/create','id' => $modelCustomer['ACCOUNT_NO']],['class' => 'btn btn-flat btn-info  pull-right']);?>
+<?=  Html::a('<i class="fa fa-money"></i>&nbsp; Withdraw Cash', ['wiithdrawals/create','id' => $modelCustomer['ACCOUNT_NO']],['class' => 'btn btn-flat btn-info  pull-right']);?>
 
-  <!-- footer area -->
-</div>
-<!-- /.box-footer-->
+<!-- footer area -->
+<br>
+<!-- Loan detaisl -->
+<span class="margin"></span>
+<div class="box box-primary box-solid">
 
-<div class="box box-default box-solid">
-
-<!-- /.box-header -->
-<div class="box-body">
 <?php Pjax::begin();?>
 <?php
 echo GridView::widget([
@@ -256,26 +298,6 @@ echo GridView::widget([
             ],
             'contentOptions' => ['class' => 'text-right'],
         ],
-        // [
-        //     'header' => '',
-        //     'class' => 'kartik\grid\ActionColumn',
-        //     'headerOptions' => ['style' => 'text-align:right'],
-        //     'template' => '{delete}',
-        //     // 'template' => '{btnLoans} {btnSavings} {viewLoans}',  // the default buttons + your custom button
-        //     'buttons' => [
-        //         'view' => function ($url, $model) {
-        //             return Html::a('<span class="margin"><b class="fa fa-search-plus">View</b></span>', ['loans/view', 'id' => $model['ln_id']], ['title' => 'View', 'id' => 'modal-btn-view']);
-        //             // return Html::a(' - View All Loans', ['customers/viewloans','id' => $model['ln_id']],['class' => 'fa fa-opencart']);
-        //         },
-        //         'delete' => function ($url, $model) {
-        //             return Html::a('<span class=" float-left"><b class="fa fa-trash">Delete</b></span>', ['loans/view', 'id' => $model['ln_id']], ['title' => 'Delete', 'class' => '', 'data' => ['confirm' => 'Are you absolutely sure ? You will lose all the information about this user with this action.', 'method' => 'post', 'data-pjax' => false]]);
-        //         },
-        //         'approve' => function ($url, $model) {
-        //             return Html::a('<span class="btn-tbl btn-tbl-success btn-flat"><b class="fa fa-check">Approve</b></span>', ['loans/view', 'id' => $model['ln_id']], ['title' => 'Approve', 'class' => '', 'data' => ['confirm' => 'Are you absolutely sure ? You will lose all the information about this user with this action.', 'method' => 'post', 'data-pjax' => false]]);
-        //         },
-        //     ],
-        //     'contentOptions' => ['class' => 'text-right'],
-        // ],
         [
             'attribute' => 'ln_status',
             'label' => 'Status',
@@ -305,8 +327,10 @@ echo GridView::widget([
 ]);?>
     <?php Pjax::end();?>
 </div>
-<!-- /.box-body -->
+    <!-- loan details end -->
 </div>
+<!-- /.box-footer-->
 
 </section>
+<!-- /.content -->
 </div>

@@ -38,9 +38,9 @@ class Savings extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['svg_account_number', 'svg_transacted_by','svg_reference'], 'required'],
+            [['svg_account_number','svg_bal', 'svg_transacted_by','svg_reference', 'svg_phone_no'], 'required'],
             [['svg_account_number','svg_id_no'], 'integer'],
-            [['svg_bal'], 'number'],
+            [['svg_bal',], 'number'],
             [['svg_date'], 'safe'],
             [['svg_account_name', 'svg_product_name','svg_transacted_by', 'svg_phone_no','svg_account_unique_number'], 'string', 'max' => 200],
             [['svg_mobile'], 'string', 'max' => 20],

@@ -3,9 +3,12 @@
 use yii\helpers\Html;
 use backend\models\Customers;
 
-$this->title = 'Create Savings';
-// $this->params['breadcrumbs'][] = ['label' => 'Savings', 'url' => ['index']];
-// $this->params['breadcrumbs'][] = $this->title;
+$this->title = 'New savings';
+
+$modelCustomer = new Customers();
+$id = $_GET['id'];
+$modelCustomer = Customers::findOne($id);
+
 ?>
 <div class="savings-create">
 <!-- Content Wrapper. Contains page content -->
@@ -24,7 +27,7 @@ $this->title = 'Create Savings';
            
     <div class="box box-default box-solid">
     <div class="box-header with-border box-profile">
-          Savings Entry Form
+          Savings Form
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
                     title="Collapse">
@@ -35,15 +38,9 @@ $this->title = 'Create Savings';
         </div>
         <div class="box-body">
         <div class="customers-index">
-        <?php
-        //  $modelCustomer = Customers::findOne($id);
-         $modelCustomer = new Customers();
-         $id = $_GET['id'];
-         $modelCustomer = Customers::findOne($id);
-         
-         ?>
+        
          <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-12">
           <?=$this->render('_formadd', [
               'model' => $model,
               'modelCustomer' => $modelCustomer,

@@ -9,7 +9,6 @@ $(window).on('load', function() {
 
 });
 
-
 // RATINGS
 
 var $star_rating = $('.star-rating .fa');

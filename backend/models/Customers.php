@@ -69,8 +69,8 @@ class Customers extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['FIRST_NAME', 'LAST_NAME', 'cust_id_no', 'cust_account_type', 'cust_kra_pin'], 'required'],
-            [['GENDER', 'WORKING_STATUS', 'cust_account_type'], 'string'],
+            [['FIRST_NAME','GENDER', 'COUNTRY','MOBILE', 'LAST_NAME','MOBILE','cust_id_no', 'cust_account_type', 'cust_kra_pin'], 'required'],
+            [['GENDER', 'WORKING_STATUS', 'cust_account_type','ln_account_name'], 'string'],
             [['DOB', 'cust_created_at'], 'safe'],
             [['cust_grp_id', 'cust_active'], 'integer'],
             [['FIRST_NAME', 'LAST_NAME', 'ZIPCODE'], 'string', 'max' => 10],

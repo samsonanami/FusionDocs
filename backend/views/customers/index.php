@@ -1,5 +1,4 @@
 <?php
-
 // use yii\grid\GridView;
 use backend\controllers\LoanrepaymentsSearch;
 use backend\controllers\LoansSearch;
@@ -14,7 +13,8 @@ $this->title = 'Customers';
 <div class="customers-index">
 <section class="content">
 <div class="row">
-<div class="modal modal-info fade" id="modal-info">
+
+<div class="modal modal-primary fade" id="modal-info">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -39,7 +39,7 @@ $this->title = 'Customers';
 <div class="row">
 <div class="col-md-12">
 <?=Html::a('<i class="fa fa-user-plus"></i> Add New Customer', ['create'], ['class' => 'btn btn-flat btn-md btn-primary margin'])?>
-<button type="button" class="btn btn-flat btn-info" data-toggle="modal" data-target="#modal-info"><i class="fa fa-search"></i> Search</button>
+<button type="button" class="btn btn-flat btn-info" data-toggle="modal" data-target="#modal-info"><i class="fa fa-search"></i> Detailed Search</button>
     <!-- Default box -->
     <div class="box box-default box-solid">
     <div class="box-header with-border box-profile">
@@ -74,56 +74,64 @@ echo GridView::widget([
             },
         ],
         [
-            'header' => 'Account Name',
+            'header' => 'ACC NAME',
             'attribute' => 'ln_account_name',
         ],
         [
-            'header' => 'Account Number',
+            'header' => 'ACC NO.',
             'attribute' => 'UNIQUE_NO',
         ],
-
-        'cust_id_no',
-        'cust_kra_pin',
+        [
+            'header' => 'KRA PIN',
+            'attribute' => 'cust_kra_pin',
+        ],
+        [
+            'header' => 'PHONE',
+            'attribute' => 'MOBILE',
+        ],
+        [
+            'header' => 'EMAIL',
+            'attribute' => 'EMAIL',
+        ],
 
         // 'COUNTRY',
         //'TITLE',
-        'MOBILE',
-        'EMAIL',
-        // [
-        //   'attribute'=>'GENDER',
-        //   'label'=>false,
-        //   'value'=>function($data, $key, $index, $column){
-        //     if($data->GENDER=='Male'){
-        //       return 'M';
-        //     }else{
-        //       return 'F';
-        //     }
-        //   }
-        // ],
-        'GENDER',
-        // [
-        //   'header' => 'Loans/Savings',
-        //   'class' => 'yii\grid\ActionColumn',
-        //   'template' => '{loans}{savings}',
-        //   // 'template' => '{btnLoans} {btnSavings} {viewLoans}',  // the default buttons + your custom button
-        //   'buttons' => [
-        //     'loans' => function($url, $model) {
-        //           // return Html::a('<span class="btn btn-sm btn-default"><b class="fa fa-search-plus"></b></span>', ['customers/viewloans', 'id' => $model['ACCOUNT_NO']], ['title' => 'View', 'id' => 'modal-btn-view']);
-        //           //return Html::a('Loans', ['customers/viewloans','id' => $model['ACCOUNT_NO']],['class' => 'fa fa-money btn btn-md btn-default']);
-        //          return Html::a('Loans', ['customers/viewloans','id' => $model['ACCOUNT_NO']],['target' => '_blank','class' => 'fa fa-money btn btn-md btn-default']);
-
-        //       },
-        //       'savings' => function($id, $model) {
-        //         return Html::a(' Savings', ['customers/viewsavings','id' => $model['ACCOUNT_NO']],['class' => 'fa fa-money btn btn-flat btn-default']);
-        //       },
-        //       // 'delete' => function($url, $model) {
-        //       //     return Html::a('<span class="btn btn-sm btn-danger"><b class="fa fa-trash"></b></span>', ['delete', 'id' => $model['ACCOUNT_NO']], ['title' => 'Delete', 'class' => '', 'data' => ['confirm' => 'Are you absolutely sure ? You will lose all the information about this user with this action.', 'method' => 'post', 'data-pjax' => false],]);
-        //       // }
-        //     ],
-        //   ],
-
         [
-            'header' => 'Loans',
+          'header'=>'GENDER',
+          'attribute'=>'GENDER',
+          'label'=>false,
+          'value'=>function($data, $key, $index, $column){
+            if($data->GENDER=='Male'){
+              return 'M';
+            }else{
+              return 'F';
+            }
+          }
+        ],
+//         [
+//           'header' => 'Loans/Savings',
+//           'class' => 'yii\grid\ActionColumn',
+//           'template' => '{loans}{savings}',
+//           // 'template' => '{btnLoans} {btnSavings} {viewLoans}',  // the default buttons + your custom button
+//           'buttons' => [
+//             'loans' => function($url, $model) {
+//                   // return Html::a('<span class="btn btn-sm btn-default"><b class="fa fa-search-plus"></b></span>', ['customers/viewloans', 'id' => $model['ACCOUNT_NO']], ['title' => 'View', 'id' => 'modal-btn-view']);
+//                   //return Html::a('Loans', ['customers/viewloans','id' => $model['ACCOUNT_NO']],['class' => 'fa fa-money btn btn-md btn-default']);
+//                  return Html::a('Loans', ['customers/viewloans','id' => $model['ACCOUNT_NO']],['target' => '_blank','class' => 'fa fa-money btn btn-md btn-default']);
+
+//               },
+//               'savings' => function($id, $model) {
+//                 return Html::a(' Savings', ['customers/viewsavings','id' => $model['ACCOUNT_NO']],['class' => 'fa fa-money btn btn-flat btn-default']);
+//               },
+//               // 'delete' => function($url, $model) {
+//               //     return Html::a('<span class="btn btn-sm btn-danger"><b class="fa fa-trash"></b></span>', ['delete', 'id' => $model['ACCOUNT_NO']], ['title' => 'Delete', 'class' => '', 'data' => ['confirm' => 'Are you absolutely sure ? You will lose all the information about this user with this action.', 'method' => 'post', 'data-pjax' => false],]);
+//               // }
+//             ],
+//           ],
+        
+        ['class' => 'kartik\grid\ActionColumn'],
+        [
+            'header' => 'LOANS',
             'label' => 'Loans',
             'class' => 'kartik\grid\ExpandRowColumn',
             'value' => function ($model, $key, $index, $column) {
@@ -141,7 +149,7 @@ echo GridView::widget([
         ],
         // ['class' => 'yii\grid\SerialColumn'],
         [
-            'header' => 'Savings',
+            'header' => 'SAVINGS',
             'label' => 'Repayments',
             'class' => 'kartik\grid\ExpandRowColumn',
             'value' => function ($model, $key, $index, $column) {
@@ -157,16 +165,13 @@ echo GridView::widget([
                 ]);
             },
         ],
-        ['class' => 'kartik\grid\ActionColumn'],
 
     ],
 ]); ?>
    <?php Pjax::end();?>
-
-
+   
 </div>
 </div>
-
 
 <!-- /.box-body -->
 </div>

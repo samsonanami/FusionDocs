@@ -1,6 +1,7 @@
 <?php
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+
 $this->title = $model->svg_account_name;
 ?>
 
@@ -25,6 +26,8 @@ $this->title = $model->svg_account_name;
             <?= $model->svg_account_name?><br>
             Identification #:<br>
             <?= $model->svg_cust_id ?><br>
+            Amount (Ksh): <br>
+            <?= $model->svg_bal?><br>
             Reference #: <br>
             <?= $model->svg_reference?><br>
             Transaction Type: Shares Deposit<br>

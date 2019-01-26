@@ -7,6 +7,8 @@ use backend\models\Groups;
 use backend\models\Customers;
 use backend\models\Loanproducts;
 
+$time = time();
+$date = "20" . date('y-m-d', $time);
 ?>
 
 <div class="loans-form">
@@ -22,15 +24,16 @@ use backend\models\Loanproducts;
         <?php
         $model->ln_customer_id=$modelCustomer->ACCOUNT_NO;
         ?>
-
         <small><?= $form->field($model, 'ln_customer_id')->hiddenInput(['maxlength' => true, 'visible' => false,])->label(false);?></small>
-        
         <?=$form->field($model, 'lnp_id')->dropDownList(
             ArrayHelper::map(Loanproducts::find()->orderBy('lnp_name')->asArray()->all(), 'lnp_id','lnp_name'),
             ['prompt' => 'Select Loan Product']
             )?>
-       
         <?= $form->field($model, 'ln_principal')->textInput(['maxlength' => true,'id'=>'principal']) ?>
+        <div class="form-group">
+        <button type="button" class="btn btn-flat btn-info" data-toggle="modal" data-target="#modal-info"><i class="fa fa-plus">&nbsp;</i>Add Guarantors</button>
+        </div>
+        
     </div>
     <div class="col-md-4"> 
         <?= $form->field($model, 'ln_duration')->dropDownList(
@@ -49,7 +52,9 @@ use backend\models\Loanproducts;
                 'clientOptions' => [
                     'autoclose' => true,
                     'format' => 'yyyy-mm-dd'
-                ]
+                ],
+                'options'=>[
+                ],
         ]);?>
         <?= $form->field($model, 'ln_repayment')->dropDownList([ 'Daily' => 'Daily', 'Weekly' => 'Weekly', 'Biweekly' => 'Biweekly', 'Monthly' => 'Monthly', ], ['prompt' => '','class'=>'selectedValue', 'id'=>'loanRepaymentCycle']) ?>
         <?= $form->field($model, 'ln_repayment_count')->textInput(['maxlength' => false, 'id'=>'amount']) ?>
@@ -62,7 +67,7 @@ use backend\models\Loanproducts;
    
     </div>
     <div class="form-group">
-            <?=Html::submitButton('Submit Application', ['class' => 'btn btn-md bg-success btn-flat pull-right margin'])?>
+            <?=Html::submitButton('<i class="fa fa-check"></i>Submit Application', ['class' => 'btn btn-md btn-primary btn-flat pull-right margin'])?>
         </div>  
 </div>
         

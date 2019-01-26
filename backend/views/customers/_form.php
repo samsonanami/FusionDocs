@@ -37,17 +37,17 @@ use backend\models\Groups;
             'inline' => false,
             // modify template for custom rendering
             // 'template' => '<div class="well well-sm" style="background-color: #fff; width:250px">{input}</div>',
+            
+            'value' => date('d-M-Y', strtotime('+2 days')),
             'clientOptions' => [
                 'autoclose' => true,
                 'format' => 'yyyy-mm-dd',
-                'value' => date('d-M-Y'),
-                'todayHighlight' => true,
-//                 'endDate' => date('Y-m-d'),
-                //                 'endDate'=>'18d'
                 
             ],
             'options' => [
-                'placeholder' => 'DOB',
+                'todayHighlight' => true,
+                'endDate'=>'18d',
+                'placeholder' => 'DOB < '.date('d-M-Y', strtotime('-18 years')),
             ],
         ])->label(false);?>
              

@@ -26,6 +26,7 @@ return array(
     'kartik\\export\\' => array($vendorDir . '/kartik-v/yii2-export/src'),
     'kartik\\dynagrid\\' => array($vendorDir . '/kartik-v/yii2-dynagrid/src'),
     'kartik\\dialog\\' => array($vendorDir . '/kartik-v/yii2-dialog/src'),
+    'kartik\\date\\' => array($vendorDir . '/kartik-v/yii2-widget-datepicker/src'),
     'kartik\\base\\' => array($vendorDir . '/kartik-v/yii2-krajee-base/src'),
     'dosamigos\\datepicker\\' => array($vendorDir . '/2amigos/yii2-date-picker-widget/src'),
     'creocoder\\nestedsets\\' => array($vendorDir . '/creocoder/yii2-nested-sets/src'),

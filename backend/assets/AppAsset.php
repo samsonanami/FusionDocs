@@ -25,7 +25,6 @@ class AppAsset extends AssetBundle
         'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.9/css/fileinput.min.css',
     ];
     public $js = [
-        'js/jquery-3.3.1.min.js',
         'jspdf/jquery/jquery-1.7.1.min.js',
         'js/main.js',
         'bower_components/fastclick/lib/fastclick.js',
@@ -44,7 +43,7 @@ class AppAsset extends AssetBundle
         'jspdf/jspdf.plugin.standard_fonts_metrics.js',
         'jspdf/jspdf.plugin.split_text_to_size.js',
         'jspdf/jspdf.plugin.from_html.js',
-        
+
     ];
     public $depends = [
         'yii\web\YiiAsset',

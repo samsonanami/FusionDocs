@@ -11,8 +11,6 @@ use yii\web\NotFoundHttpException;
 use yii\web\ForbiddenHttpException;
 use backend\models\AuthItem;
 
-use backend\models\User;
-use backend\models\OmDocumentsSearch;
 
 
 
@@ -120,7 +118,7 @@ class SiteController extends Controller
         if(Yii::$app->user->can('create-user')){
             return $this->render('user/create');
         }else{
-            throw new FobiddenHttpException;
+            throw new \ErrorException();
         }
     }
 

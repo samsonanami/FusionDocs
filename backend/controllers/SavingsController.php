@@ -3,6 +3,7 @@
 namespace backend\controllers;
 
 use Yii;
+use Behat\Gherkin\Exception\Exception;
 use backend\models\Savings;
 use backend\controllers\SavingsSearch;
 use yii\web\Controller;
@@ -62,8 +63,13 @@ class SavingsController extends Controller
     {
         $model = new Savings();
         $model->created_by = Yii::$app->user->identity->username;
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['viewreceipt', 'id' => $model->svg_id]);
+        if ($model->load(Yii::$app->request->post())) {
+            if($model->save()){
+                Yii::$app->getSession()->setFlash('success','Record saved successfully');
+                return $this->redirect(['viewreceipt', 'id' => $model->svg_id]);
+            }else {
+                Yii::$app->getSession()->setFlash('error','Record NOT saved');
+            }
         }
         return $this->render('create', [
             'model' => $model,

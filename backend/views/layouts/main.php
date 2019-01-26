@@ -67,6 +67,7 @@ $date = "20" . date('y-m-d', $time);
 </head>
 <?php $this->beginBody()?>
 <body class="hold-transition skin-blue sidebar-mini">
+
 <!-- Site wrapper -->
 <div class="wrapper">
 
@@ -99,8 +100,8 @@ $date = "20" . date('y-m-d', $time);
          <!-- Messages: style can be found in dropdown.less-->
           
           <li class="dropdown user user-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <span class="hidden-xs text-yellow">User: <?=Yii::$app->user->identity->username?></span>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="hidden-xs "><?=Yii::$app->user->identity->username?></i>
               <img src="<?=Yii::$app->user->identity->image_link?>" class="user-image pull-right margin" alt="User Image">
             </a>
             <ul class="dropdown-menu">

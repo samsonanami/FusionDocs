@@ -2,8 +2,13 @@
 
 use yii\helpers\Html;
 use backend\models\Customers;
+use backend\models\Guarantor;
 
+$gurantors = new Guarantor;
+
+// use backend\models\Guarantor;
 $this->title = 'Loan Application';
+
 ?>
 <div class="loans-create">
 <!-- Content Wrapper. Contains page content -->
@@ -16,15 +21,14 @@ $this->title = 'Loan Application';
         <li><a href="<?php echo Yii::$app->homeUrl ?>"><i class="fa fa-dashboard"></i> Home</a></li>
       </ol>
     </section>
+    
     <!-- Main content -->
     <section class="content">
-      <!-- Default box -->
-      
+    
+    <!-- Default box -->
     <div class="box box-default box-solid">
     <div class="box-header with-border box-profile">
-
           Loan Application Form : <small>Fill the Form to apply</small>
-
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
                     title="Collapse">
@@ -47,6 +51,32 @@ $this->title = 'Loan Application';
           'model' => $model,
           'modelCustomer' => $modelCustomer,
        ])?>
+       
+<!--        START OF MODEL -->  
+<div class="modal modal-primary fade" id="modal-info">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">New Guarantors</h4>
+      </div>
+      <div class="modal-body">	
+        <?=$this->render('@backend/views/guarantor/_form', [
+            'model' => $gurantors,
+          'modelCustomer' => $modelCustomer,
+       ])?>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline pull-right btn-flat" data-dismiss="modal">Exit</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!--   END OF MODEL -->
+            
 <!-- /.box-body -->
 </div>
 

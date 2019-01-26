@@ -1,0 +1,245 @@
+2018-07-08 14:42:42 [::1][2][05rds9csu5qg1lurd7a8gv5dn2][error][yii\web\HttpException:403] yii\web\ForbiddenHttpException: You are not allowed to perform this action. in C:\xampp\htdocs\FusionDocs\vendor\yiisoft\yii2\filters\AccessControl.php:158
+Stack trace:
+#0 C:\xampp\htdocs\FusionDocs\vendor\yiisoft\yii2\filters\AccessControl.php(140): yii\filters\AccessControl->denyAccess(Object(yii\web\User))
+#1 C:\xampp\htdocs\FusionDocs\vendor\yiisoft\yii2\base\ActionFilter.php(77): yii\filters\AccessControl->beforeAction(Object(yii\base\InlineAction))
+#2 [internal function]: yii\base\ActionFilter->beforeFilter(Object(yii\base\ActionEvent))
+#3 C:\xampp\htdocs\FusionDocs\vendor\yiisoft\yii2\base\Component.php(627): call_user_func(Array, Object(yii\base\ActionEvent))
+#4 C:\xampp\htdocs\FusionDocs\vendor\yiisoft\yii2\base\Controller.php(274): yii\base\Component->trigger('beforeAction', Object(yii\base\ActionEvent))
+#5 C:\xampp\htdocs\FusionDocs\vendor\yiisoft\yii2\web\Controller.php(164): yii\base\Controller->beforeAction(Object(yii\base\InlineAction))
+#6 C:\xampp\htdocs\FusionDocs\vendor\yiisoft\yii2\base\Controller.php(155): yii\web\Controller->beforeAction(Object(yii\base\InlineAction))
+#7 C:\xampp\htdocs\FusionDocs\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('signup', Array)
+#8 C:\xampp\htdocs\FusionDocs\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('site/signup', Array)
+#9 C:\xampp\htdocs\FusionDocs\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#10 C:\xampp\htdocs\FusionDocs\frontend\web\index.php(17): yii\base\Application->run()
+#11 {main}
+2018-07-08 14:42:42 [::1][2][05rds9csu5qg1lurd7a8gv5dn2][info][application] $_GET = [
+    'r' => 'site/signup'
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'advanced-backend' => '408ekn3nfpf2fm6tenv21kpd5s'
+    '_identity-backend' => 'ce0a96c4589a356b50d66a5f0260efd775070c4822a337d37485b295c1add577a:2:{i:0;s:17:\"_identity-backend\";i:1;s:46:\"[1,\"mF9lnNjzjSgGbfGi7BmRQDTdE1Qt6pau\",2592000]\";}'
+    '_csrf-backend' => '54f8e17c4852477090cad1664bdd2451f6db5d84cdb68a920ccf74fc2e557bd6a:2:{i:0;s:13:\"_csrf-backend\";i:1;s:32:\"6u7RwRu8h6_mtmrX4WrVh6iRS7NZX2oP\";}'
+    'advanced-frontend' => '05rds9csu5qg1lurd7a8gv5dn2'
+    '_csrf-frontend' => '408daba9035f238ec280b16072caa23e9ad86d76caa9333d4119014a93b84578a:2:{i:0;s:14:\"_csrf-frontend\";i:1;s:32:\"Eha71IufitNOEUFc_6Tz7FbeFxkJu37o\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__captcha/site/captcha' => 'ruxijj'
+    '__captcha/site/captchacount' => 1
+    '__id' => 2
+]
+
+$_SERVER = [
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8'
+    'HTTP_REFERER' => 'http://localhost/FusionDocs/frontend/web/index.php?r=site%2Fsignup'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'advanced-backend=408ekn3nfpf2fm6tenv21kpd5s; _identity-backend=ce0a96c4589a356b50d66a5f0260efd775070c4822a337d37485b295c1add577a%3A2%3A%7Bi%3A0%3Bs%3A17%3A%22_identity-backend%22%3Bi%3A1%3Bs%3A46%3A%22%5B1%2C%22mF9lnNjzjSgGbfGi7BmRQDTdE1Qt6pau%22%2C2592000%5D%22%3B%7D; _csrf-backend=54f8e17c4852477090cad1664bdd2451f6db5d84cdb68a920ccf74fc2e557bd6a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%226u7RwRu8h6_mtmrX4WrVh6iRS7NZX2oP%22%3B%7D; advanced-frontend=05rds9csu5qg1lurd7a8gv5dn2; _csrf-frontend=408daba9035f238ec280b16072caa23e9ad86d76caa9333d4119014a93b84578a%3A2%3A%7Bi%3A0%3Bs%3A14%3A%22_csrf-frontend%22%3Bi%3A1%3Bs%3A32%3A%22Eha71IufitNOEUFc_6Tz7FbeFxkJu37o%22%3B%7D'
+    'PATH' => 'C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\'
+    'SystemRoot' => 'C:\\Windows'
+    'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\Windows'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.29 (Win32) OpenSSL/1.1.0g PHP/7.2.2 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.29 (Win32) OpenSSL/1.1.0g PHP/7.2.2'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/FusionDocs/frontend/web/index.php'
+    'REMOTE_PORT' => '50606'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'r=site%2Fsignup'
+    'REQUEST_URI' => '/FusionDocs/frontend/web/index.php?r=site%2Fsignup'
+    'SCRIPT_NAME' => '/FusionDocs/frontend/web/index.php'
+    'PHP_SELF' => '/FusionDocs/frontend/web/index.php'
+    'REQUEST_TIME_FLOAT' => 1531053762.538
+    'REQUEST_TIME' => 1531053762
+]
+2018-07-17 21:22:02 [::1][-][74tefkqig25nr2q7v0klho7gq2][error][yii\base\UnknownClassException] exception 'yii\base\UnknownClassException' with message 'Unable to find 'frontend\controllers\ProductController' in file: C:\xampp\htdocs\FusionDocs/frontend/controllers/ProductController.php. Namespace missing?' in C:\xampp\htdocs\FusionDocs\vendor\yiisoft\yii2\BaseYii.php:296
+Stack trace:
+#0 [internal function]: yii\BaseYii::autoload('frontend\\contro...')
+#1 [internal function]: spl_autoload_call('frontend\\contro...')
+#2 C:\xampp\htdocs\FusionDocs\vendor\yiisoft\yii2\base\Module.php(637): class_exists('frontend\\contro...')
+#3 C:\xampp\htdocs\FusionDocs\vendor\yiisoft\yii2\base\Module.php(596): yii\base\Module->createControllerByID('product')
+#4 C:\xampp\htdocs\FusionDocs\vendor\yiisoft\yii2\base\Module.php(522): yii\base\Module->createController('product')
+#5 C:\xampp\htdocs\FusionDocs\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('product', Array)
+#6 C:\xampp\htdocs\FusionDocs\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#7 C:\xampp\htdocs\FusionDocs\frontend\web\index.php(17): yii\base\Application->run()
+#8 {main}
+2018-07-17 21:22:02 [::1][-][74tefkqig25nr2q7v0klho7gq2][info][application] $_GET = [
+    'r' => 'product'
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    '__utma' => '111872281.1008460528.1524946903.1524946903.1524946903.1'
+    '__utmz' => '111872281.1524946903.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)'
+    'advanced-backend' => '7gtomh03ndohish1bvo32sv1e1'
+    '_identity-backend' => 'ce0a96c4589a356b50d66a5f0260efd775070c4822a337d37485b295c1add577a:2:{i:0;s:17:\"_identity-backend\";i:1;s:46:\"[1,\"mF9lnNjzjSgGbfGi7BmRQDTdE1Qt6pau\",2592000]\";}'
+    '_csrf-backend' => 'b75023eb0d6bd3e4ff3a7c93d0945280a3a84c64953276565bdb8da801d528bea:2:{i:0;s:13:\"_csrf-backend\";i:1;s:32:\"uHn9rkOyo88JxavKo__PAcscbFsB1lOp\";}'
+    'advanced-frontend' => '74tefkqig25nr2q7v0klho7gq2'
+    '_csrf-frontend' => 'f44211a6c3bd066d4e28b9b41d9a848f3bde1ef7354cfdb4b110558f77729197a:2:{i:0;s:14:\"_csrf-frontend\";i:1;s:32:\"6IfGog3fLO8DeFkHFbYbCUCbCnGSBOrE\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+]
+
+$_SERVER = [
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost:8080'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-GB,en-US;q=0.9,en;q=0.8'
+    'HTTP_COOKIE' => '__utma=111872281.1008460528.1524946903.1524946903.1524946903.1; __utmz=111872281.1524946903.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); advanced-backend=7gtomh03ndohish1bvo32sv1e1; _identity-backend=ce0a96c4589a356b50d66a5f0260efd775070c4822a337d37485b295c1add577a%3A2%3A%7Bi%3A0%3Bs%3A17%3A%22_identity-backend%22%3Bi%3A1%3Bs%3A46%3A%22%5B1%2C%22mF9lnNjzjSgGbfGi7BmRQDTdE1Qt6pau%22%2C2592000%5D%22%3B%7D; _csrf-backend=b75023eb0d6bd3e4ff3a7c93d0945280a3a84c64953276565bdb8da801d528bea%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22uHn9rkOyo88JxavKo__PAcscbFsB1lOp%22%3B%7D; advanced-frontend=74tefkqig25nr2q7v0klho7gq2; _csrf-frontend=f44211a6c3bd066d4e28b9b41d9a848f3bde1ef7354cfdb4b110558f77729197a%3A2%3A%7Bi%3A0%3Bs%3A14%3A%22_csrf-frontend%22%3Bi%3A1%3Bs%3A32%3A%226IfGog3fLO8DeFkHFbYbCUCbCnGSBOrE%22%3B%7D'
+    'PATH' => 'C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Gradle\\gradle-4.7\\bin;C:\\Program Files (x86)\\Brackets\\command;C:\\Program Files\\Git LFS;C:\\Program Files\\Git\\cmd;C:\\xampp\\php;C:\\Program Files\\Microsoft VS Code\\bin;C:\\ProgramData\\ComposerSetup\\bin;;C:\\Program Files\\Microsoft VS Code\\bin;C:\\Developer\\wildfly-12.0.0.Final\\bin;C:\\Users\\Samdoh\\AppData\\Roaming\\Composer\\vendor\\bin'
+    'SystemRoot' => 'C:\\Windows'
+    'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\Windows'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.17 (Win32) OpenSSL/1.0.2d PHP/5.6.15 Server at localhost Port 8080</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.17 (Win32) OpenSSL/1.0.2d PHP/5.6.15'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '8080'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/FusionDocs/frontend/web/index.php'
+    'REMOTE_PORT' => '50987'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'r=product'
+    'REQUEST_URI' => '/fusiondocs/frontend/web/index.php?r=product'
+    'SCRIPT_NAME' => '/fusiondocs/frontend/web/index.php'
+    'PHP_SELF' => '/fusiondocs/frontend/web/index.php'
+    'REQUEST_TIME_FLOAT' => 1531855322.308
+    'REQUEST_TIME' => 1531855322
+]
+2018-07-17 21:22:26 [::1][-][74tefkqig25nr2q7v0klho7gq2][error][yii\base\InvalidConfigException] exception 'yii\base\InvalidConfigException' with message 'The 'treemanager' module MUST be setup in your Yii configuration file.' in C:\xampp\htdocs\FusionDocs\vendor\kartik-v\yii2-krajee-base\Config.php:282
+Stack trace:
+#0 C:\xampp\htdocs\FusionDocs\vendor\kartik-v\yii2-tree-manager\src\TreeView.php(600): kartik\base\Config::getModule('treemanager')
+#1 C:\xampp\htdocs\FusionDocs\vendor\kartik-v\yii2-tree-manager\src\TreeView.php(614): kartik\tree\TreeView::module()
+#2 C:\xampp\htdocs\FusionDocs\vendor\kartik-v\yii2-tree-manager\src\TreeView.php(635): kartik\tree\TreeView::getConfig(Array)
+#3 C:\xampp\htdocs\FusionDocs\frontend\views\product\index.php(46): kartik\tree\TreeView::widget(Array)
+#4 C:\xampp\htdocs\FusionDocs\vendor\yiisoft\yii2\base\View.php(348): require('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\FusionDocs\vendor\yiisoft\yii2\base\View.php(257): yii\base\View->renderPhpFile('C:\\xampp\\htdocs...', Array)
+#6 C:\xampp\htdocs\FusionDocs\vendor\yiisoft\yii2\base\View.php(156): yii\base\View->renderFile('C:\\xampp\\htdocs...', Array, Object(frontend\controllers\ProductController))
+#7 C:\xampp\htdocs\FusionDocs\vendor\yiisoft\yii2\base\Controller.php(384): yii\base\View->render('index', Array, Object(frontend\controllers\ProductController))
+#8 C:\xampp\htdocs\FusionDocs\frontend\controllers\ProductController.php(13): yii\base\Controller->render('index')
+#9 [internal function]: frontend\controllers\ProductController->actionIndex()
+#10 C:\xampp\htdocs\FusionDocs\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#11 C:\xampp\htdocs\FusionDocs\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#12 C:\xampp\htdocs\FusionDocs\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('', Array)
+#13 C:\xampp\htdocs\FusionDocs\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('product', Array)
+#14 C:\xampp\htdocs\FusionDocs\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#15 C:\xampp\htdocs\FusionDocs\frontend\web\index.php(17): yii\base\Application->run()
+#16 {main}
+2018-07-17 21:22:26 [::1][-][74tefkqig25nr2q7v0klho7gq2][info][application] $_GET = [
+    'r' => 'product'
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    '__utma' => '111872281.1008460528.1524946903.1524946903.1524946903.1'
+    '__utmz' => '111872281.1524946903.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)'
+    'advanced-backend' => '7gtomh03ndohish1bvo32sv1e1'
+    '_identity-backend' => 'ce0a96c4589a356b50d66a5f0260efd775070c4822a337d37485b295c1add577a:2:{i:0;s:17:\"_identity-backend\";i:1;s:46:\"[1,\"mF9lnNjzjSgGbfGi7BmRQDTdE1Qt6pau\",2592000]\";}'
+    '_csrf-backend' => 'b75023eb0d6bd3e4ff3a7c93d0945280a3a84c64953276565bdb8da801d528bea:2:{i:0;s:13:\"_csrf-backend\";i:1;s:32:\"uHn9rkOyo88JxavKo__PAcscbFsB1lOp\";}'
+    'advanced-frontend' => '74tefkqig25nr2q7v0klho7gq2'
+    '_csrf-frontend' => 'f44211a6c3bd066d4e28b9b41d9a848f3bde1ef7354cfdb4b110558f77729197a:2:{i:0;s:14:\"_csrf-frontend\";i:1;s:32:\"6IfGog3fLO8DeFkHFbYbCUCbCnGSBOrE\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+]
+
+$_SERVER = [
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost:8080'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-GB,en-US;q=0.9,en;q=0.8'
+    'HTTP_COOKIE' => '__utma=111872281.1008460528.1524946903.1524946903.1524946903.1; __utmz=111872281.1524946903.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); advanced-backend=7gtomh03ndohish1bvo32sv1e1; _identity-backend=ce0a96c4589a356b50d66a5f0260efd775070c4822a337d37485b295c1add577a%3A2%3A%7Bi%3A0%3Bs%3A17%3A%22_identity-backend%22%3Bi%3A1%3Bs%3A46%3A%22%5B1%2C%22mF9lnNjzjSgGbfGi7BmRQDTdE1Qt6pau%22%2C2592000%5D%22%3B%7D; _csrf-backend=b75023eb0d6bd3e4ff3a7c93d0945280a3a84c64953276565bdb8da801d528bea%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22uHn9rkOyo88JxavKo__PAcscbFsB1lOp%22%3B%7D; advanced-frontend=74tefkqig25nr2q7v0klho7gq2; _csrf-frontend=f44211a6c3bd066d4e28b9b41d9a848f3bde1ef7354cfdb4b110558f77729197a%3A2%3A%7Bi%3A0%3Bs%3A14%3A%22_csrf-frontend%22%3Bi%3A1%3Bs%3A32%3A%226IfGog3fLO8DeFkHFbYbCUCbCnGSBOrE%22%3B%7D'
+    'PATH' => 'C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Gradle\\gradle-4.7\\bin;C:\\Program Files (x86)\\Brackets\\command;C:\\Program Files\\Git LFS;C:\\Program Files\\Git\\cmd;C:\\xampp\\php;C:\\Program Files\\Microsoft VS Code\\bin;C:\\ProgramData\\ComposerSetup\\bin;;C:\\Program Files\\Microsoft VS Code\\bin;C:\\Developer\\wildfly-12.0.0.Final\\bin;C:\\Users\\Samdoh\\AppData\\Roaming\\Composer\\vendor\\bin'
+    'SystemRoot' => 'C:\\Windows'
+    'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\Windows'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.17 (Win32) OpenSSL/1.0.2d PHP/5.6.15 Server at localhost Port 8080</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.17 (Win32) OpenSSL/1.0.2d PHP/5.6.15'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '8080'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/FusionDocs/frontend/web/index.php'
+    'REMOTE_PORT' => '50995'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'r=product'
+    'REQUEST_URI' => '/fusiondocs/frontend/web/index.php?r=product'
+    'SCRIPT_NAME' => '/fusiondocs/frontend/web/index.php'
+    'PHP_SELF' => '/fusiondocs/frontend/web/index.php'
+    'REQUEST_TIME_FLOAT' => 1531855346.686
+    'REQUEST_TIME' => 1531855346
+]

@@ -9,6 +9,7 @@ use yii\base\Model;
 use backend\models\Loans;
 use backend\models\Savings;
 use backend\controllers\SavingsSearch;
+use backend\controllers\SharesSearch;
 use backend\models\Loanproducts;
 use backend\models\Customers;
 use backend\controllers\CustomersSearch;
@@ -96,7 +97,7 @@ class CustomersController extends Controller
         ]
     ]);
     
-    // return the pdf output as per the destinaddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddtion setting
+    // return the pdf output as per the destintion setting
     return $pdf->render(); 
 }
     public function actionGenPdf($id)
@@ -134,6 +135,18 @@ class CustomersController extends Controller
         $searchModel->svg_account_number = $modelCustomer->ACCOUNT_NO;
         $dataProvider=$searchModel->search(Yii::$app->request->queryParams);
         return $this->render('viewsavings', [
+            'modelLoans' => $this->findModel($id),  
+            'modelCustomer' => $modelCustomer,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+    public function actionViewshares($id)
+    {
+        $modelCustomer = Customers::findOne($id);
+        $searchModel = new SharesSearch();
+        $searchModel->shr_account_no = $modelCustomer->UNIQUE_NO;
+        $dataProvider=$searchModel->search(Yii::$app->request->queryParams);
+        return $this->render('viewshares', [
             'modelLoans' => $this->findModel($id),  
             'modelCustomer' => $modelCustomer,
             'dataProvider' => $dataProvider,

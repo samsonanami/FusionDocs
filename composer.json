@@ -26,7 +26,8 @@
         "kartik-v/yii2-mpdf": "*",
         "kartik-v/yii2-export": "*" ,
         "mpdf/mpdf": "^7.1",
-        "odaialali/yii2-toastr": "@dev" 
+        "odaialali/yii2-toastr": "@dev",
+        "kartik-v/yii2-widget-datepicker": "dev-master" 
 
          
     },
